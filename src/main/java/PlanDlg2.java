@@ -8,12 +8,12 @@
  *
  * @author Lukas Grafoner
  */
-public class PlanDlg extends javax.swing.JDialog {
+public class PlanDlg2 extends javax.swing.JDialog {
 
     /**
      * Creates new form PlanDlg
      */
-    public PlanDlg(java.awt.Frame parent, boolean modal) {
+    public PlanDlg2(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -33,12 +33,6 @@ public class PlanDlg extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,36 +73,6 @@ public class PlanDlg extends javax.swing.JDialog {
         jPanel2.add(jScrollPane2);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 5));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Fach");
-        jLabel1.setToolTipText("");
-        jPanel3.add(jLabel1);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Fach");
-        jLabel2.setToolTipText("");
-        jPanel3.add(jLabel2);
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Fach");
-        jLabel3.setToolTipText("");
-        jPanel3.add(jLabel3);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Fach");
-        jLabel4.setToolTipText("");
-        jPanel3.add(jLabel4);
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Fach");
-        jLabel5.setToolTipText("");
-        jPanel3.add(jLabel5);
-
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         jMenu1.setText("Ansicht");
 
@@ -171,11 +135,6 @@ public class PlanDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -184,7 +143,6 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
