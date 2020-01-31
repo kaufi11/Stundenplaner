@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.TransferHandler;
 
 /**
@@ -16,6 +17,11 @@ import javax.swing.TransferHandler;
  * @author timon_kaufmann
  */
 public class BlGui {
+    public static void enableTablebearbeiten(JTable table){
+        table.setAutoCreateRowSorter(true);
+        table.setTransferHandler(new bl.DragAndDrop());
+    }
+    
         public static void enableLabelsbearbeiten(JLabel label) {
         label.setTransferHandler(new TransferHandler("text"));
         label.addMouseListener(new MouseAdapter() {

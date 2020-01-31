@@ -47,7 +47,6 @@ public class PlanDlg extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menubearbeiten = new javax.swing.JMenuItem();
-        menupausen = new javax.swing.JMenuItem();
         menustundenzeiten = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -72,22 +71,22 @@ public class PlanDlg extends javax.swing.JDialog {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1.", null, null, null, null, null},
-                {"2.", null, null, null, null, null},
-                {"Pause", "", null, null, null, null},
-                {"3.", null, null, null, null, null},
-                {"4.", null, null, null, null, null},
-                {"Pause", null, null, null, null, null},
-                {"5.", null, null, null, null, null},
-                {"6.", null, null, null, null, null},
-                {"NM", null, null, null, null, null}
+                {"1.", null, null, null, null, null, null},
+                {"2.", null, null, null, null, null, null},
+                {"Pause", null, "", null, null, null, null},
+                {"3.", null, null, null, null, null, null},
+                {"4.", null, null, null, null, null, null},
+                {"Pause", null, null, null, null, null, null},
+                {"5.", null, null, null, null, null, null},
+                {"6.", null, null, null, null, null, null},
+                {"NM", null, null, null, null, null, null}
             },
             new String [] {
-                "Stunde", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
+                "Stunde", "Von-Bis", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -128,14 +127,6 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         jMenu2.add(menubearbeiten);
 
-        menupausen.setText("Pausen");
-        menupausen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menupausenon_bearbeiten(evt);
-            }
-        });
-        jMenu2.add(menupausen);
-
         menustundenzeiten.setText("Stundenzeiten");
         menustundenzeiten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,15 +150,10 @@ public class PlanDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void on_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bearbeiten
-        table.setAutoCreateRowSorter(true);
-        table.setTransferHandler(new bl.DragAndDrop());
-
+        bl.BlGui.enableTablebearbeiten(table);
+        
         bl.BlGui.enableLabelsbearbeiten(label);
     }//GEN-LAST:event_on_bearbeiten
-
-    private void menupausenon_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menupausenon_bearbeiten
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menupausenon_bearbeiten
 
     private void menustundenzeitenon_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menustundenzeitenon_bearbeiten
         // TODO add your handling code here:
@@ -234,7 +220,6 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JLabel label;
     private javax.swing.JList<String> list;
     private javax.swing.JMenuItem menubearbeiten;
-    private javax.swing.JMenuItem menupausen;
     private javax.swing.JMenuItem menustundenzeiten;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

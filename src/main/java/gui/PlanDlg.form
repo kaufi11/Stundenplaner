@@ -29,14 +29,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="on_bearbeiten"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menupausen">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pausen"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menupausenon_bearbeiten"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menustundenzeiten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Stundenzeiten"/>
@@ -151,7 +143,7 @@
             <Component class="javax.swing.JTable" name="table">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="9">
+                  <Table columnCount="7" rowCount="9">
                     <Column editable="false" title="Stunde" type="java.lang.Object">
                       <Data value="1."/>
                       <Data value="2."/>
@@ -163,6 +155,7 @@
                       <Data value="6."/>
                       <Data value="NM"/>
                     </Column>
+                    <Column editable="false" title="Von-Bis" type="java.lang.Object"/>
                     <Column editable="false" title="Montag" type="java.lang.Object">
                       <Data value="null"/>
                       <Data value="null"/>
