@@ -1,19 +1,26 @@
+package gui;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.TransferHandler;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Lukas Grafoner
  */
-public class PlanDlg2 extends javax.swing.JDialog {
+public class PlanDlg extends javax.swing.JDialog {
 
     /**
      * Creates new form PlanDlg
      */
-    public PlanDlg2(java.awt.Frame parent, boolean modal) {
+    public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -29,27 +36,31 @@ public class PlanDlg2 extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menubearbeiten = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        list.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
+        list.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list);
 
         jPanel1.add(jScrollPane1);
 
@@ -57,22 +68,46 @@ public class PlanDlg2 extends javax.swing.JDialog {
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {"1.", null, null, null, null, null},
+                {"2.", null, null, null, null, null},
+                {"Pause", "", null, null, null, null},
+                {"3.", null, null, null, null, null},
+                {"4.", null, null, null, null, null},
+                {"Pause", null, null, null, null, null},
+                {"5.", null, null, null, null, null},
+                {"6.", null, null, null, null, null},
+                {"NM", null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Stunde", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(table);
 
         jPanel2.add(jScrollPane2);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 5));
+
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setText("Fach");
+        label.setToolTipText("");
+        label.setOpaque(true);
+        jPanel3.add(label);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         jMenu1.setText("Ansicht");
 
@@ -82,9 +117,22 @@ public class PlanDlg2 extends javax.swing.JDialog {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Bearbeiten");
+
+        menubearbeiten.setText("Bearbeiten");
+        menubearbeiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_bearbeiten(evt);
+            }
+        });
+        jMenu2.add(menubearbeiten);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Datei");
+
+        jMenuItem3.setText("Drucken");
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -92,6 +140,17 @@ public class PlanDlg2 extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void on_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bearbeiten
+        table.setAutoCreateRowSorter(true);
+        table.setTransferHandler(new bl.DragAndDrop());
+
+        bl.BlGui.enableLabelsbearbeiten(label);
+    }//GEN-LAST:event_on_bearbeiten
+
+
+
+    //
+    //
     /**
      * @param args the command line arguments
      */
@@ -135,16 +194,20 @@ public class PlanDlg2 extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel label;
+    private javax.swing.JList<String> list;
+    private javax.swing.JMenuItem menubearbeiten;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
