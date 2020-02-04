@@ -5,6 +5,8 @@
  */
 package bl;
 
+import data.Zeit;
+import gui.EntryDlg;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import javax.swing.JOptionPane;
@@ -16,9 +18,6 @@ import javax.swing.TransferHandler;
  * @author timon_kaufmann
  */
 public class DragAndDrop extends TransferHandler {
-
-    int pause1 = 2;
-    int pause2 = 5;
 
     @Override
     public boolean canImport(TransferHandler.TransferSupport support) {
@@ -33,26 +32,42 @@ public class DragAndDrop extends TransferHandler {
 
         DataFlavor flavor = getPropertyDataFlavor(String.class, support.getDataFlavors());
 
-        String data;
+        String datas;
         try {
-            data = (String) support.getTransferable().getTransferData(flavor);
+            datas = (String) support.getTransferable().getTransferData(flavor);
         } catch (UnsupportedFlavorException | java.io.IOException e) {
             return false;
         }
 
         JTable.DropLocation dl = (JTable.DropLocation) support.getDropLocation();
         JTable table = (JTable) support.getComponent();
+
+        boolean ok = true;
+
         if (dl.getColumn() == 0) {
+            ok = false;
             JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
         } else if (dl.getColumn() == 1) {
+            ok = false;
             JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
-        } else if (dl.getRow() == pause1) {
+        } else if (dl.getColumn() == 2) {
+            ok = false;
+            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+        } else if (data.Var.times.get(dl.getRow()).getArt().equals("Pause")) {
+            ok = false;
             JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Pause gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
-        } else if (dl.getRow() == pause2) {
-            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Pause gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
-        } else {
-            table.setValueAt(data, dl.getRow(), dl.getColumn());
+        } else if (ok) {
+            EntryDlg dialog = new EntryDlg(new javax.swing.JFrame(), true, dl.getRow(), dl.getColumn());
+            dialog.setVisible(true);
+            if (gui.EntryDlg.open == false) {
+                if (gui.EntryDlg.ok) {
+                    table.setValueAt(datas, dl.getRow(), dl.getColumn());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Stunde nicht hinzugefügt", "Fehler", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
+
         return true;
     }
 
