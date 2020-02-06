@@ -24,6 +24,8 @@ public class PlanDlg extends javax.swing.JDialog {
     public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jPanel3.setVisible(false);
+        
     }
 
     /**
@@ -43,6 +45,15 @@ public class PlanDlg extends javax.swing.JDialog {
         table = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         label = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
+        label5 = new javax.swing.JLabel();
+        label6 = new javax.swing.JLabel();
+        label7 = new javax.swing.JLabel();
+        label8 = new javax.swing.JLabel();
+        label9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -55,6 +66,7 @@ public class PlanDlg extends javax.swing.JDialog {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -106,13 +118,77 @@ public class PlanDlg extends javax.swing.JDialog {
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 5));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 5));
 
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setText("Fach");
+        label.setText("GU");
         label.setToolTipText("");
         label.setOpaque(true);
+        label.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label);
+
+        label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label1.setText("WE");
+        label1.setToolTipText("");
+        label1.setOpaque(true);
+        label1.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label1);
+
+        label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label2.setText("BSP");
+        label2.setToolTipText("");
+        label2.setOpaque(true);
+        label2.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label2);
+
+        label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label3.setText("RK");
+        label3.setToolTipText("");
+        label3.setOpaque(true);
+        label3.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label3);
+
+        label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label4.setText("E");
+        label4.setToolTipText("");
+        label4.setOpaque(true);
+        label4.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label4);
+
+        label5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label5.setText("GW");
+        label5.setToolTipText("");
+        label5.setOpaque(true);
+        label5.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label5);
+
+        label6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label6.setText("Fach");
+        label6.setToolTipText("");
+        label6.setOpaque(true);
+        label6.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label6);
+
+        label7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label7.setText("Fach");
+        label7.setToolTipText("");
+        label7.setOpaque(true);
+        label7.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label7);
+
+        label8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label8.setText("Fach");
+        label8.setToolTipText("");
+        label8.setOpaque(true);
+        label8.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label8);
+
+        label9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label9.setText("Fach");
+        label9.setToolTipText("");
+        label9.setOpaque(true);
+        label9.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label9);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
@@ -172,9 +248,21 @@ public class PlanDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void on_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bearbeiten
+        jPanel3.setVisible(true);
+        
         bl.BlGui.enableTablebearbeiten(table);
         
         bl.BlGui.enableLabelsbearbeiten(label);
+        bl.BlGui.enableLabelsbearbeiten(label1);
+        bl.BlGui.enableLabelsbearbeiten(label2);
+        bl.BlGui.enableLabelsbearbeiten(label3);
+        bl.BlGui.enableLabelsbearbeiten(label4);
+        bl.BlGui.enableLabelsbearbeiten(label5);
+        bl.BlGui.enableLabelsbearbeiten(label6);
+        bl.BlGui.enableLabelsbearbeiten(label7);
+        bl.BlGui.enableLabelsbearbeiten(label8);
+        bl.BlGui.enableLabelsbearbeiten(label9);
+        
     }//GEN-LAST:event_on_bearbeiten
 
     private void menustundenzeitenon_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menustundenzeitenon_bearbeiten
@@ -262,6 +350,15 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
+    private javax.swing.JLabel label7;
+    private javax.swing.JLabel label8;
+    private javax.swing.JLabel label9;
     private javax.swing.JList<String> list;
     private javax.swing.JMenuItem menubearbeiten;
     private javax.swing.JMenuItem menulehrerbea;

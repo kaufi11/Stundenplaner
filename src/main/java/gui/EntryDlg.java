@@ -5,6 +5,7 @@
  */
 package gui;
 
+import data.Lehrer;
 import data.Stunde;
 
 /**
@@ -114,7 +115,7 @@ public class EntryDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Stunde s = new Stunde(tflehrer.getText(), tfkuerzel.getText(), tfklasse.getText(), tffach.getText(), tfuhr.getText(), tftag.getText());
+        Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(), tftag.getText());
         data.Var.hour.add(s);
         open = false;
         this.dispose();

@@ -10,9 +10,10 @@ package data;
  * @author timon_kaufmann
  */
 public class Stunde {
-    private String Lehrer, Kürzel, Klasse, Fach, Uhrzeit, Tag;
+    private String Kürzel, Klasse, Fach, Uhrzeit, Tag;
+    private Lehrer Lehrer;
 
-    public Stunde(String Lehrer, String Kürzel, String Klasse, String Fach, String Uhrzeit, String Tag) {
+    public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeit, String Tag) {
         this.Lehrer = Lehrer;
         this.Kürzel = Kürzel;
         this.Klasse = Klasse;
@@ -21,11 +22,11 @@ public class Stunde {
         this.Tag = Tag;
     }
 
-    public String getLehrer() {
+    public Lehrer getLehrer() {
         return Lehrer;
     }
 
-    public void setLehrer(String Lehrer) {
+    public void setLehrer(Lehrer Lehrer) {
         this.Lehrer = Lehrer;
     }
 
