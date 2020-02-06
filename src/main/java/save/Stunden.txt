@@ -1,0 +1,1 @@
+[{"Klasse":"4AHIF","Fach":"Fach","Uhrzeit":"14:00 - 14:45","Tag":"Montag","Lehrer":{"Name":"Völk","Kuerzel":"VK","wochenstunden":0}},{"Klasse":"4AHIF","Fach":"Fach","Uhrzeit":"14:00 - 14:45","Tag":"Montag","Lehrer":{"Name":"Völk","Kuerzel":"VK","wochenstunden":0}}]

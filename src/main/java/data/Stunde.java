@@ -69,6 +69,13 @@ public class Stunde {
     public void setTag(String Tag) {
         this.Tag = Tag;
     }
+
+    @Override
+    public String toString() {
+        return "Stunde{" + "K\u00fcrzel=" + Kürzel + ", Klasse=" + Klasse + ", Fach=" + Fach + ", Uhrzeit=" + Uhrzeit + ", Tag=" + Tag + ", Lehrer=" + Lehrer + '}';
+    }
+    
+    
     
     
 }

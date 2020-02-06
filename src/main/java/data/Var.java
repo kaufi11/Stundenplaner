@@ -17,6 +17,10 @@ public class Var {
     
     public static String[] stundenanfang = new String[10];
     public static String[] stundenende = new String[10];
+
+    public static LinkedList<Stunde> getHour() {
+        return hour;
+    }
     
     
 }

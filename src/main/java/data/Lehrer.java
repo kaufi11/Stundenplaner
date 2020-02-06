@@ -49,6 +49,12 @@ public class Lehrer {
     public void setWochenstunden(int wochenstunden) {
         this.wochenstunden = wochenstunden;
     }
+
+    @Override
+    public String toString() {
+        return "Lehrer{" + "Name=" + Name + ", Kuerzel=" + Kuerzel + ", wochenstunden=" + wochenstunden + '}';
+    }
+    
     
     
 }
