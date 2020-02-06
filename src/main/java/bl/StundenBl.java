@@ -91,7 +91,7 @@ public class StundenBl extends AbstractTableModel{
     public List getDatensaetze() {
         return stunden;
     }
-
+/*
     public static void main(String[] args) {
         Stunden stunden = new Stunden(1, "12.20", "dhdhd");
         Stunden stunden2 = new Stunden(2, "12.20", "dhdhd");
@@ -111,6 +111,6 @@ public class StundenBl extends AbstractTableModel{
         
         
     }
-     
+     */
     
 }

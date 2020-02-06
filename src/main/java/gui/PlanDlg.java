@@ -325,45 +325,11 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menulehrerbeaon_bearbeiten
 
     private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
-        LinkedList<Stunde> hour = Var.getHour();
-        Gson gson = new Gson();
-        String hourgson = gson.toJson(hour);
-        try {  
-            FileWriter fw = new FileWriter("src/main/java/save/Stunden.txt");
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(hourgson); 
-            bw.close(); 
-        } catch (Exception e) {
-        }
+        bl.BlGui.speichern();
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
-        File file = new File("src/main/java/save/Stunden.txt");
-        BufferedReader br = null;
-        String jsonString = "";
-        try {
-            br = new BufferedReader(new FileReader(file));
-            String zeile = null;
-            while((zeile = br.readLine())!= null)
-            {
-               jsonString = zeile;
-            }
-            Gson gson = new Gson();
-            java.lang.reflect.Type listType = new TypeToken<List<Stunde>>() {
-            }.getType();
-            List<Stunde> stunden = gson.fromJson(jsonString, listType);
-            System.out.println(stunden.get(0));
-            System.out.println(stunden.get(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null)
-                try {
-                    br.close();
-                } catch (IOException e) {
-                }
-        } 
-        
+        bl.BlGui.speichern();
     }//GEN-LAST:event_tabelleladenActionPerformed
 
 

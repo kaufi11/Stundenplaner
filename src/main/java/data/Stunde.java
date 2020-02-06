@@ -10,12 +10,11 @@ package data;
  * @author timon_kaufmann
  */
 public class Stunde {
-    private String Kürzel, Klasse, Fach, Uhrzeit, Tag;
+    private String Klasse, Fach, Uhrzeit, Tag;
     private Lehrer Lehrer;
 
     public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeit, String Tag) {
         this.Lehrer = Lehrer;
-        this.Kürzel = Kürzel;
         this.Klasse = Klasse;
         this.Fach = Fach;
         this.Uhrzeit = Uhrzeit;
@@ -30,13 +29,6 @@ public class Stunde {
         this.Lehrer = Lehrer;
     }
 
-    public String getKürzel() {
-        return Kürzel;
-    }
-
-    public void setKürzel(String Kürzel) {
-        this.Kürzel = Kürzel;
-    }
 
     public String getKlasse() {
         return Klasse;
@@ -72,7 +64,7 @@ public class Stunde {
 
     @Override
     public String toString() {
-        return "Stunde{" + "K\u00fcrzel=" + Kürzel + ", Klasse=" + Klasse + ", Fach=" + Fach + ", Uhrzeit=" + Uhrzeit + ", Tag=" + Tag + ", Lehrer=" + Lehrer + '}';
+        return "Stunde{" + ", Klasse=" + Klasse + ", Fach=" + Fach + ", Uhrzeit=" + Uhrzeit + ", Tag=" + Tag + ", Lehrer=" + Lehrer + '}';
     }
     
     
