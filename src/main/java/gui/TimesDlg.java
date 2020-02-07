@@ -198,7 +198,7 @@ public class TimesDlg extends javax.swing.JDialog {
         data.Var.stundenende[8] = tf9bis.getText();
         data.Var.stundenende[9] = tf10bis.getText();
         
-        bl.BlGui.pausenrechner();
+        bl.BlPlan.pausenrechner();
         
         
         open = false;

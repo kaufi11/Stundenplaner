@@ -57,7 +57,7 @@ public class DragAndDrop extends TransferHandler {
             ok = false;
             JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Pause gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
         } else if (ok) {
-            EntryDlg dialog = new EntryDlg(new javax.swing.JFrame(), true, dl.getRow(), dl.getColumn());
+            EntryDlg dialog = new EntryDlg(new javax.swing.JFrame(), true, dl.getRow(), dl.getColumn(), datas);
             dialog.setVisible(true);
             if (gui.EntryDlg.open == false) {
                 if (gui.EntryDlg.ok) {

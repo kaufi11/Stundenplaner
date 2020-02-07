@@ -29,7 +29,7 @@ import javax.swing.TransferHandler;
  *
  * @author timon_kaufmann
  */
-public class BlGui {
+public class BlPlan {
 
     public static void enableTablebearbeiten(JTable table) {
         table.setAutoCreateRowSorter(true);

@@ -283,18 +283,18 @@ public class PlanDlg extends javax.swing.JDialog {
     private void on_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bearbeiten
         jPanel3.setVisible(true);
         
-        bl.BlGui.enableTablebearbeiten(table);
+        bl.BlPlan.enableTablebearbeiten(table);
         
-        bl.BlGui.enableLabelsbearbeiten(label);
-        bl.BlGui.enableLabelsbearbeiten(label1);
-        bl.BlGui.enableLabelsbearbeiten(label2);
-        bl.BlGui.enableLabelsbearbeiten(label3);
-        bl.BlGui.enableLabelsbearbeiten(label4);
-        bl.BlGui.enableLabelsbearbeiten(label5);
-        bl.BlGui.enableLabelsbearbeiten(label6);
-        bl.BlGui.enableLabelsbearbeiten(label7);
-        bl.BlGui.enableLabelsbearbeiten(label8);
-        bl.BlGui.enableLabelsbearbeiten(label9);
+        bl.BlPlan.enableLabelsbearbeiten(label);
+        bl.BlPlan.enableLabelsbearbeiten(label1);
+        bl.BlPlan.enableLabelsbearbeiten(label2);
+        bl.BlPlan.enableLabelsbearbeiten(label3);
+        bl.BlPlan.enableLabelsbearbeiten(label4);
+        bl.BlPlan.enableLabelsbearbeiten(label5);
+        bl.BlPlan.enableLabelsbearbeiten(label6);
+        bl.BlPlan.enableLabelsbearbeiten(label7);
+        bl.BlPlan.enableLabelsbearbeiten(label8);
+        bl.BlPlan.enableLabelsbearbeiten(label9);
         
     }//GEN-LAST:event_on_bearbeiten
 
@@ -325,11 +325,11 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menulehrerbeaon_bearbeiten
 
     private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
-        bl.BlGui.speichern();
+        bl.BlPlan.speichern();
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
-        bl.BlGui.speichern();
+        bl.BlPlan.laden();
     }//GEN-LAST:event_tabelleladenActionPerformed
 
 

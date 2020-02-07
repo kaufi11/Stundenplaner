@@ -17,10 +17,23 @@ public class EntryDlg extends javax.swing.JDialog {
     /**
      * Creates new form EntryDlg
      */
-    public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column) {
+    private int row, column;
+    private String [] wochentag = new String[5];
+    
+    
+    public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column, String fach) {
         super(parent, modal);
         initComponents();
-        
+        this.row = row;
+        this.column = column;
+        wochentag[0] = "Montag";
+        wochentag[1] = "Dienstag";
+        wochentag[2] = "Mittwoch";
+        wochentag[3] = "Donnerstag";
+        wochentag[4] = "Freitag";
+        tftag.setText(Tag());
+        tfuhr.setText(Stunde());
+        tffach.setText(fach);
     }
     public static boolean ok = false;
     public static boolean open = true;
@@ -113,6 +126,20 @@ public class EntryDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private String Tag(){
+        for (int i = 0; i < wochentag.length; i++)
+        {
+            if(i == column-3){
+                return wochentag[i];
+            }
+        }
+        return "Error";
+    }
+    
+    private String Stunde(){
+        return data.Var.times.get(row).getVon() + " - " + data.Var.times.get(row).getBis();
+    }
+    
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
         Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(), tftag.getText());
