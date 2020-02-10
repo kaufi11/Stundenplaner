@@ -10,14 +10,15 @@ package data;
  * @author timon_kaufmann
  */
 public class Stunde {
-    private String Klasse, Fach, Uhrzeit, Tag;
+    private String Klasse, Fach, Uhrzeitvon, Uhrzeitbis, Tag;
     private Lehrer Lehrer;
 
-    public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeit, String Tag) {
+    public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
         this.Lehrer = Lehrer;
         this.Klasse = Klasse;
         this.Fach = Fach;
-        this.Uhrzeit = Uhrzeit;
+        this.Uhrzeitvon = Uhrzeitvon;
+        this.Uhrzeitbis = Uhrzeitbis;
         this.Tag = Tag;
     }
 
@@ -46,13 +47,6 @@ public class Stunde {
         this.Fach = Fach;
     }
 
-    public String getUhrzeit() {
-        return Uhrzeit;
-    }
-
-    public void setUhrzeit(String Uhrzeit) {
-        this.Uhrzeit = Uhrzeit;
-    }
 
     public String getTag() {
         return Tag;
@@ -62,10 +56,28 @@ public class Stunde {
         this.Tag = Tag;
     }
 
+    public String getUhrzeitvon() {
+        return Uhrzeitvon;
+    }
+
+    public void setUhrzeitvon(String Uhrzeitvon) {
+        this.Uhrzeitvon = Uhrzeitvon;
+    }
+
+    public String getUhrzeitbis() {
+        return Uhrzeitbis;
+    }
+
+    public void setUhrzeitbis(String Uhrzeitbis) {
+        this.Uhrzeitbis = Uhrzeitbis;
+    }
+
     @Override
     public String toString() {
-        return "Stunde{" + ", Klasse=" + Klasse + ", Fach=" + Fach + ", Uhrzeit=" + Uhrzeit + ", Tag=" + Tag + ", Lehrer=" + Lehrer + '}';
+        return "Stunde{" + "Klasse=" + Klasse + ", Fach=" + Fach + ", Uhrzeitvon=" + Uhrzeitvon + ", Uhrzeitbis=" + Uhrzeitbis + ", Tag=" + Tag + ", Lehrer=" + Lehrer + '}';
     }
+
+
     
     
     

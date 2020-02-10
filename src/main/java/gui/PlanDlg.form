@@ -37,20 +37,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menustundenzeitenon_bearbeiten"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menulehrerhinzu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Lehrer hinzuf&#xfc;gen"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menulehrerhinzuon_bearbeiten"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menulehrerbea">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lehrer bearbeiten"/>
+                <Property name="text" type="java.lang.String" value="Lehrer"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menulehrerbeaon_bearbeiten"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="on_lehrer"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -75,11 +67,33 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="tabelleladen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem2"/>
+                <Property name="text" type="java.lang.String" value="Tabelle laden"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tabelleladenActionPerformed"/>
               </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fenster"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="Klein">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Klein"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Mittel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mittel"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Gross">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gro&#xdf;"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -97,6 +111,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="on_load"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>

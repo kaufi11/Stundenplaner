@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.TransferHandler;
 
@@ -54,7 +55,7 @@ public class BlPlan {
             if (data.Var.stundenanfang[i + 1].isEmpty()) {
                 Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
                 data.Var.times.add(z);
-            }else if (data.Var.stundenende[i].equals(data.Var.stundenanfang[i + 1])) {
+            } else if (data.Var.stundenende[i].equals(data.Var.stundenanfang[i + 1])) {
                 Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
                 data.Var.times.add(z);
             } else if (!data.Var.stundenende[i].equals(data.Var.stundenanfang[i + 1])) {
@@ -70,46 +71,104 @@ public class BlPlan {
             i++;
         }
     }
-    
-    public static void speichern(){
-                LinkedList<Stunde> hour = Var.getHour();
+
+    public static void speichern() {
+        List<Stunde> hour = Var.hour;
         Gson gson = new Gson();
         String hourgson = gson.toJson(hour);
-        try {  
+        try {
             FileWriter fw = new FileWriter("src/main/java/save/Stunden.txt");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(hourgson); 
-            bw.close(); 
+            bw.write(hourgson);
+            bw.close();
         } catch (Exception e) {
         }
     }
 
-    public static void laden(){
-        File file = new File("src/main/java/save/Stunden.txt");
-        BufferedReader br = null;
-        String jsonString = "";
+    public static void speicherntimes() {
+        List<Zeit> time = Var.times;
+        Gson gson = new Gson();
+        String hourgson = gson.toJson(time);
         try {
-            br = new BufferedReader(new FileReader(file));
-            String zeile = null;
-            while((zeile = br.readLine())!= null)
-            {
-               jsonString = zeile;
-            }
-            Gson gson = new Gson();
-            java.lang.reflect.Type listType = new TypeToken<List<Stunde>>() {
-            }.getType();
-            List<Stunde> stunden = gson.fromJson(jsonString, listType);
-            System.out.println(stunden.get(0));
-            System.out.println(stunden.get(1));
+            FileWriter fw = new FileWriter("src/main/java/save/Zeiten.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(hourgson);
+            bw.close();
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null)
-                try {
-                    br.close();
-                } catch (IOException e) {
+        }
+    }
+
+    public static List<Stunde> laden() {
+        List<Stunde> stunden = null;
+        File file = new File("src/main/java/save/Stunden.txt");
+        if (file.exists()) {
+            BufferedReader br = null;
+            String jsonString = "";
+            try {
+                br = new BufferedReader(new FileReader(file));
+                String zeile = null;
+                while ((zeile = br.readLine()) != null) {
+                    jsonString = zeile;
                 }
-        } 
-        
+                Gson gson = new Gson();
+                java.lang.reflect.Type listType = new TypeToken<List<Stunde>>() {
+                }.getType();
+                stunden = gson.fromJson(jsonString, listType);
+                System.out.println(stunden.get(0));
+                System.out.println(stunden.get(1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
+
+        }
+        Var.hour = stunden;
+        return stunden;
+    }
+
+    public static List<Zeit> ladentimes() {
+        List<Zeit> zeit = null;
+        File file = new File("src/main/java/save/Zeiten.txt");
+        if (file.exists()) {
+            BufferedReader br = null;
+            String jsonString = "";
+            try {
+                br = new BufferedReader(new FileReader(file));
+                String zeile = null;
+                while ((zeile = br.readLine()) != null) {
+                    jsonString = zeile;
+                }
+                Gson gson = new Gson();
+                java.lang.reflect.Type listType = new TypeToken<List<Zeit>>() {
+                }.getType();
+                zeit = gson.fromJson(jsonString, listType);
+                System.out.println(zeit.get(0));
+                System.out.println(zeit.get(1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
+
+        }
+        Var.times = zeit;
+        return zeit;
     }
 }

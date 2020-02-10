@@ -15,7 +15,6 @@ public class rechner {
 
     public static void main(String[] args) {
         int i = 0;
-        int[] stunden = new int[10];
         String[] stundenanfang = new String[20];
         stundenanfang[0] = "8:00";
         stundenanfang[1] = "8:50";

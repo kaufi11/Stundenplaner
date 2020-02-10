@@ -6,21 +6,19 @@
 package data;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author timon_kaufmann
  */
 public class Var {
-    public static LinkedList<Stunde> hour = new LinkedList<Stunde>();
-    public static LinkedList<Zeit> times = new LinkedList<Zeit>();
+    public static List<Stunde> hour = new LinkedList<Stunde>();
+    public static List<Zeit> times = new LinkedList<Zeit>();
     
     public static String[] stundenanfang = new String[10];
     public static String[] stundenende = new String[10];
 
-    public static LinkedList<Stunde> getHour() {
-        return hour;
-    }
     
     
 }

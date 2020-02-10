@@ -59,15 +59,17 @@ public class EntryDlg extends javax.swing.JDialog {
         tfkuerzel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tfuhr = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tfuhr1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tftag = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setLayout(new java.awt.GridLayout(7, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(8, 2));
 
         jLabel1.setText("Fach");
         jPanel1.add(jLabel1);
@@ -93,11 +95,17 @@ public class EntryDlg extends javax.swing.JDialog {
         tfkuerzel.setText("VK");
         jPanel1.add(tfkuerzel);
 
-        jLabel7.setText("Uhrzeit");
+        jLabel7.setText("Uhrzeit von");
         jPanel1.add(jLabel7);
 
-        tfuhr.setText("14:00 - 14:45");
+        tfuhr.setText("14:00");
         jPanel1.add(tfuhr);
+
+        jLabel8.setText("Uhrzeit bis");
+        jPanel1.add(jLabel8);
+
+        tfuhr1.setText("14:45");
+        jPanel1.add(tfuhr1);
 
         jLabel5.setText("Tag");
         jPanel1.add(jLabel5);
@@ -142,7 +150,7 @@ public class EntryDlg extends javax.swing.JDialog {
     
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(), tftag.getText());
+        Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(),tfuhr1.getText(), tftag.getText());
         data.Var.hour.add(s);
         open = false;
         this.dispose();
@@ -168,6 +176,7 @@ public class EntryDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
     private javax.swing.JTextField tfklasse;
@@ -175,5 +184,6 @@ public class EntryDlg extends javax.swing.JDialog {
     private javax.swing.JTextField tflehrer;
     private javax.swing.JLabel tftag;
     private javax.swing.JLabel tfuhr;
+    private javax.swing.JLabel tfuhr1;
     // End of variables declaration//GEN-END:variables
 }
