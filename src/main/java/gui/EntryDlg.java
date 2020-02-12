@@ -32,7 +32,8 @@ public class EntryDlg extends javax.swing.JDialog {
         wochentag[3] = "Donnerstag";
         wochentag[4] = "Freitag";
         tftag.setText(Tag());
-        tfuhr.setText(Stunde());
+        tfuhr.setText(data.Var.times.get(row).getVon());
+        tfuhr1.setText(data.Var.times.get(row).getBis());
         tffach.setText(fach);
     }
     public static boolean ok = false;
@@ -143,14 +144,12 @@ public class EntryDlg extends javax.swing.JDialog {
         }
         return "Error";
     }
-    
-    private String Stunde(){
-        return data.Var.times.get(row).getVon() + " - " + data.Var.times.get(row).getBis();
-    }
+
     
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
         Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(),tfuhr1.getText(), tftag.getText());
+        System.out.println(s.toString());
         data.Var.hour.add(s);
         open = false;
         this.dispose();

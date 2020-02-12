@@ -50,7 +50,7 @@ public class BlPlan {
 
     public static void pausenrechner() {
         int i = 0;
-
+        data.Var.times.clear();
         while (!data.Var.stundenende[i].isEmpty()) {
             if (data.Var.stundenanfang[i + 1].isEmpty()) {
                 Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
@@ -67,7 +67,6 @@ public class BlPlan {
                 }
 
             }
-
             i++;
         }
     }
@@ -129,9 +128,12 @@ public class BlPlan {
 
         } else {
             JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
-
+            data.Var.found = false;
         }
+        //Error bei keiner Geladenen Datei nicht gleichsetzen
+        if(data.Var.found){
         Var.hour = stunden;
+        }
         return stunden;
     }
 
@@ -166,9 +168,11 @@ public class BlPlan {
 
         } else {
             JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
-
+            data.Var.found2 = false;
         }
+        if(data.Var.found2){
         Var.times = zeit;
+        }
         return zeit;
     }
 }

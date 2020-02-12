@@ -211,7 +211,7 @@
                       <Data value=""/>
                     </Column>
                     <Column editable="false" title="Von" type="java.lang.Object"/>
-                    <Column editable="true" title="Bis" type="java.lang.Object"/>
+                    <Column editable="false" title="Bis" type="java.lang.Object"/>
                     <Column editable="false" title="Montag" type="java.lang.Object">
                       <Data value="null"/>
                       <Data value="null"/>

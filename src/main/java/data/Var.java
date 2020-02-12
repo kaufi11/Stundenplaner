@@ -19,6 +19,8 @@ public class Var {
     public static String[] stundenanfang = new String[10];
     public static String[] stundenende = new String[10];
 
+    public static boolean found = true;
+    public static boolean found2 = true;
     
     
 }

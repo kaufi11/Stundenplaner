@@ -40,7 +40,7 @@ public class PlanDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jPanel3.setVisible(false);
-
+        table.getTableHeader().setReorderingAllowed(false);
     }
 
     /**
@@ -129,7 +129,7 @@ public class PlanDlg extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -344,9 +344,7 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_tabelleladenActionPerformed
 
     private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
-        List<Stunde> l1 = bl.BlPlan.laden();
-        
-        
+
         List<Zeit> l2 = bl.BlPlan.ladentimes();
         int i = 0;
         for (Zeit zeit : l2) {
@@ -355,6 +353,38 @@ public class PlanDlg extends javax.swing.JDialog {
             table.setValueAt(zeit.getBis(), i, 2);
             i++;
         }
+        try {
+            List<Stunde> l1 = bl.BlPlan.laden();
+            int j = 0;
+            for (Stunde stunde : l1) {
+                int column = 0;
+                int row;
+                String tag = stunde.getTag();
+                if (tag.equalsIgnoreCase("Montag")) {
+                    column = 3;
+                } else if (tag.equalsIgnoreCase("Dienstag")) {
+                    column = 4;
+                } else if (tag.equalsIgnoreCase("Mittwoch")) {
+                    column = 5;
+                } else if (tag.equalsIgnoreCase("Donnerstag")) {
+                    column = 6;
+                } else if (tag.equalsIgnoreCase("Freitag")) {
+                    column = 7;
+                }
+                row = 0;
+                for (int k = 0; k < data.Var.times.size(); k++) {
+                    if (stunde.getUhrzeitvon().equals(data.Var.times.get(k).getVon())) {
+                    row = k;
+                    
+                }
+                }
+                table.setValueAt(stunde.getFach(), row, column);
+            }
+        } catch (Exception e) {
+            System.err.println("Laden Fehler");
+        }
+
+
     }//GEN-LAST:event_on_load
 
     //
