@@ -330,7 +330,9 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menustundenzeitenon_bearbeiten
 
     private void on_lehrer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_lehrer
-        // TODO add your handling code here:
+       LehrerDllMain gui = new LehrerDllMain(null, true);
+       gui.setVisible(true);
+       gui.toFront();
     }//GEN-LAST:event_on_lehrer
 
     private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
