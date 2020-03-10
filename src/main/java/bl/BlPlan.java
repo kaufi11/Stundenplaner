@@ -113,8 +113,6 @@ public class BlPlan {
                 java.lang.reflect.Type listType = new TypeToken<List<Stunde>>() {
                 }.getType();
                 stunden = gson.fromJson(jsonString, listType);
-                System.out.println(stunden.get(0));
-                System.out.println(stunden.get(1));
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

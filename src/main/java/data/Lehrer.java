@@ -12,12 +12,16 @@ package data;
 public class Lehrer {
     private String Name, Kuerzel;
     private int wochenstunden;
+    private boolean anwesend;
 
-    public Lehrer(String Name, String Kuerzel, int wochenstunden) {
+    public Lehrer(String Name, String Kuerzel, int wochenstunden, boolean anwesend) {
         this.Name = Name;
         this.Kuerzel = Kuerzel;
         this.wochenstunden = wochenstunden;
+        this.anwesend = anwesend;
     }
+
+
 
     public Lehrer(String Name, String Kuerzel) {
         this.Name = Name;
@@ -48,6 +52,14 @@ public class Lehrer {
 
     public void setWochenstunden(int wochenstunden) {
         this.wochenstunden = wochenstunden;
+    }
+
+    public boolean isAnwesend() {
+        return anwesend;
+    }
+
+    public void setAnwesend(boolean anwesend) {
+        this.anwesend = anwesend;
     }
 
     @Override

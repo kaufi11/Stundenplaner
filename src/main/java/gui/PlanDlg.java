@@ -2,25 +2,18 @@ package gui;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import static com.sun.source.doctree.AttributeTree.ValueKind.SINGLE;
 import data.Stunde;
 import data.Var;
 import data.Zeit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.awt.print.PrinterException;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.TransferHandler;
+import javax.swing.ListSelectionModel;
+import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,6 +34,7 @@ public class PlanDlg extends javax.swing.JDialog {
         initComponents();
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
+        list.setSelectionMode(SINGLE_SELECTION);
     }
 
     /**
@@ -69,6 +63,8 @@ public class PlanDlg extends javax.swing.JDialog {
         label7 = new javax.swing.JLabel();
         label8 = new javax.swing.JLabel();
         label9 = new javax.swing.JLabel();
+        label10 = new javax.swing.JLabel();
+        label11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -143,17 +139,17 @@ public class PlanDlg extends javax.swing.JDialog {
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
-        jPanel3.setLayout(new java.awt.GridLayout(2, 5));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 6));
 
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setText("GU");
+        label.setText("Musik");
         label.setToolTipText("");
         label.setOpaque(true);
         label.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label);
 
         label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label1.setText("WE");
+        label1.setText("Reli");
         label1.setToolTipText("");
         label1.setOpaque(true);
         label1.setPreferredSize(new java.awt.Dimension(150, 80));
@@ -167,53 +163,61 @@ public class PlanDlg extends javax.swing.JDialog {
         jPanel3.add(label2);
 
         label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label3.setText("RK");
+        label3.setText("Werken");
         label3.setToolTipText("");
         label3.setOpaque(true);
         label3.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label3);
 
         label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label4.setText("E");
+        label4.setText("FU");
         label4.setToolTipText("");
         label4.setOpaque(true);
         label4.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label4);
 
         label5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label5.setText("GW");
+        label5.setText("DAZ");
         label5.setToolTipText("");
         label5.setOpaque(true);
         label5.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label5);
 
         label6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label6.setText("Fach");
+        label6.setText("SE");
         label6.setToolTipText("");
         label6.setOpaque(true);
         label6.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label6);
 
         label7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label7.setText("Fach");
+        label7.setText("SPF");
         label7.setToolTipText("");
         label7.setOpaque(true);
         label7.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label7);
 
         label8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label8.setText("Fach");
+        label8.setText("SPHL");
         label8.setToolTipText("");
         label8.setOpaque(true);
         label8.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label8);
 
         label9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label9.setText("Fach");
+        label9.setText("GLZ");
         label9.setToolTipText("");
         label9.setOpaque(true);
         label9.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label9);
+
+        label10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label10.setText("UÜ");
+        jPanel3.add(label10);
+
+        label11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label11.setText("Chor");
+        jPanel3.add(label11);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
@@ -255,6 +259,11 @@ public class PlanDlg extends javax.swing.JDialog {
         jMenu3.setText("Datei");
 
         jMenuItem3.setText("Drucken");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_print(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         menuespeichen.setText("Tabelle speichern");
@@ -308,6 +317,8 @@ public class PlanDlg extends javax.swing.JDialog {
         bl.BlPlan.enableLabelsbearbeiten(label7);
         bl.BlPlan.enableLabelsbearbeiten(label8);
         bl.BlPlan.enableLabelsbearbeiten(label9);
+                bl.BlPlan.enableLabelsbearbeiten(label10);
+        bl.BlPlan.enableLabelsbearbeiten(label11);
 
     }//GEN-LAST:event_on_bearbeiten
 
@@ -387,6 +398,14 @@ public class PlanDlg extends javax.swing.JDialog {
 
     }//GEN-LAST:event_on_load
 
+    private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
+        try {
+            table.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(PlanDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_on_print
+
     //
     //
     /**
@@ -449,6 +468,8 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label;
     private javax.swing.JLabel label1;
+    private javax.swing.JLabel label10;
+    private javax.swing.JLabel label11;
     private javax.swing.JLabel label2;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;

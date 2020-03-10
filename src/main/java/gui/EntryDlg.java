@@ -53,9 +53,9 @@ public class EntryDlg extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         tffach = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tfklasse = new javax.swing.JTextField();
+        tfklasse = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        tflehrer = new javax.swing.JTextField();
+        tflehrer = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         tfkuerzel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -81,13 +81,13 @@ public class EntryDlg extends javax.swing.JDialog {
         jLabel2.setText("Klasse");
         jPanel1.add(jLabel2);
 
-        tfklasse.setText("4AHIF");
+        tfklasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(tfklasse);
 
         jLabel3.setText("Lehrer");
         jPanel1.add(jLabel3);
 
-        tflehrer.setText("Völk");
+        tflehrer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(tflehrer);
 
         jLabel4.setText("Kürzel");
@@ -148,7 +148,7 @@ public class EntryDlg extends javax.swing.JDialog {
     
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Stunde s = new Stunde(new Lehrer(tflehrer.getText(), tfkuerzel.getText()), tfklasse.getText(), tffach.getText(), tfuhr.getText(),tfuhr1.getText(), tftag.getText());
+        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), tfkuerzel.getText()),(String) tfklasse.getSelectedItem(), tffach.getText(), tfuhr.getText(),tfuhr1.getText(), tftag.getText());
         System.out.println(s.toString());
         data.Var.hour.add(s);
         open = false;
@@ -178,9 +178,9 @@ public class EntryDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
-    private javax.swing.JTextField tfklasse;
+    private javax.swing.JComboBox<String> tfklasse;
     private javax.swing.JLabel tfkuerzel;
-    private javax.swing.JTextField tflehrer;
+    private javax.swing.JComboBox<String> tflehrer;
     private javax.swing.JLabel tftag;
     private javax.swing.JLabel tfuhr;
     private javax.swing.JLabel tfuhr1;
