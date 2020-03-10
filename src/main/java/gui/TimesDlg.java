@@ -175,6 +175,7 @@ public class TimesDlg extends javax.swing.JDialog {
 
     private void on_ok(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_ok
         ok = true;
+
         
         data.Var.stundenanfang[0] = tf1von.getText();
         data.Var.stundenanfang[1] = tf2von.getText();
