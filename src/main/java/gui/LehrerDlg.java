@@ -101,7 +101,8 @@ public class LehrerDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Lehrer l = new Lehrer(tfname.getText(),tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()));
+        //Ausreden ob Lehrer von Anfang an anwesend gestellt wird
+        Lehrer l = new Lehrer(tfname.getText(),tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), false);
         data.Var.lehrer.add(l);
         open = false;
         this.dispose();

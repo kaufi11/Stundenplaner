@@ -7,6 +7,7 @@ package bl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import data.Lehrer;
 import data.Stunde;
 import data.Var;
 import data.Zeit;
@@ -129,8 +130,8 @@ public class BlPlan {
             data.Var.found = false;
         }
         //Error bei keiner Geladenen Datei nicht gleichsetzen
-        if(data.Var.found){
-        Var.hour = stunden;
+        if (data.Var.found) {
+            Var.hour = stunden;
         }
         return stunden;
     }
@@ -168,9 +169,61 @@ public class BlPlan {
             JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
             data.Var.found2 = false;
         }
-        if(data.Var.found2){
-        Var.times = zeit;
+        if (data.Var.found2) {
+            Var.times = zeit;
         }
         return zeit;
+    }
+
+    public static void speichernteacher() {
+        List<Lehrer> lehrer = Var.lehrer;
+        Gson gson = new Gson();
+        String hourgson = gson.toJson(lehrer);
+        try {
+            FileWriter fw = new FileWriter("src/main/java/save/Lehrer.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(hourgson);
+            bw.close();
+        } catch (Exception e) {
+        }
+    }
+    
+        public static List<Lehrer> ladenteacher() {
+        List<Lehrer> lehrer = null;
+        File file = new File("src/main/java/save/Lehrer.txt");
+        if (file.exists()) {
+            BufferedReader br = null;
+            String jsonString = "";
+            try {
+                br = new BufferedReader(new FileReader(file));
+                String zeile = null;
+                while ((zeile = br.readLine()) != null) {
+                    jsonString = zeile;
+                }
+                Gson gson = new Gson();
+                java.lang.reflect.Type listType = new TypeToken<List<Zeit>>() {
+                }.getType();
+                lehrer = gson.fromJson(jsonString, listType);
+                System.out.println(lehrer.get(0));
+                System.out.println(lehrer.get(1));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
+            data.Var.found2 = false;
+        }
+        if (data.Var.found2) {
+            Var.lehrer = lehrer;
+        }
+        return lehrer;
     }
 }

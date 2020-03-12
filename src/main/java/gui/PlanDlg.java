@@ -317,7 +317,7 @@ public class PlanDlg extends javax.swing.JDialog {
         bl.BlPlan.enableLabelsbearbeiten(label7);
         bl.BlPlan.enableLabelsbearbeiten(label8);
         bl.BlPlan.enableLabelsbearbeiten(label9);
-                bl.BlPlan.enableLabelsbearbeiten(label10);
+        bl.BlPlan.enableLabelsbearbeiten(label10);
         bl.BlPlan.enableLabelsbearbeiten(label11);
 
     }//GEN-LAST:event_on_bearbeiten
@@ -341,23 +341,27 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menustundenzeitenon_bearbeiten
 
     private void on_lehrer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_lehrer
-       LehrerDllMain gui = new LehrerDllMain(null, true);
-       gui.setVisible(true);
-       gui.toFront();
+        LehrerDllMain gui = new LehrerDllMain(null, true);
+        gui.setVisible(true);
+        gui.toFront();
     }//GEN-LAST:event_on_lehrer
 
     private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
         bl.BlPlan.speichern();
         bl.BlPlan.speicherntimes();
+        bl.BlPlan.speichernteacher();
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
         bl.BlPlan.laden();
         bl.BlPlan.ladentimes();
+        bl.BlPlan.ladenteacher();
     }//GEN-LAST:event_tabelleladenActionPerformed
 
     private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
-
+        bl.BlPlan.laden();
+        bl.BlPlan.ladentimes();
+        bl.BlPlan.ladenteacher();
         List<Zeit> l2 = bl.BlPlan.ladentimes();
         int i = 0;
         for (Zeit zeit : l2) {
@@ -387,9 +391,9 @@ public class PlanDlg extends javax.swing.JDialog {
                 row = 0;
                 for (int k = 0; k < data.Var.times.size(); k++) {
                     if (stunde.getUhrzeitvon().equals(data.Var.times.get(k).getVon())) {
-                    row = k;
-                    
-                }
+                        row = k;
+
+                    }
                 }
                 table.setValueAt(stunde.getFach(), row, column);
             }
