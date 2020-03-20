@@ -1,1 +1,1 @@
-[{"Name":"Lukas","Kuerzel":"Patter","wochenstunden":25,"anwesend":false}]
+[{}]

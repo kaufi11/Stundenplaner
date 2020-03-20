@@ -8,27 +8,28 @@ package gui;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
-import data.Var;
 
 /**
  *
  * @author timon_kaufmann
  */
-public class LehrerDlg extends javax.swing.JDialog {
+public class KlasseDlg extends javax.swing.JDialog {
 
     /**
      * Creates new form EntryDlg
-     *
      * @param parent
      * @param modal
-     */
-    public LehrerDlg(java.awt.Frame parent, boolean modal) {
+     */ 
+    
+    
+    public KlasseDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        
     }
     public static boolean ok = true;
     public static boolean open = true;
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +44,7 @@ public class LehrerDlg extends javax.swing.JDialog {
         tffach = new javax.swing.JLabel();
         tfname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfkuerzel = new javax.swing.JTextField();
+        tfschueleranz = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         tfwochenstunden = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -60,16 +61,16 @@ public class LehrerDlg extends javax.swing.JDialog {
         tfname.setText("Lukas");
         jPanel1.add(tfname);
 
-        jLabel3.setText("Kürzel");
+        jLabel3.setText("Schüleranzahl");
         jPanel1.add(jLabel3);
 
-        tfkuerzel.setText("Patter");
-        jPanel1.add(tfkuerzel);
+        tfschueleranz.setText("22");
+        jPanel1.add(tfschueleranz);
 
         jLabel1.setText("Wochenstunden:");
         jPanel1.add(jLabel1);
 
-        tfwochenstunden.setText("25");
+        tfwochenstunden.setText("40");
         jPanel1.add(tfwochenstunden);
 
         jButton1.setText("Fertig");
@@ -101,17 +102,18 @@ public class LehrerDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        //Ausreden ob Lehrer von Anfang an anwesend gestellt wird
-        Lehrer l = new Lehrer(tfname.getText(), tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), false);
-        data.Var.lehrer.add(l);
-
+        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()));
+        data.Var.klassen.add(k);
+        bl.BlPlan.refreshlistclass();
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig
 
+     
     /**
      * @param args the command line arguments
      */
+
     public static boolean isOk() {
         return ok;
     }
@@ -124,8 +126,8 @@ public class LehrerDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
-    private javax.swing.JTextField tfkuerzel;
     private javax.swing.JTextField tfname;
+    private javax.swing.JTextField tfschueleranz;
     private javax.swing.JTextField tfwochenstunden;
     // End of variables declaration//GEN-END:variables
 }

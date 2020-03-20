@@ -3,14 +3,17 @@ package gui;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import static com.sun.source.doctree.AttributeTree.ValueKind.SINGLE;
+import data.Klasse;
 import data.Stunde;
 import data.Var;
 import data.Zeit;
+import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
@@ -29,12 +32,16 @@ public class PlanDlg extends javax.swing.JDialog {
     /**
      * Creates new form PlanDlg
      */
+    KlasseDlg klassedlg = new KlasseDlg(null, false);
+    public static DefaultListModel listenModell = new DefaultListModel();
+
     public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
         list.setSelectionMode(SINGLE_SELECTION);
+        list.setModel(listenModell);
     }
 
     /**
@@ -46,10 +53,12 @@ public class PlanDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        menutabelle1 = new javax.swing.JPopupMenu();
+        Adden1 = new javax.swing.JMenuItem();
+        Delete = new javax.swing.JMenuItem();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -81,6 +90,23 @@ public class PlanDlg extends javax.swing.JDialog {
         Mittel = new javax.swing.JMenuItem();
         Gross = new javax.swing.JMenuItem();
 
+        Adden1.setText("Klasse hinzufügen");
+        Adden1.setToolTipText("");
+        Adden1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adden1Tabelle1adden(evt);
+            }
+        });
+        menutabelle1.add(Adden1);
+
+        Delete.setText("Klasse löschen");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteDeleteBestellung(evt);
+            }
+        });
+        menutabelle1.add(Delete);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 1000));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -89,21 +115,26 @@ public class PlanDlg extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(259, 50));
 
         list.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
         list.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "1AHIF" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                on_mouseclicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(list);
+        list.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jScrollPane1);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
-
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.WEST);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,7 +165,7 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(table);
 
-        jPanel2.add(jScrollPane2);
+        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -350,18 +381,24 @@ public class PlanDlg extends javax.swing.JDialog {
         bl.BlPlan.speichern();
         bl.BlPlan.speicherntimes();
         bl.BlPlan.speichernteacher();
+        bl.BlPlan.speichernclass();
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
         bl.BlPlan.laden();
         bl.BlPlan.ladentimes();
         bl.BlPlan.ladenteacher();
+        bl.BlPlan.ladenclass();
+        for (Klasse k : Var.klassen) {
+            listenModell.addElement(k.getName());
+        }
     }//GEN-LAST:event_tabelleladenActionPerformed
 
     private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
         bl.BlPlan.laden();
         bl.BlPlan.ladentimes();
         bl.BlPlan.ladenteacher();
+        bl.BlPlan.ladenclass();
         List<Zeit> l2 = bl.BlPlan.ladentimes();
         int i = 0;
         for (Zeit zeit : l2) {
@@ -412,6 +449,28 @@ public class PlanDlg extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_on_print
 
+    private void Adden1Tabelle1adden(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adden1Tabelle1adden
+        try {
+            klassedlg = new KlasseDlg(null, true);
+            if (klassedlg.isOk()) {
+                klassedlg.setVisible(true);
+                
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }//GEN-LAST:event_Adden1Tabelle1adden
+
+    private void DeleteDeleteBestellung(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteDeleteBestellung
+
+    }//GEN-LAST:event_DeleteDeleteBestellung
+
+    private void on_mouseclicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_on_mouseclicked
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            this.menutabelle1.show(this, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_on_mouseclicked
+
     //
     //
     /**
@@ -457,6 +516,8 @@ public class PlanDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Adden1;
+    private javax.swing.JMenuItem Delete;
     private javax.swing.JMenuItem Gross;
     private javax.swing.JMenuItem Klein;
     private javax.swing.JMenuItem Mittel;
@@ -467,7 +528,6 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -489,6 +549,7 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuespeichen;
     private javax.swing.JMenuItem menulehrerbea;
     private javax.swing.JMenuItem menustundenzeiten;
+    private javax.swing.JPopupMenu menutabelle1;
     private javax.swing.JMenuItem tabelleladen;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

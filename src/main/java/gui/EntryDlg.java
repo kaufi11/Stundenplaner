@@ -5,8 +5,10 @@
  */
 package gui;
 
+import bl.BlPlan;
 import data.Lehrer;
 import data.Stunde;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -18,12 +20,14 @@ public class EntryDlg extends javax.swing.JDialog {
      * Creates new form EntryDlg
      */
     private int row, column;
-    private String [] wochentag = new String[5];
-    
-    
+    private String[] wochentag = new String[5];
+    public static DefaultComboBoxModel modelcoml = new DefaultComboBoxModel();
+
     public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column, String fach) {
+
         super(parent, modal);
         initComponents();
+        BlPlan.refreshlistteacher();
         this.row = row;
         this.column = column;
         wochentag[0] = "Montag";
@@ -35,10 +39,10 @@ public class EntryDlg extends javax.swing.JDialog {
         tfuhr.setText(data.Var.times.get(row).getVon());
         tfuhr1.setText(data.Var.times.get(row).getBis());
         tffach.setText(fach);
+        tflehrer.setModel(modelcoml);
     }
     public static boolean ok = false;
     public static boolean open = true;
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +57,7 @@ public class EntryDlg extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         tffach = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tfklasse = new javax.swing.JComboBox<>();
+        tfklasse = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tflehrer = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -81,13 +85,12 @@ public class EntryDlg extends javax.swing.JDialog {
         jLabel2.setText("Klasse");
         jPanel1.add(jLabel2);
 
-        tfklasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tfklasse.setText("1AHIF");
         jPanel1.add(tfklasse);
 
         jLabel3.setText("Lehrer");
         jPanel1.add(jLabel3);
 
-        tflehrer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(tflehrer);
 
         jLabel4.setText("Kürzel");
@@ -135,20 +138,19 @@ public class EntryDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private String Tag(){
-        for (int i = 0; i < wochentag.length; i++)
-        {
-            if(i == column-3){
+    private String Tag() {
+        for (int i = 0; i < wochentag.length; i++) {
+            if (i == column - 3) {
                 return wochentag[i];
             }
         }
         return "Error";
     }
 
-    
+
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), tfkuerzel.getText()),(String) tfklasse.getSelectedItem(), tffach.getText(), tfuhr.getText(),tfuhr1.getText(), tftag.getText());
+        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), tfkuerzel.getText()), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
         System.out.println(s.toString());
         data.Var.hour.add(s);
         open = false;
@@ -165,7 +167,6 @@ public class EntryDlg extends javax.swing.JDialog {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -178,7 +179,7 @@ public class EntryDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
-    private javax.swing.JComboBox<String> tfklasse;
+    private javax.swing.JLabel tfklasse;
     private javax.swing.JLabel tfkuerzel;
     private javax.swing.JComboBox<String> tflehrer;
     private javax.swing.JLabel tftag;

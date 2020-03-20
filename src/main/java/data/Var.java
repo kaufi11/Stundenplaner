@@ -16,6 +16,7 @@ public class Var {
     public static List<Stunde> hour = new LinkedList<Stunde>();
     public static List<Zeit> times = new LinkedList<Zeit>();
     public static List<Lehrer> lehrer = new LinkedList<Lehrer>();
+    public static List<Klasse> klassen = new LinkedList<Klasse>();
     
     public static String[] stundenanfang = new String[10];
     public static String[] stundenende = new String[10];
