@@ -17,12 +17,13 @@ public class Var {
     public static List<Zeit> times = new LinkedList<Zeit>();
     public static List<Lehrer> lehrer = new LinkedList<Lehrer>();
     public static List<Klasse> klassen = new LinkedList<Klasse>();
+    public static List<StundeAnsicht> shelp = new LinkedList<StundeAnsicht>();
     
     public static String[] stundenanfang = new String[10];
     public static String[] stundenende = new String[10];
-
-    public static boolean found = true;
-    public static boolean found2 = true;
+    
+    public static boolean anslehrer = false;
+    public static boolean ansklasse = true;
     
     
 }

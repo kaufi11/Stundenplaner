@@ -6,6 +6,7 @@
 package gui;
 
 import bl.BlPlan;
+import bl.BlRefresh;
 import data.Lehrer;
 import data.Stunde;
 import javax.swing.DefaultComboBoxModel;
@@ -27,7 +28,7 @@ public class EntryDlg extends javax.swing.JDialog {
 
         super(parent, modal);
         initComponents();
-        BlPlan.refreshlistteacher();
+        BlRefresh.refreshlistteacher();
         this.row = row;
         this.column = column;
         wochentag[0] = "Montag";
@@ -60,8 +61,6 @@ public class EntryDlg extends javax.swing.JDialog {
         tfklasse = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tflehrer = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        tfkuerzel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tfuhr = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -74,7 +73,7 @@ public class EntryDlg extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setLayout(new java.awt.GridLayout(8, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(7, 2));
 
         jLabel1.setText("Fach");
         jPanel1.add(jLabel1);
@@ -92,12 +91,6 @@ public class EntryDlg extends javax.swing.JDialog {
         jPanel1.add(jLabel3);
 
         jPanel1.add(tflehrer);
-
-        jLabel4.setText("Kürzel");
-        jPanel1.add(jLabel4);
-
-        tfkuerzel.setText("VK");
-        jPanel1.add(tfkuerzel);
 
         jLabel7.setText("Uhrzeit von");
         jPanel1.add(jLabel7);
@@ -149,8 +142,15 @@ public class EntryDlg extends javax.swing.JDialog {
 
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
+        String kuerzel = null;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if(comp.equalsIgnoreCase(lehrer.getName())){
+                kuerzel = lehrer.getKuerzel();
+            }
+        }
         ok = true;
-        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), tfkuerzel.getText()), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
         System.out.println(s.toString());
         data.Var.hour.add(s);
         open = false;
@@ -173,14 +173,12 @@ public class EntryDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
     private javax.swing.JLabel tfklasse;
-    private javax.swing.JLabel tfkuerzel;
     private javax.swing.JComboBox<String> tflehrer;
     private javax.swing.JLabel tftag;
     private javax.swing.JLabel tfuhr;

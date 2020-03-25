@@ -34,10 +34,13 @@
             <Property name="text" type="java.lang.String" value="Ansicht"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="menuans">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lehreransicht"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="on_changeansicht"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

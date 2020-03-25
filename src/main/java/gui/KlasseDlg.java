@@ -5,6 +5,7 @@
  */
 package gui;
 
+import bl.BlRefresh;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
@@ -104,7 +105,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         ok = true;
         Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()));
         data.Var.klassen.add(k);
-        bl.BlPlan.refreshlistclass();
+        bl.BlRefresh.refreshlistclass();
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig

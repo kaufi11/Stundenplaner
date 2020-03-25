@@ -1,10 +1,12 @@
 package gui;
 
+import bl.BlTableLoad;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import static com.sun.source.doctree.AttributeTree.ValueKind.SINGLE;
 import data.Klasse;
 import data.Stunde;
+import data.StundeAnsicht;
 import data.Var;
 import data.Zeit;
 import java.awt.event.MouseEvent;
@@ -33,7 +35,8 @@ public class PlanDlg extends javax.swing.JDialog {
      * Creates new form PlanDlg
      */
     KlasseDlg klassedlg = new KlasseDlg(null, false);
-    public static DefaultListModel listenModell = new DefaultListModel();
+    public static DefaultListModel listenModellClasse = new DefaultListModel();
+    public static DefaultListModel listenModellTeacher = new DefaultListModel();
 
     public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -41,7 +44,8 @@ public class PlanDlg extends javax.swing.JDialog {
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
         list.setSelectionMode(SINGLE_SELECTION);
-        list.setModel(listenModell);
+        list.setModel(listenModellClasse);
+
     }
 
     /**
@@ -76,7 +80,7 @@ public class PlanDlg extends javax.swing.JDialog {
         label11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuans = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menubearbeiten = new javax.swing.JMenuItem();
         menustundenzeiten = new javax.swing.JMenuItem();
@@ -254,8 +258,13 @@ public class PlanDlg extends javax.swing.JDialog {
 
         jMenu1.setText("Ansicht");
 
-        jMenuItem1.setText("Lehreransicht");
-        jMenu1.add(jMenuItem1);
+        menuans.setText("Lehreransicht");
+        menuans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_changeansicht(evt);
+            }
+        });
+        jMenu1.add(menuans);
 
         jMenuBar1.add(jMenu1);
 
@@ -378,28 +387,26 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_on_lehrer
 
     private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
-        bl.BlPlan.speichern();
-        bl.BlPlan.speicherntimes();
-        bl.BlPlan.speichernteacher();
-        bl.BlPlan.speichernclass();
+        bl.BlSavesAndLoads.speichern();
+        bl.BlSavesAndLoads.speicherntimes();
+        bl.BlSavesAndLoads.speichernteacher();
+        bl.BlSavesAndLoads.speichernclass();
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
-        bl.BlPlan.laden();
-        bl.BlPlan.ladentimes();
-        bl.BlPlan.ladenteacher();
-        bl.BlPlan.ladenclass();
-        for (Klasse k : Var.klassen) {
-            listenModell.addElement(k.getName());
-        }
+        bl.BlSavesAndLoads.speichern();
+        bl.BlSavesAndLoads.speicherntimes();
+        bl.BlSavesAndLoads.speichernteacher();
+        bl.BlSavesAndLoads.speichernclass();
     }//GEN-LAST:event_tabelleladenActionPerformed
 
     private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
-        bl.BlPlan.laden();
-        bl.BlPlan.ladentimes();
-        bl.BlPlan.ladenteacher();
-        bl.BlPlan.ladenclass();
-        List<Zeit> l2 = bl.BlPlan.ladentimes();
+
+        bl.BlSavesAndLoads.laden();
+        bl.BlSavesAndLoads.ladentimes();
+        bl.BlSavesAndLoads.ladenteacher();
+        bl.BlSavesAndLoads.ladenclass();
+        List<Zeit> l2 = bl.BlSavesAndLoads.ladentimes();
         int i = 0;
         for (Zeit zeit : l2) {
             table.setValueAt(zeit.getArt(), i, 0);
@@ -407,36 +414,7 @@ public class PlanDlg extends javax.swing.JDialog {
             table.setValueAt(zeit.getBis(), i, 2);
             i++;
         }
-        try {
-            List<Stunde> l1 = bl.BlPlan.laden();
-            int j = 0;
-            for (Stunde stunde : l1) {
-                int column = 0;
-                int row;
-                String tag = stunde.getTag();
-                if (tag.equalsIgnoreCase("Montag")) {
-                    column = 3;
-                } else if (tag.equalsIgnoreCase("Dienstag")) {
-                    column = 4;
-                } else if (tag.equalsIgnoreCase("Mittwoch")) {
-                    column = 5;
-                } else if (tag.equalsIgnoreCase("Donnerstag")) {
-                    column = 6;
-                } else if (tag.equalsIgnoreCase("Freitag")) {
-                    column = 7;
-                }
-                row = 0;
-                for (int k = 0; k < data.Var.times.size(); k++) {
-                    if (stunde.getUhrzeitvon().equals(data.Var.times.get(k).getVon())) {
-                        row = k;
-
-                    }
-                }
-                table.setValueAt(stunde.getFach(), row, column);
-            }
-        } catch (Exception e) {
-            System.err.println("Laden Fehler");
-        }
+        BlTableLoad.firstload();
 
 
     }//GEN-LAST:event_on_load
@@ -454,7 +432,7 @@ public class PlanDlg extends javax.swing.JDialog {
             klassedlg = new KlasseDlg(null, true);
             if (klassedlg.isOk()) {
                 klassedlg.setVisible(true);
-                
+
             }
         } catch (Exception e) {
             e.getMessage();
@@ -469,7 +447,48 @@ public class PlanDlg extends javax.swing.JDialog {
         if (evt.getButton() == MouseEvent.BUTTON3) {
             this.menutabelle1.show(this, evt.getX(), evt.getY());
         }
+
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            akttable(list.getSelectedValue());
+        }
     }//GEN-LAST:event_on_mouseclicked
+
+    private void on_changeansicht(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_changeansicht
+        if (Var.ansklasse) {
+            menuans.setText("Klassenansicht");
+            list.setModel(listenModellTeacher);
+            Var.ansklasse = false;
+            Var.anslehrer = true;
+        } else if (Var.anslehrer) {
+            menuans.setText("Lehreransicht");
+            list.setModel(listenModellClasse);
+            Var.ansklasse = true;
+            Var.anslehrer = false;
+        }
+    }//GEN-LAST:event_on_changeansicht
+
+    public void akttable(String klasselehrer) {
+        for (int i = 3; i < 8; i++) {
+            for (int j = 0; j < 11; j++) {
+                table.setValueAt("", j, i);
+            }
+        }
+
+        if (data.Var.ansklasse) {
+            for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
+                if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
+                    table.setValueAt(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                }
+            }
+        }
+        if (data.Var.anslehrer) {
+            for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
+                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
+                    table.setValueAt(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                }
+            }
+        }
+    }
 
     //
     //
@@ -526,7 +545,6 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -545,6 +563,7 @@ public class PlanDlg extends javax.swing.JDialog {
     private javax.swing.JLabel label8;
     private javax.swing.JLabel label9;
     private javax.swing.JList<String> list;
+    private javax.swing.JMenuItem menuans;
     private javax.swing.JMenuItem menubearbeiten;
     private javax.swing.JMenuItem menuespeichen;
     private javax.swing.JMenuItem menulehrerbea;

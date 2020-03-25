@@ -1,1 +1,1 @@
-[{}]
+[{"wochenstunden":0,"anwesend":false}]

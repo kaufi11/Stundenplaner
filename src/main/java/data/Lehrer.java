@@ -27,6 +27,7 @@ public class Lehrer {
         this.Name = Name;
         this.Kuerzel = Kuerzel;
     }
+
     
     
 
