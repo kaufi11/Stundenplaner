@@ -1,1 +1,1 @@
-[{"wochenstunden":0,"anwesend":false}]
+[{"wochenstunden":0,"anwesend":false},{"Name":"Timon","Kuerzel":"TK","wochenstunden":25,"anwesend":false}]

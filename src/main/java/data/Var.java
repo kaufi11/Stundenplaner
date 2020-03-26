@@ -5,6 +5,7 @@
  */
 package data;
 
+import bl.BlModelPlan;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class Var {
     
     public static boolean anslehrer = false;
     public static boolean ansklasse = true;
+    
+    public static BlModelPlan m = new BlModelPlan();
     
     
 }

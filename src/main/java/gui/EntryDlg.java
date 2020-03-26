@@ -7,6 +7,7 @@ package gui;
 
 import bl.BlPlan;
 import bl.BlRefresh;
+import bl.BlTableLoad;
 import data.Lehrer;
 import data.Stunde;
 import javax.swing.DefaultComboBoxModel;
@@ -153,6 +154,9 @@ public class EntryDlg extends javax.swing.JDialog {
         Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
         System.out.println(s.toString());
         data.Var.hour.add(s);
+        BlTableLoad.firstload();
+        PlanDlg.akttable(tfklasse.getText());
+        PlanDlg.akttable(tfklasse.getText());
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig

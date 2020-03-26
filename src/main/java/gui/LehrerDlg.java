@@ -104,7 +104,9 @@ public class LehrerDlg extends javax.swing.JDialog {
         //Ausreden ob Lehrer von Anfang an anwesend gestellt wird
         Lehrer l = new Lehrer(tfname.getText(), tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), false);
         data.Var.lehrer.add(l);
-
+        System.out.println(data.Var.lehrer.toString());
+        bl.BlRefresh.refreshlistteacher();
+        bl.BlRefresh.refreshlistcombpteacher();
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig

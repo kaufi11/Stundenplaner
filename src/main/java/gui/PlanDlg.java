@@ -1,10 +1,13 @@
 package gui;
 
+import bl.BlModelPlan;
 import bl.BlTableLoad;
+import bl.TableRenderer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import static com.sun.source.doctree.AttributeTree.ValueKind.SINGLE;
 import data.Klasse;
+import data.ModelData;
 import data.Stunde;
 import data.StundeAnsicht;
 import data.Var;
@@ -37,7 +40,9 @@ public class PlanDlg extends javax.swing.JDialog {
     KlasseDlg klassedlg = new KlasseDlg(null, false);
     public static DefaultListModel listenModellClasse = new DefaultListModel();
     public static DefaultListModel listenModellTeacher = new DefaultListModel();
-
+    
+    TableRenderer render = new TableRenderer();
+    
     public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -45,7 +50,8 @@ public class PlanDlg extends javax.swing.JDialog {
         table.getTableHeader().setReorderingAllowed(false);
         list.setSelectionMode(SINGLE_SELECTION);
         list.setModel(listenModellClasse);
-
+        table.setModel(data.Var.m);
+        table.setDefaultRenderer(String.class, render);
     }
 
     /**
@@ -367,16 +373,7 @@ public class PlanDlg extends javax.swing.JDialog {
         dialog.setVisible(true);
 
         if (TimesDlg.open == false) {
-            int columnart = 0;
-            int columnvon = 1;
-            int columnbis = 2;
-            int row = 0;
-            for (Zeit time : data.Var.times) {
-                table.setValueAt(time.getArt(), row, columnart);
-                table.setValueAt(time.getVon(), row, columnvon);
-                table.setValueAt(time.getBis(), row, columnbis);
-                row++;
-            }
+            data.Var.m.newtimes();
         }
     }//GEN-LAST:event_menustundenzeitenon_bearbeiten
 
@@ -394,29 +391,15 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menuespeichenActionPerformed
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
-        bl.BlSavesAndLoads.speichern();
-        bl.BlSavesAndLoads.speicherntimes();
-        bl.BlSavesAndLoads.speichernteacher();
-        bl.BlSavesAndLoads.speichernclass();
-    }//GEN-LAST:event_tabelleladenActionPerformed
-
-    private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
-
         bl.BlSavesAndLoads.laden();
         bl.BlSavesAndLoads.ladentimes();
         bl.BlSavesAndLoads.ladenteacher();
         bl.BlSavesAndLoads.ladenclass();
-        List<Zeit> l2 = bl.BlSavesAndLoads.ladentimes();
-        int i = 0;
-        for (Zeit zeit : l2) {
-            table.setValueAt(zeit.getArt(), i, 0);
-            table.setValueAt(zeit.getVon(), i, 1);
-            table.setValueAt(zeit.getBis(), i, 2);
-            i++;
-        }
-        BlTableLoad.firstload();
+        data.Var.m.load();
+    }//GEN-LAST:event_tabelleladenActionPerformed
 
-
+    private void on_load(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_load
+        data.Var.m.load();
     }//GEN-LAST:event_on_load
 
     private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
@@ -466,29 +449,27 @@ public class PlanDlg extends javax.swing.JDialog {
             Var.anslehrer = false;
         }
     }//GEN-LAST:event_on_changeansicht
-
-    public void akttable(String klasselehrer) {
-        for (int i = 3; i < 8; i++) {
-            for (int j = 0; j < 11; j++) {
-                table.setValueAt("", j, i);
-            }
-        }
+        public static void akttable(String klasselehrer) {
+        data.Var.m.cleartable();
 
         if (data.Var.ansklasse) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
-                    table.setValueAt(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    data.Var.m.sethour(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    
                 }
             }
         }
         if (data.Var.anslehrer) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
-                    table.setValueAt(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    data.Var.m.sethour(stundeAnsicht.getHour().getFach(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                 }
             }
         }
+        data.Var.m.fireTableDataChanged();
     }
+
 
     //
     //

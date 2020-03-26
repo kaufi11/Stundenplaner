@@ -18,9 +18,9 @@ public class BlTableLoad {
     public static void firstload(){
 
         try {
-            List<Stunde> l1 = bl.BlSavesAndLoads.laden();
+            //List<Stunde> l1 = bl.BlSavesAndLoads.laden();
             int j = 0;
-            for (Stunde stunde : l1) {
+            for (Stunde stunde : data.Var.hour) {
                 int column = 0;
                 int row;
                 String tag = stunde.getTag();
@@ -52,6 +52,5 @@ public class BlTableLoad {
 
 
     }
-    
-    
+
 }
