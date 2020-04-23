@@ -88,7 +88,6 @@ public class BlModelPlan extends AbstractTableModel {
     }
 
     public void sethour(String time, int row, int column) {
-        System.out.println(list.toString());
         ModelData md = list.get(row);
         if (column == 3) {
             list.set(row, new ModelData(md.getNummer(), md.getZeitvon(), md.getZeitbis(), time,

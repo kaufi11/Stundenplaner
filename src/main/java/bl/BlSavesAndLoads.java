@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  * @author timon_kaufmann
  */
 public class BlSavesAndLoads {
-    
+
     public static void speichern() {
         List<Stunde> hour = Var.hour;
         Gson gson = new Gson();
@@ -82,13 +82,11 @@ public class BlSavesAndLoads {
                     }
                 }
             }
-
+            Var.hour = stunden;
         } else {
             JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
 
-            Var.hour = stunden;
-        
         return stunden;
     }
 
@@ -118,12 +116,11 @@ public class BlSavesAndLoads {
                     }
                 }
             }
-
+            Var.times = zeit;
         } else {
             JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
-            Var.times = zeit;
-        
+
         return zeit;
     }
 
@@ -166,14 +163,13 @@ public class BlSavesAndLoads {
                     }
                 }
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
-        }
             Var.lehrer = lehrer;
             refreshlistteacher();
             refreshlistcombpteacher();
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+
         return lehrer;
     }
 
@@ -216,14 +212,13 @@ public class BlSavesAndLoads {
                     }
                 }
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
-            
-        }
             Var.klassen = klassen;
             refreshlistclass();
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Datei zum laden", "Fehler", JOptionPane.ERROR_MESSAGE);
+
+        }
+
         return klassen;
     }
 }

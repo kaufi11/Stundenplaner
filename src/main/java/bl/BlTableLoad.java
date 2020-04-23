@@ -43,7 +43,7 @@ public class BlTableLoad {
                     }
                 }
                 //table.setValueAt(stunde.getFach(), row, column);
-               StundeAnsicht sa = new StundeAnsicht(stunde, row, column);
+                StundeAnsicht sa = new StundeAnsicht(stunde, row, column);
                data.Var.shelp.add(sa);
             }
         } catch (Exception e) {
@@ -51,6 +51,27 @@ public class BlTableLoad {
         }
 
 
+    }
+    
+            public static void akttable(String klasselehrer) {
+        data.Var.m.cleartable();
+
+        if (data.Var.ansklasse) {
+            for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
+                if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
+                    data.Var.m.sethour(stundeAnsicht.getHour().getFach()  +"\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    
+                }
+            }
+        }
+        if (data.Var.anslehrer) {
+            for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
+                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
+                    data.Var.m.sethour(stundeAnsicht.getHour().getFach() +"\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                }
+            }
+        }
+        data.Var.m.fireTableDataChanged();
     }
 
 }

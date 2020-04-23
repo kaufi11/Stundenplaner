@@ -11,12 +11,13 @@ package data;
  */
 public class Klasse {
     private String name;
-    private int wochenstunden, anzahlschueler;
+    private int wochenstunden, anzahlschueler, jahrgang;
 
-    public Klasse(String name, int wochenstunden, int anzahlschueler) {
+    public Klasse(String name, int wochenstunden, int anzahlschueler, int jahrgang) {
         this.name = name;
         this.wochenstunden = wochenstunden;
         this.anzahlschueler = anzahlschueler;
+        this.jahrgang = jahrgang;
     }
 
     public String getName() {
@@ -42,6 +43,16 @@ public class Klasse {
     public void setAnzahlschueler(int anzahlschueler) {
         this.anzahlschueler = anzahlschueler;
     }
+
+    public int getJahrgang() {
+        return jahrgang;
+    }
+
+    public void setJahrgang(int jahrgang) {
+        this.jahrgang = jahrgang;
+    }
+    
+    
 
     @Override
     public String toString() {

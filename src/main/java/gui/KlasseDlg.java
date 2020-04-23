@@ -44,6 +44,8 @@ public class KlasseDlg extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         tffach = new javax.swing.JLabel();
         tfname = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        cbjahrgang = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         tfschueleranz = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -54,13 +56,19 @@ public class KlasseDlg extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setLayout(new java.awt.GridLayout(4, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(5, 2));
 
         tffach.setText("Name");
         jPanel1.add(tffach);
 
         tfname.setText("Lukas");
         jPanel1.add(tfname);
+
+        jLabel2.setText("Jahrgang");
+        jPanel1.add(jLabel2);
+
+        cbjahrgang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", " " }));
+        jPanel1.add(cbjahrgang);
 
         jLabel3.setText("Schüleranzahl");
         jPanel1.add(jLabel3);
@@ -103,7 +111,7 @@ public class KlasseDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()));
+        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()));
         data.Var.klassen.add(k);
         bl.BlRefresh.refreshlistclass();
         open = false;
@@ -121,9 +129,11 @@ public class KlasseDlg extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbjahrgang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel tffach;
