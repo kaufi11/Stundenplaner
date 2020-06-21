@@ -7,6 +7,7 @@ package bl;
 
 import data.Klasse;
 import data.Lehrer;
+import data.Stunde;
 import data.Var;
 import gui.EntryDlg;
 import gui.PlanDlg;
@@ -23,6 +24,7 @@ public class BlRefresh {
 
             PlanDlg.listenModellClasse.addElement(k.getName());
         }
+
     }
 
     public static void refreshlistteacher() {
@@ -31,6 +33,8 @@ public class BlRefresh {
 
             PlanDlg.listenModellTeacher.addElement(k.getName());
         }
+                
+
     }
 
     public static void refreshlistcombpteacher() {

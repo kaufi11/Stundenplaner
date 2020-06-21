@@ -10,6 +10,7 @@ import bl.BlRefresh;
 import bl.BlTableLoad;
 import data.Lehrer;
 import data.Stunde;
+import data.Var;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -147,7 +148,7 @@ public class EntryDlg extends javax.swing.JDialog {
         String kuerzel = null;
         for (Lehrer lehrer : data.Var.lehrer) {
             String comp = (String) tflehrer.getSelectedItem();
-            if(comp.equalsIgnoreCase(lehrer.getName())){
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
                 kuerzel = lehrer.getKuerzel();
             }
         }
@@ -166,6 +167,36 @@ public class EntryDlg extends javax.swing.JDialog {
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_abbruch
+
+    public void refresh() {
+        String uhrvon, uhrbis, tag;
+        uhrvon = tfuhr.getText();
+        uhrbis = tfuhr1.getText();
+        tag = tftag.getText();
+        for (Stunde s : Var.hour) {
+            for (int i = 0; i < Var.hour.size(); i++) {
+                if (s.getTag().equals(Var.hour.get(i).getTag()) && s.getUhrzeitvon().equals(Var.hour.get(i).getUhrzeitvon()) && s.getUhrzeitbis().equals(Var.hour.get(i).getUhrzeitbis())) {
+                    //Lehrer bei Dropdown rot einblenden oder gleich ausblenden
+                }
+            }
+        }
+
+        for (Stunde s : Var.hour) {
+            int wochenstunde = 0;
+            for (int i = 0; i < Var.hour.size(); i++) {
+                if (s.getLehrer().equals(Var.hour.get(i))) {
+                    wochenstunde++;
+                }
+                for (Lehrer lehrer : Var.lehrer) {
+                    if (lehrer.getWochenstunden() == wochenstunde && s.getLehrer().equals(lehrer)) {
+                    //Lehrer bei Dropdown rot einblenden oder gleich ausblenden
+
+                    }
+                }
+
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
