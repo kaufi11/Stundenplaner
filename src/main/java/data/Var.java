@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Var {
     public static String klasseakt;
+    public static String lehrerakt;
     public static List<Stunde> hour = new LinkedList<Stunde>();
     public static List<Zeit> times = new LinkedList<Zeit>();
     public static List<Lehrer> lehrer = new LinkedList<Lehrer>();

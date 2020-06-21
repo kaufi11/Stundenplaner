@@ -15,6 +15,7 @@ import data.Var;
 import data.Zeit;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
@@ -40,17 +42,19 @@ public class PlanDlg extends javax.swing.JDialog {
     /**
      * Creates new form PlanDlg
      */
+    private boolean klasseoderlehrer;
     KlasseDlg klassedlg = new KlasseDlg(null, false);
+    LehrerDlg lehrerdlg = new LehrerDlg(null, false);
     public static DefaultListModel listenModellClasse = new DefaultListModel();
     public static DefaultListModel listenModellTeacher = new DefaultListModel();
 
     //TableRenderer render = new TableRenderer();
-
     JTCellRenderer render = new JTCellRenderer();
-    
+
     public PlanDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        klasseoderlehrer = true;
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
         list.setSelectionMode(SINGLE_SELECTION);
@@ -72,39 +76,58 @@ public class PlanDlg extends javax.swing.JDialog {
         menutabelle1 = new javax.swing.JPopupMenu();
         Adden1 = new javax.swing.JMenuItem();
         Delete = new javax.swing.JMenuItem();
+        menutabelle2 = new javax.swing.JPopupMenu();
+        Adden2 = new javax.swing.JMenuItem();
+        Delete1 = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         label = new javax.swing.JLabel();
-        label1 = new javax.swing.JLabel();
         label2 = new javax.swing.JLabel();
         label3 = new javax.swing.JLabel();
         label4 = new javax.swing.JLabel();
         label5 = new javax.swing.JLabel();
-        label6 = new javax.swing.JLabel();
-        label7 = new javax.swing.JLabel();
-        label8 = new javax.swing.JLabel();
         label9 = new javax.swing.JLabel();
-        label10 = new javax.swing.JLabel();
         label11 = new javax.swing.JLabel();
+        label12 = new javax.swing.JLabel();
+        label13 = new javax.swing.JLabel();
+        label14 = new javax.swing.JLabel();
+        label15 = new javax.swing.JLabel();
+        label16 = new javax.swing.JLabel();
+        label17 = new javax.swing.JLabel();
+        label18 = new javax.swing.JLabel();
+        label19 = new javax.swing.JLabel();
+        label20 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menubearbeiten = new javax.swing.JMenuItem();
         menustundenzeiten = new javax.swing.JMenuItem();
         menulehrerbea = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        menuespeichen = new javax.swing.JMenuItem();
         tabelleladen = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        Klein = new javax.swing.JMenuItem();
-        Mittel = new javax.swing.JMenuItem();
-        Gross = new javax.swing.JMenuItem();
 
         Adden1.setText("Klasse hinzufügen");
         Adden1.setToolTipText("");
@@ -123,8 +146,24 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         menutabelle1.add(Delete);
 
+        Adden2.setText("Lehrer hinzufügen");
+        Adden2.setToolTipText("");
+        Adden2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adden2Tabelle1adden(evt);
+            }
+        });
+        menutabelle2.add(Adden2);
+
+        Delete1.setText("Lehrer löschen");
+        Delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete1DeleteBestellung(evt);
+            }
+        });
+        menutabelle2.add(Delete1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 1000));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 on_load(evt);
@@ -183,112 +222,231 @@ public class PlanDlg extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
+        jPanel1.setLayout(new java.awt.GridLayout(1, 6));
+
+        ImageIcon imageIcon5 = new ImageIcon("src\\main\\java\\resource\\klassen_auswahl.png"); // load the image to a imageIcon
+        Image image5 = imageIcon5.getImage(); // transform it
+        Image newimg5 = image5.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon5 = new ImageIcon(newimg5);  // transform it back
+        jButton5.setIcon(imageIcon5);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5);
+
+        ImageIcon imageIcon4 = new ImageIcon("src\\main\\java\\resource\\lehrer_auswahl.png"); // load the image to a imageIcon
+        Image image4 = imageIcon4.getImage(); // transform it
+        Image newimg4 = image4.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon4 = new ImageIcon(newimg4);  // transform it back
+        jButton4.setIcon(imageIcon4);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
+
+        ImageIcon imageIcon3 = new ImageIcon("src\\main\\java\\resource\\bearbeiten_auswahl.png"); // load the image to a imageIcon
+        Image image3 = imageIcon3.getImage(); // transform it
+        Image newimg3 = image3.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon3 = new ImageIcon(newimg3);  // transform it back
+        jButton3.setIcon(imageIcon3);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jPanel1.add(jLabel2);
+        jPanel1.add(jLabel3);
+        jPanel1.add(jLabel4);
+        jPanel1.add(jLabel5);
+        jPanel1.add(jLabel6);
+        jPanel1.add(jLabel7);
+        jPanel1.add(jLabel8);
+        jPanel1.add(jLabel9);
+        jPanel1.add(jLabel10);
+        jPanel1.add(jLabel12);
+        jPanel1.add(jLabel13);
+        jPanel1.add(jLabel14);
+        jPanel1.add(jLabel15);
+        jPanel1.add(jLabel1);
+        jPanel1.add(jLabel11);
+
+        ImageIcon imageIcon2 = new ImageIcon("src\\main\\java\\resource\\speichern_auswahl.png"); // load the image to a imageIcon
+        Image image2 = imageIcon2.getImage(); // transform it
+        Image newimg2 = image2.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon2 = new ImageIcon(newimg2);  // transform it back
+        jButton1.setIcon(imageIcon2);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+
+        ImageIcon imageIcon = new ImageIcon("src\\main\\java\\resource\\drucken_auswahl.png"); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon = new ImageIcon(newimg);  // transform it back
+        jButton2.setIcon(imageIcon);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+
+        jPanel2.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
         jPanel3.setLayout(new java.awt.GridLayout(2, 6));
 
+        label.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setText("Musik");
+        label.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\me_1.png"));
+        label.setText("ME");
         label.setToolTipText("");
         label.setOpaque(true);
         label.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label);
 
-        label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label1.setText("Reli");
-        label1.setToolTipText("");
-        label1.setOpaque(true);
-        label1.setPreferredSize(new java.awt.Dimension(150, 80));
-        jPanel3.add(label1);
-
+        label2.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label2.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\bsp_1.png"));
         label2.setText("BSP");
         label2.setToolTipText("");
         label2.setOpaque(true);
         label2.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label2);
 
+        label3.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label3.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\we_1.png"));
         label3.setText("Werken");
         label3.setToolTipText("");
         label3.setOpaque(true);
         label3.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label3);
 
+        label4.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label4.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\fu_1.png"));
         label4.setText("FU");
         label4.setToolTipText("");
         label4.setOpaque(true);
         label4.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label4);
 
+        label5.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\daz_1.png"));
         label5.setText("DAZ");
         label5.setToolTipText("");
         label5.setOpaque(true);
         label5.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label5);
 
-        label6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label6.setText("SE");
-        label6.setToolTipText("");
-        label6.setOpaque(true);
-        label6.setPreferredSize(new java.awt.Dimension(150, 80));
-        jPanel3.add(label6);
-
-        label7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label7.setText("SPF");
-        label7.setToolTipText("");
-        label7.setOpaque(true);
-        label7.setPreferredSize(new java.awt.Dimension(150, 80));
-        jPanel3.add(label7);
-
-        label8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label8.setText("SPHL");
-        label8.setToolTipText("");
-        label8.setOpaque(true);
-        label8.setPreferredSize(new java.awt.Dimension(150, 80));
-        jPanel3.add(label8);
-
+        label9.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label9.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\glz_1.png"));
         label9.setText("GLZ");
         label9.setToolTipText("");
         label9.setOpaque(true);
         label9.setPreferredSize(new java.awt.Dimension(150, 80));
         jPanel3.add(label9);
 
-        label10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label10.setText("UÜ");
-        jPanel3.add(label10);
-
+        label11.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label11.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\chor_1.png"));
         label11.setText("Chor");
         jPanel3.add(label11);
 
+        label12.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label12.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\e_1.png"));
+        label12.setText("E");
+        jPanel3.add(label12);
+
+        label13.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label13.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\ge_1.png"));
+        label13.setText("gE");
+        label13.setToolTipText("");
+        label13.setOpaque(true);
+        label13.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label13);
+
+        label14.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label14.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\rk_1.png"));
+        label14.setText("RK");
+        label14.setToolTipText("");
+        label14.setOpaque(true);
+        label14.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label14);
+
+        label15.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label15.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\se_1.png"));
+        label15.setText("SE");
+        label15.setToolTipText("");
+        label15.setOpaque(true);
+        label15.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label15);
+
+        label16.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label16.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\spf_1.png"));
+        label16.setText("SPF");
+        label16.setToolTipText("");
+        label16.setOpaque(true);
+        label16.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label16);
+
+        label17.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label17.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\sphl_1.png"));
+        label17.setText("SPHL");
+        label17.setToolTipText("");
+        label17.setOpaque(true);
+        label17.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label17);
+
+        label18.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label18.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\uue_1.png"));
+        label18.setText("UÜ");
+        label18.setToolTipText("");
+        label18.setOpaque(true);
+        label18.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label18);
+
+        label19.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label19.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\uuedls_1.png"));
+        label19.setText("UÜDLS");
+        label19.setToolTipText("");
+        label19.setOpaque(true);
+        label19.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label19);
+
+        label20.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+        label20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label20.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\ve_1.png"));
+        label20.setText("VE");
+        label20.setToolTipText("");
+        label20.setOpaque(true);
+        label20.setPreferredSize(new java.awt.Dimension(150, 80));
+        jPanel3.add(label20);
+
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jMenu1.setText("Ansicht");
-
-        jMenuItem1.setText("Lehreransicht");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                on_changeansicht(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
         jMenu2.setText("Bearbeiten");
-
-        menubearbeiten.setText("Bearbeiten");
-        menubearbeiten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                on_bearbeiten(evt);
-            }
-        });
-        jMenu2.add(menubearbeiten);
 
         menustundenzeiten.setText("Stundenzeiten");
         menustundenzeiten.addActionListener(new java.awt.event.ActionListener() {
@@ -310,22 +468,6 @@ public class PlanDlg extends javax.swing.JDialog {
 
         jMenu3.setText("Datei");
 
-        jMenuItem3.setText("Drucken");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                on_print(evt);
-            }
-        });
-        jMenu3.add(jMenuItem3);
-
-        menuespeichen.setText("Tabelle speichern");
-        menuespeichen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuespeichenActionPerformed(evt);
-            }
-        });
-        jMenu3.add(menuespeichen);
-
         tabelleladen.setText("Tabelle laden");
         tabelleladen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,19 +477,6 @@ public class PlanDlg extends javax.swing.JDialog {
         jMenu3.add(tabelleladen);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Fenster");
-
-        Klein.setText("Klein");
-        jMenu4.add(Klein);
-
-        Mittel.setText("Mittel");
-        jMenu4.add(Mittel);
-
-        Gross.setText("Groß");
-        jMenu4.add(Gross);
-
-        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -360,9 +489,9 @@ public class PlanDlg extends javax.swing.JDialog {
 
     private void Adden1Tabelle1adden(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adden1Tabelle1adden
         try {
-            klassedlg = new KlasseDlg(null, true);
-            if (klassedlg.isOk()) {
-                klassedlg.setVisible(true);
+            lehrerdlg = new LehrerDlg(null, true);
+            if (lehrerdlg.isOk()) {
+                lehrerdlg.setVisible(true);
 
             }
         } catch (Exception e) {
@@ -375,14 +504,28 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_DeleteDeleteBestellung
 
     private void on_mouseclicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_on_mouseclicked
-        if (evt.getButton() == MouseEvent.BUTTON3) {
-            this.menutabelle1.show(this, evt.getX(), evt.getY());
+        if (klasseoderlehrer == false) {
+            if (evt.getButton() == MouseEvent.BUTTON3) { 
+
+                this.menutabelle1.show(this, evt.getX(), evt.getY());
+            }
+
+            if (evt.getButton() == MouseEvent.BUTTON1) {
+                data.Var.klasseakt = list.getSelectedValue();
+                BlTableLoad.akttable(data.Var.klasseakt);
+            }
+        } else if (klasseoderlehrer == true) {
+            if (evt.getButton() == MouseEvent.BUTTON3) { 
+                this.menutabelle2.show(this, evt.getX(), evt.getY());
+            }
+
+            if (evt.getButton() == MouseEvent.BUTTON1) {
+                data.Var.lehrerakt = list.getSelectedValue();
+                BlTableLoad.akttable(data.Var.lehrerakt);
+            }
+
         }
 
-        if (evt.getButton() == MouseEvent.BUTTON1) {
-            data.Var.klasseakt = list.getSelectedValue();
-            BlTableLoad.akttable(data.Var.klasseakt);
-        }
     }//GEN-LAST:event_on_mouseclicked
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
@@ -392,21 +535,6 @@ public class PlanDlg extends javax.swing.JDialog {
         bl.BlSavesAndLoads.ladenclass();
         data.Var.m.load();
     }//GEN-LAST:event_tabelleladenActionPerformed
-
-    private void menuespeichenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuespeichenActionPerformed
-        bl.BlSavesAndLoads.speichern();
-        bl.BlSavesAndLoads.speicherntimes();
-        bl.BlSavesAndLoads.speichernteacher();
-        bl.BlSavesAndLoads.speichernclass();
-    }//GEN-LAST:event_menuespeichenActionPerformed
-
-    private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
-        try {
-            table.print();
-        } catch (PrinterException ex) {
-            Logger.getLogger(PlanDlg.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_on_print
 
     private void on_lehrer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_lehrer
         LehrerDllMain gui = new LehrerDllMain(null, true);
@@ -423,38 +551,75 @@ public class PlanDlg extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_menustundenzeitenon_bearbeiten
 
-    private void on_bearbeiten(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bearbeiten
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jPanel3.setVisible(true);
 
         bl.BlPlan.enableTablebearbeiten(table);
 
         bl.BlPlan.enableLabelsbearbeiten(label);
-        bl.BlPlan.enableLabelsbearbeiten(label1);
         bl.BlPlan.enableLabelsbearbeiten(label2);
         bl.BlPlan.enableLabelsbearbeiten(label3);
         bl.BlPlan.enableLabelsbearbeiten(label4);
         bl.BlPlan.enableLabelsbearbeiten(label5);
-        bl.BlPlan.enableLabelsbearbeiten(label6);
-        bl.BlPlan.enableLabelsbearbeiten(label7);
-        bl.BlPlan.enableLabelsbearbeiten(label8);
         bl.BlPlan.enableLabelsbearbeiten(label9);
-        bl.BlPlan.enableLabelsbearbeiten(label10);
+        bl.BlPlan.enableLabelsbearbeiten(label9);
         bl.BlPlan.enableLabelsbearbeiten(label11);
-    }//GEN-LAST:event_on_bearbeiten
+        bl.BlPlan.enableLabelsbearbeiten(label12);
+        bl.BlPlan.enableLabelsbearbeiten(label13);
+        bl.BlPlan.enableLabelsbearbeiten(label14);
+        bl.BlPlan.enableLabelsbearbeiten(label15);
+        bl.BlPlan.enableLabelsbearbeiten(label16);
+        bl.BlPlan.enableLabelsbearbeiten(label17);
+        bl.BlPlan.enableLabelsbearbeiten(label18);
+        bl.BlPlan.enableLabelsbearbeiten(label19);
+        bl.BlPlan.enableLabelsbearbeiten(label20);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void on_changeansicht(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_changeansicht
-        if (Var.ansklasse) {
-            jMenuItem1.setText("Klassenansicht");
-            list.setModel(listenModellTeacher);
-            Var.ansklasse = false;
-            Var.anslehrer = true;
-        } else if (Var.anslehrer) {
-            jMenuItem1.setText("Lehreransicht");
-            list.setModel(listenModellClasse);
-            Var.ansklasse = true;
-            Var.anslehrer = false;
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        list.setModel(listenModellTeacher);
+        Var.ansklasse = false;
+        Var.anslehrer = true;
+        klasseoderlehrer = false;
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        list.setModel(listenModellClasse);
+        Var.ansklasse = true;
+        Var.anslehrer = false;
+        klasseoderlehrer = true;
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        bl.BlSavesAndLoads.speichern();
+        bl.BlSavesAndLoads.speicherntimes();
+        bl.BlSavesAndLoads.speichernteacher();
+        bl.BlSavesAndLoads.speichernclass();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            table.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(PlanDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_on_changeansicht
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Adden2Tabelle1adden(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adden2Tabelle1adden
+        try {
+            klassedlg = new KlasseDlg(null, true);
+            if (klassedlg.isOk()) {
+                klassedlg.setVisible(true);
+
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }//GEN-LAST:event_Adden2Tabelle1adden
+
+    private void Delete1DeleteBestellung(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1DeleteBestellung
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Delete1DeleteBestellung
 
     //
     //
@@ -502,39 +667,58 @@ public class PlanDlg extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Adden1;
+    private javax.swing.JMenuItem Adden2;
     private javax.swing.JMenuItem Delete;
-    private javax.swing.JMenuItem Gross;
-    private javax.swing.JMenuItem Klein;
-    private javax.swing.JMenuItem Mittel;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem Delete1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label;
-    private javax.swing.JLabel label1;
-    private javax.swing.JLabel label10;
     private javax.swing.JLabel label11;
+    private javax.swing.JLabel label12;
+    private javax.swing.JLabel label13;
+    private javax.swing.JLabel label14;
+    private javax.swing.JLabel label15;
+    private javax.swing.JLabel label16;
+    private javax.swing.JLabel label17;
+    private javax.swing.JLabel label18;
+    private javax.swing.JLabel label19;
     private javax.swing.JLabel label2;
+    private javax.swing.JLabel label20;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
-    private javax.swing.JLabel label6;
-    private javax.swing.JLabel label7;
-    private javax.swing.JLabel label8;
     private javax.swing.JLabel label9;
     private javax.swing.JList<String> list;
-    private javax.swing.JMenuItem menubearbeiten;
-    private javax.swing.JMenuItem menuespeichen;
     private javax.swing.JMenuItem menulehrerbea;
     private javax.swing.JMenuItem menustundenzeiten;
     private javax.swing.JPopupMenu menutabelle1;
+    private javax.swing.JPopupMenu menutabelle2;
     private javax.swing.JMenuItem tabelleladen;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
