@@ -5,7 +5,7 @@
  */
 package gui;
 
-import bl.BlRefresh;
+import bl.BlRefreshclassandteacher;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
@@ -28,10 +28,19 @@ public class KlasseDlg extends javax.swing.JDialog {
         initComponents();
         
     }
+    public KlasseDlg(java.awt.Frame parent, boolean modal, Klasse k) {
+        super(parent, modal);
+        initComponents();
+        tfname.setText(k.getName());
+        tfschueleranz.setText(k.getAnzahlschueler()+"");
+        tfwochenstunden.setText(k.getWochenstunden()+"");
+        cbjahrgang.setSelectedIndex(k.getJahrgang()-1);
+        jButton2.setVisible(false);
+    }
     public static boolean ok = true;
     public static boolean open = true;
 
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +51,7 @@ public class KlasseDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tffach = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         tfname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbjahrgang = new javax.swing.JComboBox<>();
@@ -58,8 +67,8 @@ public class KlasseDlg extends javax.swing.JDialog {
 
         jPanel1.setLayout(new java.awt.GridLayout(5, 2));
 
-        tffach.setText("Name");
-        jPanel1.add(tffach);
+        jLabel4.setText("Name");
+        jPanel1.add(jLabel4);
 
         tfname.setText("Lukas");
         jPanel1.add(tfname);
@@ -67,7 +76,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         jLabel2.setText("Jahrgang");
         jPanel1.add(jLabel2);
 
-        cbjahrgang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", " " }));
+        cbjahrgang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         jPanel1.add(cbjahrgang);
 
         jLabel3.setText("Schüleranzahl");
@@ -82,7 +91,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         tfwochenstunden.setText("40");
         jPanel1.add(tfwochenstunden);
 
-        jButton1.setText("Fertig");
+        jButton1.setIcon(data.Var.imageIconok);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_fertig(evt);
@@ -90,7 +99,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         });
         jPanel1.add(jButton1);
 
-        jButton2.setText("Abbrechen");
+        jButton2.setIcon(data.Var.imageIconnotok);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_abbruch(evt);
@@ -113,7 +122,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         ok = true;
         Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()));
         data.Var.klassen.add(k);
-        bl.BlRefresh.refreshlistclass();
+        bl.BlRefreshclassandteacher.refreshlistclass();
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig
@@ -135,8 +144,8 @@ public class KlasseDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel tffach;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfschueleranz;
     private javax.swing.JTextField tfwochenstunden;

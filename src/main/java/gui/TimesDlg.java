@@ -240,6 +240,7 @@ public class TimesDlg extends javax.swing.JDialog {
         data.Var.stundenanfang[7] = tf8von.getText();
         data.Var.stundenanfang[8] = tf9von.getText();
         data.Var.stundenanfang[9] = tf10von.getText();
+        data.Var.stundenanfang[10] = "";
         
         data.Var.stundenende[0] = tf1bis.getText();
         data.Var.stundenende[1] = tf2bis.getText();
@@ -251,6 +252,7 @@ public class TimesDlg extends javax.swing.JDialog {
         data.Var.stundenende[7] = tf8bis.getText();
         data.Var.stundenende[8] = tf9bis.getText();
         data.Var.stundenende[9] = tf10bis.getText();
+        data.Var.stundenende[10] = "";
         
         bl.BlPlan.pausenrechner();
         

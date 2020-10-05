@@ -27,6 +27,14 @@ public class LehrerDlg extends javax.swing.JDialog {
         initComponents();
 
     }
+    public LehrerDlg(java.awt.Frame parent, boolean modal, Lehrer l) {
+        super(parent, modal);
+        initComponents();
+        tfkuerzel.setText(l.getKuerzel());
+        tfname.setText(l.getName());
+        tfwochenstunden.setText(l.getWochenstunden()+"");
+        jButton2.setVisible(false);
+    }
     public static boolean ok = true;
     public static boolean open = true;
 
@@ -40,7 +48,7 @@ public class LehrerDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tffach = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         tfname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tfkuerzel = new javax.swing.JTextField();
@@ -54,8 +62,8 @@ public class LehrerDlg extends javax.swing.JDialog {
 
         jPanel1.setLayout(new java.awt.GridLayout(4, 2));
 
-        tffach.setText("Name");
-        jPanel1.add(tffach);
+        jLabel2.setText("Name");
+        jPanel1.add(jLabel2);
 
         tfname.setText("Lukas");
         jPanel1.add(tfname);
@@ -72,7 +80,7 @@ public class LehrerDlg extends javax.swing.JDialog {
         tfwochenstunden.setText("25");
         jPanel1.add(tfwochenstunden);
 
-        jButton1.setText("Fertig");
+        jButton1.setIcon(data.Var.imageIconok);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_fertig(evt);
@@ -80,7 +88,7 @@ public class LehrerDlg extends javax.swing.JDialog {
         });
         jPanel1.add(jButton1);
 
-        jButton2.setText("Abbrechen");
+        jButton2.setIcon(data.Var.imageIconnotok);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_abbruch(evt);
@@ -101,12 +109,12 @@ public class LehrerDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         ok = true;
-        //Ausreden ob Lehrer von Anfang an anwesend gestellt wird
-        Lehrer l = new Lehrer(tfname.getText(), tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), false);
+        Lehrer l = new Lehrer(tfname.getText(), tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), true);
         data.Var.lehrer.add(l);
         System.out.println(data.Var.lehrer.toString());
-        bl.BlRefresh.refreshlistteacher();
-        bl.BlRefresh.refreshlistcombpteacher();
+        bl.BlRefreshclassandteacher.refreshlistteacher();
+        bl.BlRefreshclassandteacher.refreshlistcombpteacher();
+        
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_fertig
@@ -123,9 +131,9 @@ public class LehrerDlg extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel tffach;
     private javax.swing.JTextField tfkuerzel;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfwochenstunden;

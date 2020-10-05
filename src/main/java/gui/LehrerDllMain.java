@@ -5,11 +5,23 @@
  */
 package gui;
 
+import bl.TableRendererLehrer;
 import buttonbl.ButtonEditor;
 import buttonbl.ButtonRenderer;
 import buttonbl.ButtonRendererAbwesend;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
+import data.Lehrer;
+import data.Var;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 
 /**
  *
@@ -19,21 +31,34 @@ public class LehrerDllMain extends javax.swing.JDialog {
 
     /**
      * Creates new form LehrerDllMain
-     */ 
-    LehrerDlg lehrerdlg = new LehrerDlg(null,false);
+     */
+    LehrerDlg lehrerdlg = new LehrerDlg(null, false);
+
+    TableRendererLehrer tableRenderer = new TableRendererLehrer();
+
     public LehrerDllMain(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         tabelle.setFillsViewportHeight(true);
+        tabelle.setFillsViewportHeight(true);
         tabelle.getColumn("Anwesend").setCellRenderer(new ButtonRenderer());
         tabelle.getColumn("Anwesend").setCellEditor(new ButtonEditor(new JCheckBox()));
         tabelle.getColumn("Abwesend").setCellRenderer(new ButtonRendererAbwesend());
         tabelle.getColumn("Abwesend").setCellEditor(new ButtonEditor(new JCheckBox()));
         tabelle.setRowHeight(22);
+
+        tabelle.setDefaultRenderer(Object.class, tableRenderer);
+        
+        this.updateLehrer();
+    }
+
+    public LehrerDllMain() {
+    }
+
+    public LehrerDlg getLehrerdlg() {
+        return lehrerdlg;
     }
 
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +98,7 @@ public class LehrerDllMain extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Vorname", "Nachname", "Anwesend", "Abwesend"
+                "Name", "Anwesend", "Abwesend"
             }
         ));
         tabelle.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,10 +141,8 @@ public class LehrerDllMain extends javax.swing.JDialog {
     private void Adden1Tabelle1adden(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adden1Tabelle1adden
         try {
             lehrerdlg = new LehrerDlg(null, true);
-            if(lehrerdlg.isOk())
-            {
+            if (lehrerdlg.isOk()) {
                 lehrerdlg.setVisible(true);
-                //tableModel.tableDataChanged();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -128,20 +151,36 @@ public class LehrerDllMain extends javax.swing.JDialog {
 
     private void DeleteDeleteBestellung(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteDeleteBestellung
         //        try {
-            //            int index = bestellTabelle.getSelectedRow();
-            //            Bestellungen best = tableModel.getBest(index);
-            //            int id = best.getId();
-            //            tableModel.delete(index);
-            //            access.DeleteBestellung(id);
-            //            List<Bestellungen> test = tableModel.getDatensaetze();
-            //            if(test.size()==0)
-            //            {
-                //                access.SetIDBestellungauf1();
-                //            }
-            //        } catch (Exception e) {
-            //            e.getMessage();
-            //        }
+        //            int index = bestellTabelle.getSelectedRow();
+        //            Bestellungen best = tableModel.getBest(index);
+        //            int id = best.getId();
+        //            tableModel.delete(index);
+        //            access.DeleteBestellung(id);
+        //            List<Bestellungen> test = tableModel.getDatensaetze();
+        //            if(test.size()==0)
+        //            {
+        //                access.SetIDBestellungauf1();
+        //            }
+        //        } catch (Exception e) {
+        //            e.getMessage();
+        //        }
     }//GEN-LAST:event_DeleteDeleteBestellung
+
+    public void updateLehrer() {
+        DefaultTableModel dtm = (DefaultTableModel) tabelle.getModel();
+        //clear
+        dtm.setRowCount(0);
+
+        for (Lehrer lehrer : data.Var.lehrer) {
+
+            String name = lehrer.getName();
+     
+
+            dtm.addRow(new Object[]{name});
+            tableRenderer.updateUI();
+            
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -192,4 +231,5 @@ public class LehrerDllMain extends javax.swing.JDialog {
     private javax.swing.JPopupMenu menutabelle1;
     private javax.swing.JTable tabelle;
     // End of variables declaration//GEN-END:variables
+
 }

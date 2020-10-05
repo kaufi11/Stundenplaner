@@ -1,30 +1,20 @@
-package gui;
+package veralteteklassen;
 
-import bl.BlModelPlan;
 import bl.BlTableLoad;
 import bl.JTCellRenderer;
-import bl.TableRenderer;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import static com.sun.source.doctree.AttributeTree.ValueKind.SINGLE;
-import data.Klasse;
-import data.ModelData;
-import data.Stunde;
-import data.StundeAnsicht;
 import data.Var;
-import data.Zeit;
-import java.awt.Color;
-import java.awt.Dimension;
+import gui.KlasseDlg;
+import gui.LehrerDlg;
+import gui.LehrerDllMain;
+import gui.TimesDlg;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
 
@@ -129,7 +119,7 @@ public class PlanDlg extends javax.swing.JDialog {
         jMenu3 = new javax.swing.JMenu();
         tabelleladen = new javax.swing.JMenuItem();
 
-        Adden1.setText("Klasse hinzufügen");
+        Adden1.setText("Lehrer hinzufügen");
         Adden1.setToolTipText("");
         Adden1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +128,7 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         menutabelle1.add(Adden1);
 
-        Delete.setText("Klasse löschen");
+        Delete.setText("Lehrer löschen");
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteDeleteBestellung(evt);
@@ -146,7 +136,7 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         menutabelle1.add(Delete);
 
-        Adden2.setText("Lehrer hinzufügen");
+        Adden2.setText("Klasse hinzufügen");
         Adden2.setToolTipText("");
         Adden2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +145,7 @@ public class PlanDlg extends javax.swing.JDialog {
         });
         menutabelle2.add(Adden2);
 
-        Delete1.setText("Lehrer löschen");
+        Delete1.setText("Klasse löschen");
         Delete1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Delete1DeleteBestellung(evt);
@@ -252,7 +242,6 @@ public class PlanDlg extends javax.swing.JDialog {
         Image image3 = imageIcon3.getImage(); // transform it
         Image newimg3 = image3.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon3 = new ImageIcon(newimg3);  // transform it back
-        jButton3.setIcon(imageIcon3);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -308,7 +297,6 @@ public class PlanDlg extends javax.swing.JDialog {
 
         label.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\me_1.png"));
         label.setText("ME");
         label.setToolTipText("");
         label.setOpaque(true);
@@ -326,7 +314,7 @@ public class PlanDlg extends javax.swing.JDialog {
 
         label3.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
         label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label3.setIcon(new javax.swing.ImageIcon("src\\main\\java\\resource\\we_1.png"));
+        label3.setIcon(new javax.swing.ImageIcon("/resource/we_1.png"));
         label3.setText("Werken");
         label3.setToolTipText("");
         label3.setOpaque(true);
@@ -492,7 +480,6 @@ public class PlanDlg extends javax.swing.JDialog {
             lehrerdlg = new LehrerDlg(null, true);
             if (lehrerdlg.isOk()) {
                 lehrerdlg.setVisible(true);
-
             }
         } catch (Exception e) {
             e.getMessage();
@@ -504,35 +491,33 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_DeleteDeleteBestellung
 
     private void on_mouseclicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_on_mouseclicked
-        if (klasseoderlehrer == false) {
-            if (evt.getButton() == MouseEvent.BUTTON3) { 
-
-                this.menutabelle1.show(this, evt.getX(), evt.getY());
-            }
-
-            if (evt.getButton() == MouseEvent.BUTTON1) {
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            if (Var.ansklasse) {
                 data.Var.klasseakt = list.getSelectedValue();
                 BlTableLoad.akttable(data.Var.klasseakt);
-            }
-        } else if (klasseoderlehrer == true) {
-            if (evt.getButton() == MouseEvent.BUTTON3) { 
-                this.menutabelle2.show(this, evt.getX(), evt.getY());
-            }
 
-            if (evt.getButton() == MouseEvent.BUTTON1) {
+            }
+            if (Var.anslehrer) {
                 data.Var.lehrerakt = list.getSelectedValue();
                 BlTableLoad.akttable(data.Var.lehrerakt);
             }
 
         }
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (Var.ansklasse) {
+                this.menutabelle2.show(this, evt.getX(), evt.getY());
+
+            }
+            if (Var.anslehrer) {
+                this.menutabelle1.show(this, evt.getX(), evt.getY());
+
+            }
+        }
 
     }//GEN-LAST:event_on_mouseclicked
 
     private void tabelleladenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabelleladenActionPerformed
-        bl.BlSavesAndLoads.laden();
-        bl.BlSavesAndLoads.ladentimes();
-        bl.BlSavesAndLoads.ladenteacher();
-        bl.BlSavesAndLoads.ladenclass();
+
         data.Var.m.load();
     }//GEN-LAST:event_tabelleladenActionPerformed
 
@@ -552,49 +537,54 @@ public class PlanDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_menustundenzeitenon_bearbeiten
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jPanel3.setVisible(true);
+        if (!Var.anslehrer) {
+            jPanel3.setVisible(true);
 
-        bl.BlPlan.enableTablebearbeiten(table);
+            bl.BlPlan.enableTablebearbeiten(table);
 
-        bl.BlPlan.enableLabelsbearbeiten(label);
-        bl.BlPlan.enableLabelsbearbeiten(label2);
-        bl.BlPlan.enableLabelsbearbeiten(label3);
-        bl.BlPlan.enableLabelsbearbeiten(label4);
-        bl.BlPlan.enableLabelsbearbeiten(label5);
-        bl.BlPlan.enableLabelsbearbeiten(label9);
-        bl.BlPlan.enableLabelsbearbeiten(label9);
-        bl.BlPlan.enableLabelsbearbeiten(label11);
-        bl.BlPlan.enableLabelsbearbeiten(label12);
-        bl.BlPlan.enableLabelsbearbeiten(label13);
-        bl.BlPlan.enableLabelsbearbeiten(label14);
-        bl.BlPlan.enableLabelsbearbeiten(label15);
-        bl.BlPlan.enableLabelsbearbeiten(label16);
-        bl.BlPlan.enableLabelsbearbeiten(label17);
-        bl.BlPlan.enableLabelsbearbeiten(label18);
-        bl.BlPlan.enableLabelsbearbeiten(label19);
-        bl.BlPlan.enableLabelsbearbeiten(label20);
+            bl.BlPlan.enableLabelsbearbeiten(label);
+            bl.BlPlan.enableLabelsbearbeiten(label2);
+            bl.BlPlan.enableLabelsbearbeiten(label3);
+            bl.BlPlan.enableLabelsbearbeiten(label4);
+            bl.BlPlan.enableLabelsbearbeiten(label5);
+            bl.BlPlan.enableLabelsbearbeiten(label9);
+            bl.BlPlan.enableLabelsbearbeiten(label9);
+            bl.BlPlan.enableLabelsbearbeiten(label11);
+            bl.BlPlan.enableLabelsbearbeiten(label12);
+            bl.BlPlan.enableLabelsbearbeiten(label13);
+            bl.BlPlan.enableLabelsbearbeiten(label14);
+            bl.BlPlan.enableLabelsbearbeiten(label15);
+            bl.BlPlan.enableLabelsbearbeiten(label16);
+            bl.BlPlan.enableLabelsbearbeiten(label17);
+            bl.BlPlan.enableLabelsbearbeiten(label18);
+            bl.BlPlan.enableLabelsbearbeiten(label19);
+            bl.BlPlan.enableLabelsbearbeiten(label20);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         list.setModel(listenModellTeacher);
         Var.ansklasse = false;
         Var.anslehrer = true;
-        klasseoderlehrer = false;
+        list.setBorder(javax.swing.BorderFactory.createTitledBorder("Lehrer"));
+        jPanel3.setVisible(false);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         list.setModel(listenModellClasse);
         Var.ansklasse = true;
         Var.anslehrer = false;
-        klasseoderlehrer = true;
+        list.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        bl.BlSavesAndLoads.speichern();
-        bl.BlSavesAndLoads.speicherntimes();
-        bl.BlSavesAndLoads.speichernteacher();
-        bl.BlSavesAndLoads.speichernclass();
+        bl.BlSavesAndLoads.speichern(data.Var.pfadauto);
+        bl.BlSavesAndLoads.speicherntimes(data.Var.pfadauto);
+        bl.BlSavesAndLoads.speichernteacher(data.Var.pfadauto);
+        bl.BlSavesAndLoads.speichernclass(data.Var.pfadauto);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

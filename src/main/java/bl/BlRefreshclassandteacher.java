@@ -10,37 +10,38 @@ import data.Lehrer;
 import data.Stunde;
 import data.Var;
 import gui.EntryDlg;
-import gui.PlanDlg;
+import veralteteklassen.PlanDlg;
+import gui.PlanGUI;
+import java.util.Comparator;
 
 /**
  *
  * @author timon_kaufmann
  */
-public class BlRefresh {
-    
-    public static void refreshlistclass() {
-        PlanDlg.listenModellClasse.clear();
-        for (Klasse k : Var.klassen) {
+public class BlRefreshclassandteacher {
 
-            PlanDlg.listenModellClasse.addElement(k.getName());
+    public static void refreshlistclass() {
+        PlanGUI.listenModellClasse.clear();
+        Var.klassen.sort(data.Var.compclass);
+        for (Klasse k : Var.klassen) {
+            PlanGUI.listenModellClasse.addElement(k.getName());
         }
 
     }
 
     public static void refreshlistteacher() {
-        PlanDlg.listenModellTeacher.clear();
+        PlanGUI.listenModellTeacher.clear();
+        Var.lehrer.sort(data.Var.compteacher);
         for (Lehrer k : Var.lehrer) {
-
-            PlanDlg.listenModellTeacher.addElement(k.getName());
+            PlanGUI.listenModellTeacher.addElement(k.getName());
         }
-                
 
     }
 
     public static void refreshlistcombpteacher() {
         EntryDlg.modelcoml.removeAllElements();
+        Var.lehrer.sort(data.Var.compteacher);
         for (Lehrer l : Var.lehrer) {
-
             EntryDlg.modelcoml.addElement(l.getName());
         }
     }

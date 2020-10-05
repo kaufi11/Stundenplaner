@@ -13,7 +13,7 @@ import data.Stunde;
 import data.Var;
 import data.Zeit;
 import gui.EntryDlg;
-import gui.PlanDlg;
+import veralteteklassen.PlanDlg;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -34,7 +34,7 @@ import javax.swing.TransferHandler;
  * @author timon_kaufmann
  */
 public class BlPlan {
-
+ 
     public static void enableTablebearbeiten(JTable table) {
         table.setAutoCreateRowSorter(true);
         table.setTransferHandler(new bl.DragAndDrop());
@@ -62,7 +62,7 @@ public class BlPlan {
                 Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
                 data.Var.times.add(z);
             } else if (!data.Var.stundenende[i].equals(data.Var.stundenanfang[i + 1])) {
-                if (!data.Var.stundenanfang[i + 1].isEmpty()) {
+                 if (!data.Var.stundenanfang[i + 1].isEmpty()) {
                     Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
                     Zeit zz = new Zeit("Pause", data.Var.stundenende[i], data.Var.stundenanfang[i + 1]);
                     data.Var.times.add(z);

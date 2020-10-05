@@ -23,9 +23,10 @@ public class Lehrer {
 
 
 
-    public Lehrer(String Name, String Kuerzel) {
+    public Lehrer(String Name, String Kuerzel, boolean anwesend) {
         this.Name = Name;
         this.Kuerzel = Kuerzel;
+        this.anwesend = anwesend;
     }
 
     
@@ -65,8 +66,10 @@ public class Lehrer {
 
     @Override
     public String toString() {
-        return "Lehrer{" + "Name=" + Name + ", Kuerzel=" + Kuerzel + ", wochenstunden=" + wochenstunden + '}';
+        return "Lehrer{" + "Name=" + Name + ", Kuerzel=" + Kuerzel + ", wochenstunden=" + wochenstunden + ", anwesend=" + anwesend + '}';
     }
+
+
     
     
     

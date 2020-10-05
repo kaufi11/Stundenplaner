@@ -5,7 +5,11 @@
  */
 package bl;
 
+import data.Lehrer;
+import data.StundeAnsicht;
+import java.awt.Color;
 import java.awt.Component;
+import java.util.LinkedList;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableCellRenderer;
@@ -14,22 +18,21 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author timon_kaufmann
  */
-public class JTCellRenderer extends JTextArea implements TableCellRenderer
-{
+public class JTCellRenderer extends JTextArea implements TableCellRenderer {
 
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private LinkedList<String> list = new LinkedList();
 
-public Component getTableCellRendererComponent(JTable table, Object value,
-boolean isSelected, boolean hasFocus, 
-int row, int column)
-{
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus,
+            int row, int column) {
+
 // Text setzen
-setWrapStyleWord(true);
-setLineWrap(true);
-setText((String)value);
+        setWrapStyleWord(true);
+        setLineWrap(true);
+        setText((String) value);
 
-
-return this;
-}
+        return this;
+    }
 
 }

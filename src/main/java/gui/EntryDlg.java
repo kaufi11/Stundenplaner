@@ -6,8 +6,9 @@
 package gui;
 
 import bl.BlPlan;
-import bl.BlRefresh;
+import bl.BlRefreshclassandteacher;
 import bl.BlTableLoad;
+import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
 import data.Var;
@@ -25,12 +26,16 @@ public class EntryDlg extends javax.swing.JDialog {
     private int row, column;
     private String[] wochentag = new String[5];
     public static DefaultComboBoxModel modelcoml = new DefaultComboBoxModel();
+    private boolean aufsicht = false;
 
     public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column, String fach) {
 
         super(parent, modal);
         initComponents();
-        BlRefresh.refreshlistteacher();
+        BlRefreshclassandteacher.refreshlistteacher();
+        if (fach.equals("Aufsicht")) {
+            aufsicht = true;
+        }
         this.row = row;
         this.column = column;
         wochentag[0] = "Montag";
@@ -44,6 +49,7 @@ public class EntryDlg extends javax.swing.JDialog {
         tfuhr1.setText(data.Var.times.get(row).getBis());
         tffach.setText(fach);
         tflehrer.setModel(modelcoml);
+        refresh();
     }
     public static boolean ok = false;
     public static boolean open = true;
@@ -113,7 +119,7 @@ public class EntryDlg extends javax.swing.JDialog {
         tftag.setText("Montag");
         jPanel1.add(tftag);
 
-        jButton1.setText("Fertig");
+        jButton1.setIcon(data.Var.imageIconok);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_fertig(evt);
@@ -121,7 +127,7 @@ public class EntryDlg extends javax.swing.JDialog {
         });
         jPanel1.add(jButton1);
 
-        jButton2.setText("Abbrechen");
+        jButton2.setIcon(data.Var.imageIconnotok);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_abbruch(evt);
@@ -146,25 +152,66 @@ public class EntryDlg extends javax.swing.JDialog {
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
         String kuerzel = null;
+        boolean anwesend = false;
         for (Lehrer lehrer : data.Var.lehrer) {
             String comp = (String) tflehrer.getSelectedItem();
             if (comp.equalsIgnoreCase(lehrer.getName())) {
                 kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
             }
         }
         ok = true;
-        Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
-        data.Var.hour.add(s);
+                    Stunde sremove = null;
+            for (Stunde stunde : data.Var.hour) {
+                if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
+                    sremove = stunde;
+                }
+            }
+        if (tffach.getText().equals("Aufsicht")) {
+            for (Klasse klasse : data.Var.klassen) {
+                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), klasse.getName(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                data.Var.hour.add(s);
+            }
+        }
+
+            if (sremove != null && !sremove.getLehrer().isAnwesend()) {
+                data.Var.hour.remove(sremove);
+            }
+            if (sremove != null && sremove.getLehrer().isAnwesend() && !sremove.getFach().equals(tffach.getText())) {
+                data.Var.hour.remove(sremove);
+            }
+            if (sremove != null && sremove.getFach().equals(tffach.getText()) && sremove.getLehrer().isAnwesend()) {
+                data.Var.hour.remove(sremove);
+                
+                if (tffach.getText().equals("Aufsicht")){
+                    for (Klasse klasse : data.Var.klassen) {
+                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend),new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), klasse.getName(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                data.Var.hour.add(s);
+                }
+                }else{
+                 Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                data.Var.hour.add(s);
+                } 
+                
+            } else {
+                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                data.Var.hour.add(s);
+            }
+
+        
         BlTableLoad.firstload();
         BlTableLoad.akttable(tfklasse.getText());
-        BlTableLoad.akttable(tfklasse.getText());
         open = false;
+        bl.BlRefreshclassandteacher.refreshlistteacher();
+        bl.BlRefreshclassandteacher.refreshlistcombpteacher();
         this.dispose();
     }//GEN-LAST:event_on_fertig
 
     private void on_abbruch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_abbruch
         ok = false;
         open = false;
+        bl.BlRefreshclassandteacher.refreshlistteacher();
+        bl.BlRefreshclassandteacher.refreshlistcombpteacher();
         this.dispose();
     }//GEN-LAST:event_on_abbruch
 
@@ -173,15 +220,16 @@ public class EntryDlg extends javax.swing.JDialog {
         uhrvon = tfuhr.getText();
         uhrbis = tfuhr1.getText();
         tag = tftag.getText();
+        System.out.println(tag + " " + uhrvon + " " + uhrbis);
         for (Stunde s : Var.hour) {
             for (int i = 0; i < Var.hour.size(); i++) {
-                if (s.getTag().equals(Var.hour.get(i).getTag()) && s.getUhrzeitvon().equals(Var.hour.get(i).getUhrzeitvon()) && s.getUhrzeitbis().equals(Var.hour.get(i).getUhrzeitbis())) {
-                    //Lehrer bei Dropdown rot einblenden oder gleich ausblenden
+                if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis))) {
+                    modelcoml.removeElement(s.getLehrer().getName());
                 }
             }
         }
 
-        for (Stunde s : Var.hour) {
+        /*for (Stunde s : Var.hour) {
             int wochenstunde = 0;
             for (int i = 0; i < Var.hour.size(); i++) {
                 if (s.getLehrer().equals(Var.hour.get(i))) {
@@ -195,7 +243,7 @@ public class EntryDlg extends javax.swing.JDialog {
                 }
 
             }
-        }
+        }*/
     }
 
     /**

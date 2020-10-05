@@ -6,6 +6,8 @@
 package buttonbl;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -16,21 +18,23 @@ import javax.swing.table.TableCellRenderer;
  * @author lukas
  */
 public class ButtonRendererAbwesend extends JButton implements TableCellRenderer {
-  
-  public ButtonRendererAbwesend() {
-    setOpaque(true);
-  }
-   
-  public Component getTableCellRendererComponent(JTable table, Object value,
-                   boolean isSelected, boolean hasFocus, int row, int column) {
-    if (isSelected) {
-      setForeground(table.getSelectionForeground());
-      setBackground(table.getSelectionBackground());
-    } else{
-      setForeground(table.getForeground());
-      setBackground(UIManager.getColor("Button.background"));
+
+    public ButtonRendererAbwesend() {
+        setOpaque(true);
+
     }
-    setText("Abwesend");
-    return this;
-  }
+
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            setBackground(table.getSelectionBackground());
+        } else {
+            setForeground(table.getForeground());
+            setBackground(UIManager.getColor("Button.background"));
+        }
+        setText("Abwesend");
+        return this;
+    }
+
 }

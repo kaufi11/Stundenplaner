@@ -12,11 +12,13 @@ package data;
 public class StundeAnsicht {
     private Stunde hour;
     private int row, column;
+    private boolean isenabled;
 
-    public StundeAnsicht(Stunde hour, int row, int column) {
+    public StundeAnsicht(Stunde hour, int row, int column, boolean isenabled) {
         this.hour = hour;
         this.row = row;
         this.column = column;
+        this.isenabled = isenabled;
     }
 
     public Stunde getHour() {
@@ -43,5 +45,21 @@ public class StundeAnsicht {
         this.column = column;
     }
 
+    public boolean isIsenabled() {
+        return isenabled;
+    }
+
+    public void setIsenabled(boolean isenabled) {
+        this.isenabled = isenabled;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "StundeAnsicht{" + "hour=" + hour + ", row=" + row + ", column=" + column + '}';
+    }
+
+    
     
 }

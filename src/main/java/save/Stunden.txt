@@ -1,1 +1,0 @@
-[{"Klasse":"1AHIF","Fach":"Werken","Uhrzeitvon":"9:40","Uhrzeitbis":"10:30","Tag":"Dienstag","Lehrer":{"Name":"Timon","Kuerzel":"TK","wochenstunden":0,"anwesend":false}}]

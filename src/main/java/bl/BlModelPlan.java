@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  * @author timon_kaufmann
  */
 public class BlModelPlan extends AbstractTableModel {
-
+    
     LinkedList<ModelData> list;
 
     public BlModelPlan() {
@@ -113,37 +113,29 @@ public class BlModelPlan extends AbstractTableModel {
     }
 
     public void load() {
-        bl.BlSavesAndLoads.laden();
-        bl.BlSavesAndLoads.ladentimes();
-        bl.BlSavesAndLoads.ladenteacher();
-        bl.BlSavesAndLoads.ladenclass();
-        List<Zeit> l2 = bl.BlSavesAndLoads.ladentimes();
-        int i = 0;
+        bl.BlSavesAndLoads.laden(data.Var.pfadauto);
+        bl.BlSavesAndLoads.ladentimes(data.Var.pfadauto);
+        bl.BlSavesAndLoads.ladenteacher(data.Var.pfadauto);
+        bl.BlSavesAndLoads.ladenclass(data.Var.pfadauto);
+        List<Zeit> l2 = bl.BlSavesAndLoads.ladentimes(data.Var.pfadauto);
         for (Zeit zeit : l2) {
             add(new ModelData(zeit.getArt(), zeit.getVon(), zeit.getBis(), "", "", "", "", ""));
-            i++;
         }
         BlTableLoad.firstload();
 
     }
 
+
     public void load2() {
-        int i = 0;
         for (Zeit zeit : data.Var.times) {
             add(new ModelData(zeit.getArt(), zeit.getVon(), zeit.getBis(), "", "", "", "", ""));
-            i++;
         }
     }
 
     public void newtimes() {
         list.clear();
-
-        int i = 0;
         for (Zeit zeit : data.Var.times) {
-            ModelData md = list.get(i);
-            add(new ModelData(zeit.getArt(), zeit.getVon(), zeit.getBis(), md.getMontag(), md.getDienstag(),
-                    md.getMittwoch(), md.getDonnerstag(), md.getFreitag()));
-            i++;
+                        add(new ModelData(zeit.getArt(), zeit.getVon(), zeit.getBis(), "", "", "", "", ""));
         }
     }
 
@@ -157,7 +149,7 @@ public class BlModelPlan extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
-    public ModelData getPlayer(int index) {
+    public ModelData getatindex(int index) {
         return this.list.get(index);
     }
 

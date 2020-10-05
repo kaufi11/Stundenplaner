@@ -46,16 +46,28 @@ public class DragAndDrop extends TransferHandler {
 
         if (dl.getColumn() == 0) {
             ok = false;
-            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.WARNING_MESSAGE);
         } else if (dl.getColumn() == 1) {
             ok = false;
-            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.WARNING_MESSAGE);
         } else if (dl.getColumn() == 2) {
             ok = false;
-            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Uhrzeit gezogen werden", "Fehler", JOptionPane.WARNING_MESSAGE);
         } else if (data.Var.times.get(dl.getRow()).getArt().equals("Pause")) {
-            ok = false;
-            JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Pause gezogen werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+            if (datas.equals("Aufsicht")) {
+                EntryDlg dialog = new EntryDlg(new javax.swing.JFrame(), true, dl.getRow(), dl.getColumn(), datas);
+                dialog.setVisible(true);
+                if (gui.EntryDlg.open == false) {
+                    if (gui.EntryDlg.ok) {
+                        table.setValueAt(datas, dl.getRow(), dl.getColumn());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Stunde nicht hinzugefügt", "Fehler", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            } else {
+                ok = false;
+                JOptionPane.showMessageDialog(null, "Stunde kann nicht in eine Pause gezogen werden", "Fehler", JOptionPane.WARNING_MESSAGE);
+            }
         } else if (ok) {
             EntryDlg dialog = new EntryDlg(new javax.swing.JFrame(), true, dl.getRow(), dl.getColumn(), datas);
             dialog.setVisible(true);
@@ -63,7 +75,7 @@ public class DragAndDrop extends TransferHandler {
                 if (gui.EntryDlg.ok) {
                     table.setValueAt(datas, dl.getRow(), dl.getColumn());
                 } else {
-                    JOptionPane.showMessageDialog(null, "Stunde nicht hinzugefügt", "Fehler", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Stunde nicht hinzugefügt", "Fehler", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }

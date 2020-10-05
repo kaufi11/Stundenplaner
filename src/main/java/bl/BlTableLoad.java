@@ -15,7 +15,16 @@ import java.util.List;
  * @author timon_kaufmann
  */
 public class BlTableLoad {
-    public static void firstload(){
+
+    public static void clearall() {
+        data.Var.hour.clear();
+        data.Var.klassen.clear();
+        data.Var.lehrer.clear();
+        data.Var.shelp.clear();
+        data.Var.times.clear();
+    }
+
+    public static void firstload() {
 
         try {
             //List<Stunde> l1 = bl.BlSavesAndLoads.laden();
@@ -43,31 +52,45 @@ public class BlTableLoad {
                     }
                 }
                 //table.setValueAt(stunde.getFach(), row, column);
-                StundeAnsicht sa = new StundeAnsicht(stunde, row, column);
-               data.Var.shelp.add(sa);
+                StundeAnsicht sa = new StundeAnsicht(stunde, row, column, false);
+                data.Var.shelp.add(sa);
             }
         } catch (Exception e) {
             System.err.println("Laden Fehler");
         }
 
-
     }
-    
-            public static void akttable(String klasselehrer) {
+
+    public static void akttable(String klasselehrer) {
         data.Var.m.cleartable();
 
         if (data.Var.ansklasse) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
-                    data.Var.m.sethour(stundeAnsicht.getHour().getFach()  +"\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
-                    
+                    if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    } else {
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+
+                    }
+                    stundeAnsicht.setIsenabled(true);
+                } else {
+                    stundeAnsicht.setIsenabled(false);
                 }
+
             }
         }
         if (data.Var.anslehrer) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
-                    data.Var.m.sethour(stundeAnsicht.getHour().getFach() +"\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() +"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    } else {
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                    }
+                    stundeAnsicht.setIsenabled(true);
+                } else {
+                    stundeAnsicht.setIsenabled(false);
                 }
             }
         }

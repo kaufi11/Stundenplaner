@@ -11,10 +11,20 @@ package data;
  */
 public class Stunde {
     private String Klasse, Fach, Uhrzeitvon, Uhrzeitbis, Tag;
-    private Lehrer Lehrer;
+    private Lehrer Lehrer, Lehrer2;
 
     public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
         this.Lehrer = Lehrer;
+        this.Lehrer2 = new Lehrer("", "", false);
+        this.Klasse = Klasse;
+        this.Fach = Fach;
+        this.Uhrzeitvon = Uhrzeitvon;
+        this.Uhrzeitbis = Uhrzeitbis;
+        this.Tag = Tag;
+    }
+    public Stunde(Lehrer Lehrer, Lehrer Lehrer2, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
+        this.Lehrer = Lehrer;
+        this.Lehrer2 = Lehrer2;
         this.Klasse = Klasse;
         this.Fach = Fach;
         this.Uhrzeitvon = Uhrzeitvon;
@@ -71,6 +81,16 @@ public class Stunde {
     public void setUhrzeitbis(String Uhrzeitbis) {
         this.Uhrzeitbis = Uhrzeitbis;
     }
+
+    public Lehrer getLehrer2() {
+        return Lehrer2;
+    }
+
+    public void setLehrer2(Lehrer Lehrer2) {
+        this.Lehrer2 = Lehrer2;
+    }
+    
+    
 
     @Override
     public String toString() {
