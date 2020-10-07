@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 public class Var {
     public static String pfadauto = "src/main/java/save";
     
-    public static String klasseakt;
+    public static String klasseakt = "";
     public static String lehrerakt;
     public static List<Stunde> hour = new LinkedList<Stunde>();
     public static List<Zeit> times = new LinkedList<Zeit>();
@@ -62,6 +62,5 @@ public class Var {
     public static ImageIcon imageIconclassenable = new ImageIcon("src" + data.Var.fileseperator + "main" + data.Var.fileseperator + "java" + data.Var.fileseperator + "resource" + data.Var.fileseperator + "klassen_auswahl.png");
     public static ImageIcon imageIconteacherenable = new ImageIcon("src" + data.Var.fileseperator + "main" + data.Var.fileseperator + "java" + data.Var.fileseperator + "resource" + data.Var.fileseperator + "lehrer_auswahl.png");
     public static ImageIcon imageIconeditenabel = new ImageIcon("src" + data.Var.fileseperator + "main" + data.Var.fileseperator + "java" + data.Var.fileseperator + "resource" + data.Var.fileseperator + "bearbeiten_auswahl.png");
-    
 
 }

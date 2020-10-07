@@ -68,9 +68,9 @@ public class BlTableLoad {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
                     if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
-                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     } else {
-                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach()+" "+stundeAnsicht.getHour().getFach2() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
 
                     }
                     stundeAnsicht.setIsenabled(true);
@@ -84,9 +84,9 @@ public class BlTableLoad {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
                 if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
                     if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
-                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() +"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     } else {
-                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+ " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     }
                     stundeAnsicht.setIsenabled(true);
                 } else {

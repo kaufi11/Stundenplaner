@@ -10,7 +10,7 @@ package data;
  * @author timon_kaufmann
  */
 public class Stunde {
-    private String Klasse, Fach, Uhrzeitvon, Uhrzeitbis, Tag;
+    private String Klasse, Fach,Fach2, Uhrzeitvon, Uhrzeitbis, Tag;
     private Lehrer Lehrer, Lehrer2;
 
     public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
@@ -18,15 +18,17 @@ public class Stunde {
         this.Lehrer2 = new Lehrer("", "", false);
         this.Klasse = Klasse;
         this.Fach = Fach;
+        this.Fach2 = "";
         this.Uhrzeitvon = Uhrzeitvon;
         this.Uhrzeitbis = Uhrzeitbis;
         this.Tag = Tag;
     }
-    public Stunde(Lehrer Lehrer, Lehrer Lehrer2, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
+    public Stunde(Lehrer Lehrer, Lehrer Lehrer2, String Klasse, String Fach,String Fach2, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
         this.Lehrer = Lehrer;
         this.Lehrer2 = Lehrer2;
         this.Klasse = Klasse;
         this.Fach = Fach;
+        this.Fach2 = Fach2;
         this.Uhrzeitvon = Uhrzeitvon;
         this.Uhrzeitbis = Uhrzeitbis;
         this.Tag = Tag;
@@ -88,6 +90,14 @@ public class Stunde {
 
     public void setLehrer2(Lehrer Lehrer2) {
         this.Lehrer2 = Lehrer2;
+    }
+
+    public String getFach2() {
+        return Fach2;
+    }
+
+    public void setFach2(String Fach2) {
+        this.Fach2 = Fach2;
     }
     
     

@@ -177,23 +177,20 @@ public class EntryDlg extends javax.swing.JDialog {
             if (sremove != null && !sremove.getLehrer().isAnwesend()) {
                 data.Var.hour.remove(sremove);
             }
-            if (sremove != null && sremove.getLehrer().isAnwesend() && !sremove.getFach().equals(tffach.getText())) {
-                data.Var.hour.remove(sremove);
-            }
-            if (sremove != null && sremove.getFach().equals(tffach.getText()) && sremove.getLehrer().isAnwesend()) {
-                data.Var.hour.remove(sremove);
+            if (sremove != null && sremove.getLehrer().isAnwesend()) {
+                                data.Var.hour.remove(sremove);
                 
                 if (tffach.getText().equals("Aufsicht")){
                     for (Klasse klasse : data.Var.klassen) {
-                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend),new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), klasse.getName(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend),new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), klasse.getName(),sremove.getFach(),tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
                 data.Var.hour.add(s);
                 }
                 }else{
-                 Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+                 Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), (String) tfklasse.getText(),sremove.getFach(),tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
                 data.Var.hour.add(s);
                 } 
                 
-            } else {
+            }else {
                 Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
                 data.Var.hour.add(s);
             }

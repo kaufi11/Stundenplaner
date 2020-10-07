@@ -7,6 +7,7 @@ package gui;
 
 import veralteteklassen.PlanDlg;
 import bl.BlAddDeleteEdit;
+import bl.BlConfirmDlgSaveDelete;
 import bl.BlRefreshclassandteacher;
 import bl.BlTableLoad;
 import bl.JTCellRenderer;
@@ -42,7 +43,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
     JFileChooser fc = new JFileChooser();
 
-       public PlanGUI() {
+    public PlanGUI() {
         initComponents();
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
@@ -51,7 +52,7 @@ public class PlanGUI extends javax.swing.JFrame {
         table.setDefaultRenderer(Object.class, render);
         table.setRowHeight(70);
         table.setEnabled(false);
-        
+
     }
 
     /**
@@ -120,6 +121,9 @@ public class PlanGUI extends javax.swing.JFrame {
         setTitle("Stundenplaner");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                on_close(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 on_load(evt);
             }
@@ -399,14 +403,12 @@ public class PlanGUI extends javax.swing.JFrame {
             bl.BlPlan.enableLabelsbearbeiten(lb_f17);
             bl.BlPlan.enableLabelsbearbeiten(lb_f18);
             bl.BlPlan.enableLabelsbearbeiten(lb_f19);
+
         }
     }//GEN-LAST:event_on_edit2
 
     private void on_save(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_save
-        bl.BlSavesAndLoads.speichern(data.Var.pfadauto);
-        bl.BlSavesAndLoads.speicherntimes(data.Var.pfadauto);
-        bl.BlSavesAndLoads.speichernteacher(data.Var.pfadauto);
-        bl.BlSavesAndLoads.speichernclass(data.Var.pfadauto);
+        BlConfirmDlgSaveDelete.safe();
     }//GEN-LAST:event_on_save
 
     private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
@@ -458,7 +460,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
     private void on_delete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_delete
         String selected = list.getSelectedValue();
-        BlAddDeleteEdit.delete(selected);
+        BlConfirmDlgSaveDelete.delete(selected);
     }//GEN-LAST:event_on_delete
 
     private void on_edit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_edit
@@ -499,6 +501,10 @@ public class PlanGUI extends javax.swing.JFrame {
     private void on_loadauto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_loadauto
         data.Var.m.load();
     }//GEN-LAST:event_on_loadauto
+
+    private void on_close(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_on_close
+        BlConfirmDlgSaveDelete.exit();
+    }//GEN-LAST:event_on_close
 
     /**
      * @param args the command line arguments
