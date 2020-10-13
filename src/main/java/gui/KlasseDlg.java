@@ -9,6 +9,7 @@ import bl.BlRefreshclassandteacher;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -22,11 +23,13 @@ public class KlasseDlg extends javax.swing.JDialog {
      * @param modal
      */ 
     
+    public static DefaultComboBoxModel modelalllehrer = new DefaultComboBoxModel();
     
     public KlasseDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        BlRefreshclassandteacher.refreshlistcombpteacher2();
+                tflehrer.setModel(modelalllehrer);
     }
     public KlasseDlg(java.awt.Frame parent, boolean modal, Klasse k) {
         super(parent, modal);
@@ -36,6 +39,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         tfwochenstunden.setText(k.getWochenstunden()+"");
         cbjahrgang.setSelectedIndex(k.getJahrgang()-1);
         jButton2.setVisible(false);
+
     }
     public static boolean ok = true;
     public static boolean open = true;
@@ -55,6 +59,8 @@ public class KlasseDlg extends javax.swing.JDialog {
         tfname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbjahrgang = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        tflehrer = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         tfschueleranz = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +71,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setLayout(new java.awt.GridLayout(5, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(6, 2));
 
         jLabel4.setText("Name");
         jPanel1.add(jLabel4);
@@ -78,6 +84,10 @@ public class KlasseDlg extends javax.swing.JDialog {
 
         cbjahrgang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         jPanel1.add(cbjahrgang);
+
+        jLabel5.setText("Klassenvorstand");
+        jPanel1.add(jLabel5);
+        jPanel1.add(tflehrer);
 
         jLabel3.setText("Schüleranzahl");
         jPanel1.add(jLabel3);
@@ -119,8 +129,18 @@ public class KlasseDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_on_abbruch
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        
         ok = true;
-        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()));
+        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
         data.Var.klassen.add(k);
         bl.BlRefreshclassandteacher.refreshlistclass();
         open = false;
@@ -145,7 +165,9 @@ public class KlasseDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> tflehrer;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfschueleranz;
     private javax.swing.JTextField tfwochenstunden;

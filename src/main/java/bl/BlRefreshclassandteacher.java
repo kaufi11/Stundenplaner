@@ -10,6 +10,7 @@ import data.Lehrer;
 import data.Stunde;
 import data.Var;
 import gui.EntryDlg;
+import gui.KlasseDlg;
 import veralteteklassen.PlanDlg;
 import gui.PlanGUI;
 import java.util.Comparator;
@@ -43,6 +44,14 @@ public class BlRefreshclassandteacher {
         Var.lehrer.sort(data.Var.compteacher);
         for (Lehrer l : Var.lehrer) {
             EntryDlg.modelcoml.addElement(l.getName());
+        }
+    }
+
+    public static void refreshlistcombpteacher2() {
+        KlasseDlg.modelalllehrer.removeAllElements();
+        Var.lehrer.sort(data.Var.compteacher);
+        for (Lehrer l : Var.lehrer) {
+            KlasseDlg.modelalllehrer.addElement(l.getName());
         }
     }
 }

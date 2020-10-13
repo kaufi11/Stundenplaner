@@ -19,12 +19,14 @@ import static veralteteklassen.PlanDlg.listenModellTeacher;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
+import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -74,7 +76,6 @@ public class PlanGUI extends javax.swing.JFrame {
         lb_f7 = new javax.swing.JLabel();
         lb_f8 = new javax.swing.JLabel();
         lb_f9 = new javax.swing.JLabel();
-        lb_f19 = new javax.swing.JLabel();
         lb_f10 = new javax.swing.JLabel();
         lb_f11 = new javax.swing.JLabel();
         lb_f12 = new javax.swing.JLabel();
@@ -158,9 +159,6 @@ public class PlanGUI extends javax.swing.JFrame {
 
         lb_f9.setText("SE");
         jPanel3.add(lb_f9);
-
-        lb_f19.setText("Aufsicht");
-        jPanel3.add(lb_f19);
 
         lb_f10.setText("GU-M");
         jPanel3.add(lb_f10);
@@ -402,7 +400,6 @@ public class PlanGUI extends javax.swing.JFrame {
             bl.BlPlan.enableLabelsbearbeiten(lb_f16);
             bl.BlPlan.enableLabelsbearbeiten(lb_f17);
             bl.BlPlan.enableLabelsbearbeiten(lb_f18);
-            bl.BlPlan.enableLabelsbearbeiten(lb_f19);
 
         }
     }//GEN-LAST:event_on_edit2
@@ -413,7 +410,10 @@ public class PlanGUI extends javax.swing.JFrame {
 
     private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
         try {
-            table.print();
+            //Klasse aktuell und KV übergeben
+            MessageFormat header = new MessageFormat("1A");
+            MessageFormat footer = new MessageFormat("KV");
+            table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
             Logger.getLogger(PlanDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -583,7 +583,6 @@ public class PlanGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lb_f16;
     private javax.swing.JLabel lb_f17;
     private javax.swing.JLabel lb_f18;
-    private javax.swing.JLabel lb_f19;
     private javax.swing.JLabel lb_f2;
     private javax.swing.JLabel lb_f3;
     private javax.swing.JLabel lb_f4;

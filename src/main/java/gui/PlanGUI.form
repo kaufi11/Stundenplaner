@@ -156,11 +156,6 @@
             <Property name="text" type="java.lang.String" value="SE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lb_f19">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Aufsicht"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lb_f10">
           <Properties>
             <Property name="text" type="java.lang.String" value="GU-M"/>

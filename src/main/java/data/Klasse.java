@@ -12,12 +12,14 @@ package data;
 public class Klasse {
     private String name;
     private int wochenstunden, anzahlschueler, jahrgang;
+    private Lehrer klassenvorstand;
 
-    public Klasse(String name, int wochenstunden, int anzahlschueler, int jahrgang) {
+    public Klasse(String name, int wochenstunden, int anzahlschueler, int jahrgang, Lehrer klassenvorstand) {
         this.name = name;
         this.wochenstunden = wochenstunden;
         this.anzahlschueler = anzahlschueler;
         this.jahrgang = jahrgang;
+        this.klassenvorstand = klassenvorstand;
     }
 
     public String getName() {
@@ -51,6 +53,16 @@ public class Klasse {
     public void setJahrgang(int jahrgang) {
         this.jahrgang = jahrgang;
     }
+
+    public Lehrer getKlassenvorstand() {
+        return klassenvorstand;
+    }
+
+    public void setKlassenvorstand(Lehrer klassenvorstand) {
+        this.klassenvorstand = klassenvorstand;
+    }
+    
+    
     
     
 

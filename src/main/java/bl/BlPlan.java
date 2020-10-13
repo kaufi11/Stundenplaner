@@ -64,9 +64,10 @@ public class BlPlan {
             } else if (!data.Var.stundenende[i].equals(data.Var.stundenanfang[i + 1])) {
                  if (!data.Var.stundenanfang[i + 1].isEmpty()) {
                     Zeit z = new Zeit(i + 1 + ".", data.Var.stundenanfang[i], data.Var.stundenende[i]);
-                    Zeit zz = new Zeit("Pause", data.Var.stundenende[i], data.Var.stundenanfang[i + 1]);
+                    //Auf Wunsch keine Pausen
+                    //Zeit zz = new Zeit("Pause", data.Var.stundenende[i], data.Var.stundenanfang[i + 1]);
                     data.Var.times.add(z);
-                    data.Var.times.add(zz);
+                    //data.Var.times.add(zz);
                 }
 
             }
