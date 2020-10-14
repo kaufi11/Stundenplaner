@@ -410,10 +410,22 @@ public class PlanGUI extends javax.swing.JFrame {
 
     private void on_print(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_print
         try {
-            //Klasse aktuell und KV übergeben
-            MessageFormat header = new MessageFormat("1A");
-            MessageFormat footer = new MessageFormat("KV");
-            table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            if (data.Var.ansklasse) {
+                String selectedklass = list.getSelectedValue();
+                Klasse selected = null;
+                for (data.Klasse klasse : data.Var.klassen) {
+                    if (klasse.getName().equals(selectedklass)) {
+                        selected = klasse;
+                    }
+                }
+                MessageFormat header = new MessageFormat(selected.getName());
+                MessageFormat footer = new MessageFormat(selected.getKlassenvorstand().getName());
+                table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            } else if (data.Var.anslehrer) {
+                MessageFormat header = new MessageFormat(list.getSelectedValue());
+                MessageFormat footer = new MessageFormat(list.getSelectedValue());
+                table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            }
         } catch (PrinterException ex) {
             Logger.getLogger(PlanDlg.class.getName()).log(Level.SEVERE, null, ex);
         }

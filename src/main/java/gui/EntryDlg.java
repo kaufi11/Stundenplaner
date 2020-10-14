@@ -161,7 +161,7 @@ public class EntryDlg extends javax.swing.JDialog {
             }
         }
         ok = true;
-                    Stunde sremove = null;
+        Stunde sremove = null;
             for (Stunde stunde : data.Var.hour) {
                 if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
                     sremove = stunde;
