@@ -418,12 +418,12 @@ public class PlanGUI extends javax.swing.JFrame {
                         selected = klasse;
                     }
                 }
-                MessageFormat header = new MessageFormat(selected.getName());
-                MessageFormat footer = new MessageFormat(selected.getKlassenvorstand().getName());
+                MessageFormat header = new MessageFormat(selected.getName()+"/"+selected.getKlassenvorstand().getName());
+                MessageFormat footer = new MessageFormat("");
                 table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
             } else if (data.Var.anslehrer) {
                 MessageFormat header = new MessageFormat(list.getSelectedValue());
-                MessageFormat footer = new MessageFormat(list.getSelectedValue());
+                MessageFormat footer = new MessageFormat("");
                 table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
             }
         } catch (PrinterException ex) {
