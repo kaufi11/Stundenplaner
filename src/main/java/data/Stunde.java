@@ -10,7 +10,7 @@ package data;
  * @author timon_kaufmann
  */
 public class Stunde {
-    private String Klasse, Fach,Fach2, Klasse2, Uhrzeitvon, Uhrzeitbis, Tag;
+    private String Klasse, Fach,Fach2, Klasse2,Klasse3, Klasse4, Uhrzeitvon, Uhrzeitbis, Tag;
     private Lehrer Lehrer, Lehrer2;
 
     public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
@@ -33,6 +33,31 @@ public class Stunde {
         this.Uhrzeitbis = Uhrzeitbis;
         this.Tag = Tag;
         this.Klasse2 = klasse2;
+    }
+     public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag, String klasse2,String Klasse3) {
+        this.Lehrer = Lehrer;
+        this.Lehrer2 = new Lehrer("", "", false);
+        this.Klasse = Klasse;
+        this.Fach = Fach;
+        this.Fach2 = "";
+        this.Uhrzeitvon = Uhrzeitvon;
+        this.Uhrzeitbis = Uhrzeitbis;
+        this.Tag = Tag;
+        this.Klasse2 = klasse2;
+        this.Klasse3 = Klasse3;
+    }
+      public Stunde(Lehrer Lehrer, String Klasse, String Fach, String Uhrzeitvon, String Uhrzeitbis, String Tag, String klasse2,String Klasse3,String Klasse4) {
+        this.Lehrer = Lehrer;
+        this.Lehrer2 = new Lehrer("", "", false);
+        this.Klasse = Klasse;
+        this.Fach = Fach;
+        this.Fach2 = "";
+        this.Uhrzeitvon = Uhrzeitvon;
+        this.Uhrzeitbis = Uhrzeitbis;
+        this.Tag = Tag;
+        this.Klasse2 = klasse2;
+        this.Klasse3 = Klasse3;
+        this.Klasse4 = Klasse4;
     }
     public Stunde(Lehrer Lehrer, Lehrer Lehrer2, String Klasse, String Fach,String Fach2, String Uhrzeitvon, String Uhrzeitbis, String Tag) {
         this.Lehrer = Lehrer;
