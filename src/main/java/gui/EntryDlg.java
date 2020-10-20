@@ -26,15 +26,15 @@ public class EntryDlg extends javax.swing.JDialog {
     private int row, column;
     private String[] wochentag = new String[5];
     public static DefaultComboBoxModel modelcoml = new DefaultComboBoxModel();
-    private boolean aufsicht = false;
+    private boolean unverb = false;
 
     public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column, String fach) {
 
         super(parent, modal);
         initComponents();
         BlRefreshclassandteacher.refreshlistteacher();
-        if (fach.equals("Aufsicht")) {
-            aufsicht = true;
+        if (fach.matches("UÜ.*")) {
+            unverb = true;
         }
         this.row = row;
         this.column = column;
@@ -161,41 +161,38 @@ public class EntryDlg extends javax.swing.JDialog {
             }
         }
         ok = true;
-        Stunde sremove = null;
-            for (Stunde stunde : data.Var.hour) {
-                if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
-                    sremove = stunde;
+        boolean remove = false;
+        for (Stunde stunde : data.Var.hour) {
+            if (unverb) {
+                if (stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
+                    if (stunde.getKlasse2() == "") {
+                        stunde.setKlasse2(tfklasse.getText());
+                    } else if (stunde.getKlasse3() == "") {
+                        stunde.setKlasse3(tfklasse.getText());
+                    } else if (stunde.getKlasse4() == "") {
+                        stunde.setKlasse4(tfklasse.getText());
+                    }
+                    remove = true;
                 }
-            }
-        if (tffach.getText().equals("Aufsicht")) {
-            for (Klasse klasse : data.Var.klassen) {
-                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), klasse.getName(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
-                data.Var.hour.add(s);
+
+            }else if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
+
+                if (stunde.getFach2() == "") {
+                    stunde.setLehrer2(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
+                    stunde.setFach2(tffach.getText());
+                } else if (stunde.getFach3() == "") {
+                    stunde.setLehrer3(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
+                    stunde.setFach3(tffach.getText());
+                }
+
+                remove = true;
             }
         }
+        if (!remove) {
+            Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
+            data.Var.hour.add(s);
+        }
 
-            if (sremove != null && !sremove.getLehrer().isAnwesend()) {
-                data.Var.hour.remove(sremove);
-            }
-            if (sremove != null && sremove.getLehrer().isAnwesend()) {
-                                data.Var.hour.remove(sremove);
-                
-                if (tffach.getText().equals("Aufsicht")){
-                    for (Klasse klasse : data.Var.klassen) {
-                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend),new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), klasse.getName(),sremove.getFach(),tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
-                data.Var.hour.add(s);
-                }
-                }else{
-                 Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), new Lehrer(sremove.getLehrer().getName(), sremove.getLehrer().getKuerzel(), sremove.getLehrer().isAnwesend()), (String) tfklasse.getText(),sremove.getFach(),tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
-                data.Var.hour.add(s);
-                } 
-                
-            }else {
-                Stunde s = new Stunde(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), (String) tfklasse.getText(), tffach.getText(), tfuhr.getText(), tfuhr1.getText(), tftag.getText());
-                data.Var.hour.add(s);
-            }
-
-        
         BlTableLoad.firstload();
         BlTableLoad.akttable(tfklasse.getText());
         open = false;
@@ -213,14 +210,15 @@ public class EntryDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_on_abbruch
 
     public void refresh() {
-        String uhrvon, uhrbis, tag;
+        String uhrvon, uhrbis, tag, fach;
         uhrvon = tfuhr.getText();
         uhrbis = tfuhr1.getText();
         tag = tftag.getText();
+        fach = tffach.getText();
         System.out.println(tag + " " + uhrvon + " " + uhrbis);
         for (Stunde s : Var.hour) {
             for (int i = 0; i < Var.hour.size(); i++) {
-                if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis))) {
+                if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis)) && (!s.getFach().matches("UÜ.*") || !fach.matches("UÜ.*"))) {
                     modelcoml.removeElement(s.getLehrer().getName());
                 }
             }

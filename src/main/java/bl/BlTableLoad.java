@@ -66,11 +66,11 @@ public class BlTableLoad {
 
         if (data.Var.ansklasse) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
-                if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)) {
+                if (stundeAnsicht.getHour().getKlasse().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getKlasse2().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getKlasse3().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getKlasse4().equalsIgnoreCase(klasselehrer)) {
                     if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
-                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+" "+stundeAnsicht.getHour().getFach3()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer3().getKuerzel()+ "\n" + stundeAnsicht.getHour().getKlasse()+" "+stundeAnsicht.getHour().getKlasse2()+" "+stundeAnsicht.getHour().getKlasse3()+" "+stundeAnsicht.getHour().getKlasse4(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     } else {
-                        data.Var.m.sethour(stundeAnsicht.getHour().getFach()+" "+stundeAnsicht.getHour().getFach2() + "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + "\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach()+" "+stundeAnsicht.getHour().getFach2() +" "+stundeAnsicht.getHour().getFach3()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer3().getKuerzel()+ "\n" + stundeAnsicht.getHour().getKlasse()+" "+stundeAnsicht.getHour().getKlasse2()+" "+stundeAnsicht.getHour().getKlasse3()+" "+stundeAnsicht.getHour().getKlasse4(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
 
                     }
                     stundeAnsicht.setIsenabled(true);
@@ -82,11 +82,11 @@ public class BlTableLoad {
         }
         if (data.Var.anslehrer) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
-                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getLehrer2().getName().equalsIgnoreCase(klasselehrer)) {
+                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getLehrer2().getName().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getLehrer3().getName().equalsIgnoreCase(klasselehrer)) {
                     if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
-                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+" "+stundeAnsicht.getHour().getFach3()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+ " " + stundeAnsicht.getHour().getLehrer3().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse()+" "+stundeAnsicht.getHour().getKlasse2()+" "+stundeAnsicht.getHour().getKlasse3()+" "+stundeAnsicht.getHour().getKlasse4(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     } else {
-                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel()+ " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
+                        data.Var.m.sethour(stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+" "+stundeAnsicht.getHour().getFach3()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+ " " + stundeAnsicht.getHour().getLehrer3().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse()+" "+stundeAnsicht.getHour().getKlasse2()+" "+stundeAnsicht.getHour().getKlasse3()+" "+stundeAnsicht.getHour().getKlasse4(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     }
                     stundeAnsicht.setIsenabled(true);
                 } else {
