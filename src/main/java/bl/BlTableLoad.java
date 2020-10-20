@@ -82,7 +82,7 @@ public class BlTableLoad {
         }
         if (data.Var.anslehrer) {
             for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
-                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)) {
+                if (stundeAnsicht.getHour().getLehrer().getName().equalsIgnoreCase(klasselehrer)||stundeAnsicht.getHour().getLehrer2().getName().equalsIgnoreCase(klasselehrer)) {
                     if (!stundeAnsicht.getHour().getLehrer().isAnwesend()) {
                         data.Var.m.sethour("Abwesend \n" + stundeAnsicht.getHour().getFach() +" "+stundeAnsicht.getHour().getFach2()+ "\n" + stundeAnsicht.getHour().getLehrer().getKuerzel() + " " + stundeAnsicht.getHour().getLehrer2().getKuerzel()+"\n" + stundeAnsicht.getHour().getKlasse(), stundeAnsicht.getRow(), stundeAnsicht.getColumn());
                     } else {
