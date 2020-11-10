@@ -39,7 +39,8 @@ public class KlasseDlg extends javax.swing.JDialog {
         tfwochenstunden.setText(k.getWochenstunden()+"");
         cbjahrgang.setSelectedIndex(k.getJahrgang()-1);
         jButton2.setVisible(false);
-
+        BlRefreshclassandteacher.refreshlistcombpteacher2();
+                tflehrer.setModel(modelalllehrer);
     }
     public static boolean ok = true;
     public static boolean open = true;
