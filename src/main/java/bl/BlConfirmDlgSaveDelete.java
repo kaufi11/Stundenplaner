@@ -18,6 +18,7 @@ public class BlConfirmDlgSaveDelete {
         bl.BlSavesAndLoads.speicherntimes(data.Var.pfadauto);
         bl.BlSavesAndLoads.speichernteacher(data.Var.pfadauto);
         bl.BlSavesAndLoads.speichernclass(data.Var.pfadauto);
+        bl.BlSavesAndLoads.speichernbau(data.Var.pfadauto);
     }
 
     public static void exit() {

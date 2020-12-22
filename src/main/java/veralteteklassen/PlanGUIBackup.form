@@ -118,6 +118,98 @@
         <Property name="columns" type="int" value="0"/>
         <Property name="rows" type="int" value="2"/>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lb_f1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GU-D"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GU-SU"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="BSP"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="BE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="U&#xdc;-Chor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SPF"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DF"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GU-M"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GU-E"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RK"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ME"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="U&#xdc;-GE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="U&#xdc;-DLS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="FU"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f17">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DaZ"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_f18">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GLZ"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>

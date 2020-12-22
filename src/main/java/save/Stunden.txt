@@ -1,0 +1,1 @@
+[{"Klasse":"1b","Fach":"BE","Fach2":"WE","Fach3":"BSP","Klasse2":"","Klasse3":"","Klasse4":"","Uhrzeitvon":"9:40","Uhrzeitbis":"10:30","Tag":"Montag","Lehrer":{"Name":"Ad","Kuerzel":"Ad","wochenstunden":0,"anwesend":true},"Lehrer2":{"Name":"Dr","Kuerzel":"Dr","wochenstunden":0,"anwesend":true},"Lehrer3":{"Name":"Dr","Kuerzel":"Dr","wochenstunden":0,"anwesend":true}}]

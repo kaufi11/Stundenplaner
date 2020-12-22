@@ -117,6 +117,7 @@ public class BlModelPlan extends AbstractTableModel {
         bl.BlSavesAndLoads.ladentimes(data.Var.pfadauto);
         bl.BlSavesAndLoads.ladenteacher(data.Var.pfadauto);
         bl.BlSavesAndLoads.ladenclass(data.Var.pfadauto);
+        bl.BlSavesAndLoads.ladenbau(data.Var.pfadauto);
         List<Zeit> l2 = bl.BlSavesAndLoads.ladentimes(data.Var.pfadauto);
         for (Zeit zeit : l2) {
             add(new ModelData(zeit.getArt(), zeit.getVon(), zeit.getBis(), "", "", "", "", ""));

@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import data.StundeBau;
 import data.Var;
 import data.Zeit;
 import java.io.BufferedReader;
@@ -88,6 +89,18 @@ public class BlSavesAndLoads {
         List<Klasse> klasse = Var.klassen;
         Gson gson = new Gson();
         String hourgson = gson.toJson(klasse);
+        try {
+            FileWriter fw = new FileWriter(pfad + "/Klassen.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(hourgson);
+            bw.close();
+        } catch (Exception e) {
+        }
+    }
+        public static void speichernbau(String pfad) {
+        List<StundeBau> bau = Var.bausteinelist;
+        Gson gson = new Gson();
+        String hourgson = gson.toJson(bau);
         try {
             FileWriter fw = new FileWriter(pfad + "/Klassen.txt");
             BufferedWriter bw = new BufferedWriter(fw);
@@ -235,5 +248,40 @@ public class BlSavesAndLoads {
         }
 
         return klassen;
+    }
+        public static List<StundeBau> ladenbau(String pfad) {
+        List<StundeBau> bau = null;
+        File file = new File(pfad + "/Klassen.txt");
+        if (file.exists()) {
+            BufferedReader br = null;
+            String jsonString = "";
+            try {
+                br = new BufferedReader(new FileReader(file));
+                String zeile = null;
+                while ((zeile = br.readLine()) != null) {
+                    jsonString = zeile;
+                }
+                Gson gson = new Gson();
+                java.lang.reflect.Type listType = new TypeToken<List<Klasse>>() {
+                }.getType();
+                bau = gson.fromJson(jsonString, listType);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+            Var.bausteinelist = bau;
+            refreshlistclass();
+        } else {
+            JOptionPane.showMessageDialog(null, "Es existiert noch keine Klassen-Datei", "Fehler", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        return bau;
     }
 }

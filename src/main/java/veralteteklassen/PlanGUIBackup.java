@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package veralteteklassen;
 
 import veralteteklassen.PlanDlg;
 import bl.BlAddDeleteEdit;
@@ -31,16 +31,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import veralteteklassen.PlanDlg;
 
 /**
  *
  * @author timon_kaufmann
  */
-public class PlanGUI extends javax.swing.JFrame {
+public class PlanGUIBackup extends javax.swing.JFrame {
 
     /**
-     * Creates new form PlanGUI
+     * Creates new form PlanGUIBackup
      */
     public static DefaultListModel listenModellClasse = new DefaultListModel();
     public static DefaultListModel listenModellTeacher = new DefaultListModel();
@@ -48,7 +47,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
     JFileChooser fc = new JFileChooser();
 
-    public PlanGUI() {
+    public PlanGUIBackup() {
         initComponents();
         jPanel3.setVisible(false);
         table.getTableHeader().setReorderingAllowed(false);
@@ -57,6 +56,7 @@ public class PlanGUI extends javax.swing.JFrame {
         table.setDefaultRenderer(Object.class, render);
         table.setRowHeight(70);
         table.setEnabled(false);
+
     }
 
     /**
@@ -69,6 +69,24 @@ public class PlanGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
+        lb_f1 = new javax.swing.JLabel();
+        lb_f2 = new javax.swing.JLabel();
+        lb_f3 = new javax.swing.JLabel();
+        lb_f4 = new javax.swing.JLabel();
+        lb_f5 = new javax.swing.JLabel();
+        lb_f6 = new javax.swing.JLabel();
+        lb_f7 = new javax.swing.JLabel();
+        lb_f8 = new javax.swing.JLabel();
+        lb_f9 = new javax.swing.JLabel();
+        lb_f10 = new javax.swing.JLabel();
+        lb_f11 = new javax.swing.JLabel();
+        lb_f12 = new javax.swing.JLabel();
+        lb_f13 = new javax.swing.JLabel();
+        lb_f14 = new javax.swing.JLabel();
+        lb_f15 = new javax.swing.JLabel();
+        lb_f16 = new javax.swing.JLabel();
+        lb_f17 = new javax.swing.JLabel();
+        lb_f18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btclass = new javax.swing.JButton();
         btteacher = new javax.swing.JButton();
@@ -117,6 +135,61 @@ public class PlanGUI extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
         jPanel3.setLayout(new java.awt.GridLayout(2, 0));
+
+        lb_f1.setText("GU-D");
+        jPanel3.add(lb_f1);
+
+        lb_f2.setText("GU-SU");
+        jPanel3.add(lb_f2);
+
+        lb_f3.setText("BSP");
+        jPanel3.add(lb_f3);
+
+        lb_f4.setText("BE");
+        jPanel3.add(lb_f4);
+
+        lb_f5.setText("WE");
+        jPanel3.add(lb_f5);
+
+        lb_f6.setText("UÜ-Chor");
+        jPanel3.add(lb_f6);
+
+        lb_f7.setText("SPF");
+        jPanel3.add(lb_f7);
+
+        lb_f8.setText("DF");
+        jPanel3.add(lb_f8);
+
+        lb_f9.setText("SE");
+        jPanel3.add(lb_f9);
+
+        lb_f10.setText("GU-M");
+        jPanel3.add(lb_f10);
+
+        lb_f11.setText("GU-E");
+        jPanel3.add(lb_f11);
+
+        lb_f12.setText("RK");
+        jPanel3.add(lb_f12);
+
+        lb_f13.setText("ME");
+        jPanel3.add(lb_f13);
+
+        lb_f14.setText("UÜ-GE");
+        jPanel3.add(lb_f14);
+
+        lb_f15.setText("UÜ-DLS");
+        jPanel3.add(lb_f15);
+
+        lb_f16.setText("FU");
+        jPanel3.add(lb_f16);
+
+        lb_f17.setText("DaZ");
+        jPanel3.add(lb_f17);
+
+        lb_f18.setText("GLZ");
+        jPanel3.add(lb_f18);
+
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Aktionen"));
@@ -319,6 +392,26 @@ public class PlanGUI extends javax.swing.JFrame {
             jPanel3.setVisible(true);
             btedit.setIcon(data.Var.imageIconeditenabel);
             bl.BlPlan.enableTablebearbeiten(table);
+
+            bl.BlPlan.enableLabelsbearbeiten(lb_f1);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f2);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f3);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f4);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f5);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f6);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f7);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f8);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f9);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f10);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f11);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f12);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f13);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f14);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f15);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f16);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f17);
+            bl.BlPlan.enableLabelsbearbeiten(lb_f18);
+
         }
     }//GEN-LAST:event_on_edit2
 
@@ -411,7 +504,6 @@ public class PlanGUI extends javax.swing.JFrame {
         bl.BlSavesAndLoads.speichernclass(path);
         bl.BlSavesAndLoads.speichernteacher(path);
         bl.BlSavesAndLoads.speicherntimes(path);
-        bl.BlSavesAndLoads.speichernbau(path);
     }//GEN-LAST:event_on_speichernmanu
 
     private void on_ladenmanu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_ladenmanu
@@ -426,7 +518,6 @@ public class PlanGUI extends javax.swing.JFrame {
         bl.BlSavesAndLoads.ladenclass(path);
         bl.BlSavesAndLoads.ladenteacher(path);
         bl.BlSavesAndLoads.ladentimes(path);
-        bl.BlSavesAndLoads.ladenbau(path);
         bl.BlTableLoad.firstload();
     }//GEN-LAST:event_on_ladenmanu
 
@@ -459,14 +550,18 @@ public class PlanGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlanGUIBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlanGUIBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlanGUIBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PlanGUIBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -475,7 +570,7 @@ public class PlanGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlanGUI().setVisible(true);
+                new PlanGUIBackup().setVisible(true);
             }
         });
     }
@@ -513,6 +608,24 @@ public class PlanGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lb_f1;
+    private javax.swing.JLabel lb_f10;
+    private javax.swing.JLabel lb_f11;
+    private javax.swing.JLabel lb_f12;
+    private javax.swing.JLabel lb_f13;
+    private javax.swing.JLabel lb_f14;
+    private javax.swing.JLabel lb_f15;
+    private javax.swing.JLabel lb_f16;
+    private javax.swing.JLabel lb_f17;
+    private javax.swing.JLabel lb_f18;
+    private javax.swing.JLabel lb_f2;
+    private javax.swing.JLabel lb_f3;
+    private javax.swing.JLabel lb_f4;
+    private javax.swing.JLabel lb_f5;
+    private javax.swing.JLabel lb_f6;
+    private javax.swing.JLabel lb_f7;
+    private javax.swing.JLabel lb_f8;
+    private javax.swing.JLabel lb_f9;
     private javax.swing.JList<String> list;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

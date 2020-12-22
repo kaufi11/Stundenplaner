@@ -63,4 +63,5 @@ public class Var {
     public static ImageIcon imageIconteacherenable = new ImageIcon("src" + data.Var.fileseperator + "main" + data.Var.fileseperator + "java" + data.Var.fileseperator + "resource" + data.Var.fileseperator + "lehrer_auswahl.png");
     public static ImageIcon imageIconeditenabel = new ImageIcon("src" + data.Var.fileseperator + "main" + data.Var.fileseperator + "java" + data.Var.fileseperator + "resource" + data.Var.fileseperator + "bearbeiten_auswahl.png");
 
+    public static List<StundeBau> bausteinelist = new LinkedList<StundeBau>();
 }
