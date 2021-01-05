@@ -12,11 +12,9 @@ package data;
 public class StundeBau {
     private String k;
     private String stundenname;
-    private int stundenanzahl;
     
-    public StundeBau(String stundenname, int stundenanzahl, String k) {
+    public StundeBau(String stundenname, String k) {
         this.stundenname = stundenname;
-        this.stundenanzahl = stundenanzahl;
         this.k = k;
     }
 
@@ -28,13 +26,6 @@ public class StundeBau {
         this.stundenname = stundenname;
     }
 
-    public int getStundenanzahl() {
-        return stundenanzahl;
-    }
-
-    public void setStundenanzahl(int stundenanzahl) {
-        this.stundenanzahl = stundenanzahl;
-    }
 
     public String getK() {
         return k;

@@ -102,7 +102,7 @@ public class BlSavesAndLoads {
         Gson gson = new Gson();
         String hourgson = gson.toJson(bau);
         try {
-            FileWriter fw = new FileWriter(pfad + "/Klassen.txt");
+            FileWriter fw = new FileWriter(pfad + "/Bau.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(hourgson);
             bw.close();
@@ -251,7 +251,7 @@ public class BlSavesAndLoads {
     }
         public static List<StundeBau> ladenbau(String pfad) {
         List<StundeBau> bau = null;
-        File file = new File(pfad + "/Klassen.txt");
+        File file = new File(pfad + "/Bau.txt");
         if (file.exists()) {
             BufferedReader br = null;
             String jsonString = "";
@@ -262,7 +262,7 @@ public class BlSavesAndLoads {
                     jsonString = zeile;
                 }
                 Gson gson = new Gson();
-                java.lang.reflect.Type listType = new TypeToken<List<Klasse>>() {
+                java.lang.reflect.Type listType = new TypeToken<List<StundeBau>>() {
                 }.getType();
                 bau = gson.fromJson(jsonString, listType);
             } catch (Exception e) {

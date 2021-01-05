@@ -7,6 +7,7 @@ package bl;
 
 import data.Zeit;
 import gui.EntryDlg;
+import gui.PlanGUI;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import javax.swing.JOptionPane;
@@ -74,12 +75,12 @@ public class DragAndDrop extends TransferHandler {
             if (gui.EntryDlg.open == false) {
                 if (gui.EntryDlg.ok) {
                     table.setValueAt(datas, dl.getRow(), dl.getColumn());
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Stunde nicht hinzugefügt", "Fehler", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
-
         return true;
     }
 

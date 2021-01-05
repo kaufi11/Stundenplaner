@@ -7,12 +7,16 @@ package gui;
 
 import veralteteklassen.PlanDlg;
 import bl.BlAddDeleteEdit;
+import bl.BlBuildData;
 import bl.BlConfirmDlgSaveDelete;
+import bl.BlPlan;
 import bl.BlRefreshclassandteacher;
 import bl.BlTableLoad;
 import bl.JTCellRenderer;
 import data.Klasse;
 import data.Lehrer;
+import data.Stunde;
+import data.StundeBau;
 import data.Var;
 import gui.LehrerDllMain;
 import gui.TimesDlg;
@@ -28,6 +32,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -97,6 +102,8 @@ public class PlanGUI extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -251,6 +258,22 @@ public class PlanGUI extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem7.setText("Stunde löschen");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_deletehour(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuItem8.setText("StundenBausätze");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_build(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Speichern/Laden");
@@ -316,6 +339,19 @@ public class PlanGUI extends javax.swing.JFrame {
 
     private void on_edit2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_edit2
         if (!Var.anslehrer) {
+
+            jPanel3.setVisible(false);
+            jPanel3.removeAll();
+
+            for (StundeBau stundeBau : data.Var.bausteinelist) {
+                if (stundeBau.getK().equals(data.Var.klasseakt)) {
+                    JLabel lbbau = new javax.swing.JLabel();
+                    lbbau.setVisible(true);
+                    lbbau.setText(stundeBau.getStundenname());
+                    jPanel3.add(lbbau);
+                    BlPlan.enableLabelsbearbeiten(lbbau);
+                }
+            }
             jPanel3.setVisible(true);
             btedit.setIcon(data.Var.imageIconeditenabel);
             bl.BlPlan.enableTablebearbeiten(table);
@@ -439,8 +475,18 @@ public class PlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_on_close
 
     private void on_printall(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_printall
-        
+
     }//GEN-LAST:event_on_printall
+
+    private void on_deletehour(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_deletehour
+        DeleteDlg gui = new DeleteDlg(null, true);
+        gui.setVisible(true);
+        gui.toFront();
+    }//GEN-LAST:event_on_deletehour
+
+    private void on_build(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_build
+        BlBuildData.input();
+    }//GEN-LAST:event_on_build
 
     /**
      * @param args the command line arguments
@@ -504,6 +550,8 @@ public class PlanGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

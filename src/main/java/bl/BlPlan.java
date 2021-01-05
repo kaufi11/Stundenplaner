@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import data.StundeBau;
 import data.Var;
 import data.Zeit;
 import gui.EntryDlg;
@@ -47,6 +48,7 @@ public class BlPlan {
             public void mousePressed(MouseEvent e) {
                 JComponent c = (JComponent) e.getSource();
                 c.getTransferHandler().exportAsDrag(c, e, TransferHandler.COPY);
+                
             }
         });
     }
@@ -74,6 +76,6 @@ public class BlPlan {
             i++;
         }
     }
-
+    
 
 }

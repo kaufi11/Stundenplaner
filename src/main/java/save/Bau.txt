@@ -1,0 +1,1 @@
+[{"k":"1a","stundenname":"AM"},{"k":"1a","stundenname":"AM"},{"k":"1b","stundenname":"E"},{"k":"1a","stundenname":"SOPK"}]

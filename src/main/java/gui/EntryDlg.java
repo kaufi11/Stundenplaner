@@ -11,6 +11,7 @@ import bl.BlTableLoad;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import data.StundeBau;
 import data.Var;
 import javax.swing.DefaultComboBoxModel;
 
@@ -162,6 +163,14 @@ public class EntryDlg extends javax.swing.JDialog {
         }
         ok = true;
         boolean remove = false;
+        StundeBau del = null;
+        for (StundeBau stundeBau : data.Var.bausteinelist) {
+            
+            if(stundeBau.getStundenname().equals(tffach.getText())&&stundeBau.getK().equals(tfklasse.getText())){
+                 del=stundeBau;
+            }
+        }
+        data.Var.bausteinelist.remove(del);
         for (Stunde stunde : data.Var.hour) {
             if (unverb) {
                 if (stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
