@@ -66,13 +66,15 @@ public class KlasseDlg extends javax.swing.JDialog {
         tfschueleranz = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         tfwochenstunden = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tfraum = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().setLayout(new java.awt.GridLayout(1, 2));
 
-        jPanel1.setLayout(new java.awt.GridLayout(6, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(7, 2));
 
         jLabel4.setText("Name");
         jPanel1.add(jLabel4);
@@ -101,6 +103,12 @@ public class KlasseDlg extends javax.swing.JDialog {
 
         tfwochenstunden.setText("40");
         jPanel1.add(tfwochenstunden);
+
+        jLabel6.setText("Raum");
+        jPanel1.add(jLabel6);
+
+        tfraum.setText("1A");
+        jPanel1.add(tfraum);
 
         jButton1.setIcon(data.Var.imageIconok);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +149,7 @@ public class KlasseDlg extends javax.swing.JDialog {
         }
         
         ok = true;
-        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
+        Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), tfraum.getText());
         data.Var.klassen.add(k);
         bl.BlRefreshclassandteacher.refreshlistclass();
         open = false;
@@ -167,9 +175,11 @@ public class KlasseDlg extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> tflehrer;
     private javax.swing.JTextField tfname;
+    private javax.swing.JTextField tfraum;
     private javax.swing.JTextField tfschueleranz;
     private javax.swing.JTextField tfwochenstunden;
     // End of variables declaration//GEN-END:variables
