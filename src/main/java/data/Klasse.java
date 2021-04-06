@@ -13,13 +13,15 @@ public class Klasse {
     private String name;
     private int wochenstunden, anzahlschueler, jahrgang;
     private Lehrer klassenvorstand;
+    private String raum;
 
-    public Klasse(String name, int wochenstunden, int anzahlschueler, int jahrgang, Lehrer klassenvorstand) {
+    public Klasse(String name, int wochenstunden, int anzahlschueler, int jahrgang, Lehrer klassenvorstand, String raum) {
         this.name = name;
         this.wochenstunden = wochenstunden;
         this.anzahlschueler = anzahlschueler;
         this.jahrgang = jahrgang;
         this.klassenvorstand = klassenvorstand;
+        this.raum = raum;
     }
 
     public String getName() {
@@ -61,6 +63,16 @@ public class Klasse {
     public void setKlassenvorstand(Lehrer klassenvorstand) {
         this.klassenvorstand = klassenvorstand;
     }
+
+    public String getRaum() {
+        return raum;
+    }
+
+    public void setRaum(String raum) {
+        this.raum = raum;
+    }
+    
+    
     
     
     

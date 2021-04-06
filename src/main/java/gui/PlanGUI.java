@@ -16,6 +16,7 @@ import bl.JTCellRenderer;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import data.StundeAnsicht;
 import data.StundeBau;
 import data.Var;
 import gui.LehrerDllMain;
@@ -33,6 +34,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -233,6 +235,11 @@ public class PlanGUI extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         table.setModel(data.Var.m);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(table);
 
         jPanel5.add(jScrollPane2);
@@ -488,6 +495,55 @@ public class PlanGUI extends javax.swing.JFrame {
         StundeBauErstellenDlg dialog = new StundeBauErstellenDlg(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
     }//GEN-LAST:event_on_build
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
+            int n = JOptionPane.showConfirmDialog(
+                    null,
+                    "Möchte Sie wirklich diese Stunde löschen?",
+                    "Abfrage-Löschvorgang",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                JOptionPane.showMessageDialog(null, "Gelöscht");
+                int row = table.rowAtPoint(evt.getPoint());
+                int col = table.columnAtPoint(evt.getPoint());
+                String text = table.getValueAt(row, col).toString();
+                String[] splitten = text.split("\n");
+                String tag = table.getColumnName(col);
+                String von = table.getValueAt(row, 1).toString();
+                String bis = table.getValueAt(row, 2).toString();
+                Stunde gesuchteStunde = null;
+                for (Stunde stunde1 : data.Var.hour) {
+                    if (stunde1.getKlasse().equals(splitten[2].trim()) && stunde1.getFach().equals(splitten[0].trim()) && stunde1.getLehrer().getKuerzel().equals(splitten[1].trim())
+                            && stunde1.getUhrzeitvon().equals(von) && stunde1.getUhrzeitbis().equals(bis) && stunde1.getTag().equals(tag)) {
+                        gesuchteStunde = stunde1;
+                    }
+                }
+                StundeAnsicht stuans = new StundeAnsicht(gesuchteStunde, row, col, true);
+                StundeAnsicht gesucht = null;
+                for (StundeAnsicht stundeAnsicht : data.Var.shelp) {
+                    if (stundeAnsicht.getHour().equals(stuans.getHour()) && stundeAnsicht.getRow() == stuans.getRow() && stundeAnsicht.getColumn() == stuans.getColumn() && stundeAnsicht.isIsenabled() == stuans.isIsenabled()) {
+                        gesucht = stundeAnsicht;
+                    }
+                }
+                data.Var.shelp.remove(gesucht);
+                data.Var.hour.remove(n);
+                data.Var.hour.remove(gesucht.getHour());
+                if (Var.ansklasse) {
+                    data.Var.klasseakt = list.getSelectedValue();
+                    BlTableLoad.akttable(data.Var.klasseakt);
+
+                }
+                if (Var.anslehrer) {
+                    data.Var.lehrerakt = list.getSelectedValue();
+                    BlTableLoad.akttable(data.Var.lehrerakt);
+                }
+            } else if (n == 1) {
+                JOptionPane.showMessageDialog(null, "Nicht gelöscht");
+            }
+
+        }
+    }//GEN-LAST:event_tableMouseClicked
 
     /**
      * @param args the command line arguments
