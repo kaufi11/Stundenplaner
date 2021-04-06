@@ -13,6 +13,7 @@ import gui.EntryDlg;
 import gui.KlasseDlg;
 import veralteteklassen.PlanDlg;
 import gui.PlanGUI;
+import gui.StundeBauErstellenDlg;
 import java.util.Comparator;
 
 /**
@@ -44,6 +45,14 @@ public class BlRefreshclassandteacher {
         Var.lehrer.sort(data.Var.compteacher);
         for (Lehrer l : Var.lehrer) {
             EntryDlg.modelcoml.addElement(l.getName());
+        }
+    }
+
+    public static void refreshlistcombpclass() {
+        StundeBauErstellenDlg.modelcomk.removeAllElements();
+        Var.klassen.sort(data.Var.compclass);
+        for (Klasse l : Var.klassen) {
+            StundeBauErstellenDlg.modelcomk.addElement(l.getName());
         }
     }
 

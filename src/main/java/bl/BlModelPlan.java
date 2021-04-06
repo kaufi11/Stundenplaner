@@ -77,6 +77,8 @@ public class BlModelPlan extends AbstractTableModel {
     public String getColumnName(int column) {
         return ModelEnum.values()[column].getName();
     }
+    
+    
 
     public void cleartable() {
         int i = 0;

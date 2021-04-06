@@ -121,12 +121,13 @@ public class PlanGUI extends javax.swing.JFrame {
                 on_load(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
         jPanel3.setLayout(new java.awt.GridLayout(2, 0));
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Aktionen"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         btclass.setIcon(data.Var.imageIconclassenable);
@@ -179,7 +180,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jPanel7.setToolTipText("");
@@ -228,7 +229,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.LINE_START);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Stundenplan"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
         jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         table.setModel(data.Var.m);
@@ -479,13 +480,13 @@ public class PlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_on_printall
 
     private void on_deletehour(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_deletehour
-        DeleteDlg gui = new DeleteDlg(null, true);
-        gui.setVisible(true);
-        gui.toFront();
+
     }//GEN-LAST:event_on_deletehour
 
     private void on_build(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_build
         BlBuildData.input();
+        StundeBauErstellenDlg dialog = new StundeBauErstellenDlg(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_on_build
 
     /**
