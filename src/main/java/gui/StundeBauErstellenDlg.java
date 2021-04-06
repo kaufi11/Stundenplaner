@@ -32,7 +32,7 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         BlRefreshclassandteacher.refreshlistcombpclass();
         tfklasse.setModel(modelcomk);
     }
-
+    int anz = 0;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +64,7 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         jButton19 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         tfklasse = new javax.swing.JComboBox<>();
+        jButton20 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
@@ -225,6 +226,14 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
 
         jPanel4.add(tfklasse);
 
+        jButton20.setText("Zurück");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                on_back(evt);
+            }
+        });
+        jPanel4.add(jButton20);
+
         jButton1.setText("Einfügen");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,102 +259,140 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void refresh(){
+        lbanz.setText("");
+        for (StundeBau stundeBau : hour) {
+            lbanz.append(stundeBau.getK() + " " + stundeBau.getStundenname()+"\n");
+        }
+    }
+    
     private void on_clickgud(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_clickgud
         hour.add(new StundeBau("GU-D", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "GU-D"+"\n");
+        refresh();
+        anz++;
+        System.out.println("afnefmoaef");
     }//GEN-LAST:event_on_clickgud
 
     private void on_ok(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_ok
         for (StundeBau stundeBau : hour) {
             data.Var.bausteinelist.add(stundeBau);
         }
+        lbanz.setText("");
     }//GEN-LAST:event_on_ok
 
     private void on_gu_m(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_m
         hour.add(new StundeBau("GU-M", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "GU-M"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_gu_m
 
     private void on_gu_su(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_su
         hour.add(new StundeBau("GU-SU", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "GU-SU"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_gu_su
 
     private void on_gu_e(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_e
         hour.add(new StundeBau("GU-E", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "GU-E"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_gu_e
 
     private void on_bsp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bsp
         hour.add(new StundeBau("BSP", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "BSP"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_bsp
 
     private void on_rk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_rk
         hour.add(new StundeBau("RK", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "RK"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_rk
 
     private void on_be(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_be
         hour.add(new StundeBau("BE", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "BE"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_be
 
     private void on_me(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_me
         hour.add(new StundeBau("ME", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "ME"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_me
 
     private void on_we(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_we
         hour.add(new StundeBau("WE", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "WE"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_we
 
     private void on_uüge(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüge
         hour.add(new StundeBau("UÜ-GE", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "UÜ-GE"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_uüge
 
     private void on_uüchor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüchor
         hour.add(new StundeBau("UÜ-Chor", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "UÜ-Chor"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_uüchor
 
     private void on_uüdls(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüdls
         hour.add(new StundeBau("UÜ-DLS", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "UÜ-DLS"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_uüdls
 
     private void on_spf(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_spf
         hour.add(new StundeBau("SPF", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "SPF"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_spf
 
     private void on_fu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fu
         hour.add(new StundeBau("FU", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "FU"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_fu
 
     private void on_df(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_df
         hour.add(new StundeBau("DF", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "DF"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_df
 
     private void on_daz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_daz
         hour.add(new StundeBau("DAZ", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "DAZ"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_daz
 
     private void on_se(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_se
         hour.add(new StundeBau("SE", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "SE"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_se
 
     private void on_glz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_glz
         hour.add(new StundeBau("GLZ", (String) tfklasse.getSelectedItem()));
-        lbanz.append((String) tfklasse.getSelectedItem() + " " + "GLZ"+"\n");
+        refresh();
+        anz++;
     }//GEN-LAST:event_on_glz
 
+    private void on_back(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_back
+        try {
+            hour.remove(hour.size()-1);
+            refresh();
+        } catch (IndexOutOfBoundsException e) {
+        }
+        
+    }//GEN-LAST:event_on_back
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -363,6 +410,7 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
