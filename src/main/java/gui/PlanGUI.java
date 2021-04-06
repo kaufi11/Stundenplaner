@@ -123,13 +123,12 @@ public class PlanGUI extends javax.swing.JFrame {
                 on_load(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Fächer"));
         jPanel3.setLayout(new java.awt.GridLayout(2, 0));
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Aktionen"));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         btclass.setIcon(data.Var.imageIconclassenable);
@@ -182,12 +181,13 @@ public class PlanGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Klassen"));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jPanel7.setToolTipText("");
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
+        list.setBorder(null);
         list.setModel(listenModellClasse);
         list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         list.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +231,7 @@ public class PlanGUI extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.LINE_START);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Stundenplaner"));
         jPanel5.setLayout(new java.awt.GridLayout(1, 0));
 
         table.setModel(data.Var.m);
