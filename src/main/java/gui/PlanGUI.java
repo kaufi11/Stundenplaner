@@ -110,7 +110,6 @@ public class PlanGUI extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Stundenplaner");
@@ -266,7 +265,7 @@ public class PlanGUI extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem7.setText("Stunde löschen");
+        jMenuItem7.setText("Stunden löschen");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 on_deletehour(evt);
@@ -309,14 +308,6 @@ public class PlanGUI extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem5);
-
-        jMenuItem6.setText("Alles Drucken");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                on_printall(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -482,11 +473,17 @@ public class PlanGUI extends javax.swing.JFrame {
         BlConfirmDlgSaveDelete.exit();
     }//GEN-LAST:event_on_close
 
-    private void on_printall(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_printall
-
-    }//GEN-LAST:event_on_printall
-
     private void on_deletehour(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_deletehour
+        int n = JOptionPane.showConfirmDialog(
+                null,
+                "Möchte Sie wirklich ALLE Stunde löschen?",
+                "Abfrage-Löschvorgang",
+                JOptionPane.YES_NO_OPTION);
+        if (n == 0) {
+            data.Var.hour.clear();
+        } else if (n == 1) {
+            JOptionPane.showMessageDialog(null, "Nicht gelöscht");
+        }
 
     }//GEN-LAST:event_on_deletehour
 
@@ -606,7 +603,6 @@ public class PlanGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
