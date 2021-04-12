@@ -269,7 +269,6 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
     private void on_clickgud(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_clickgud
         hour.add(new StundeBau("GU-D", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
         System.out.println("afnefmoaef");
     }//GEN-LAST:event_on_clickgud
 
@@ -283,103 +282,86 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
     private void on_gu_m(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_m
         hour.add(new StundeBau("GU-M", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_gu_m
 
     private void on_gu_su(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_su
         hour.add(new StundeBau("GU-SU", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_gu_su
 
     private void on_gu_e(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_e
         hour.add(new StundeBau("GU-E", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_gu_e
 
     private void on_bsp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bsp
         hour.add(new StundeBau("BSP", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_bsp
 
     private void on_rk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_rk
         hour.add(new StundeBau("RK", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_rk
 
     private void on_be(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_be
         hour.add(new StundeBau("BE", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_be
 
     private void on_me(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_me
         hour.add(new StundeBau("ME", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_me
 
     private void on_we(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_we
         hour.add(new StundeBau("WE", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_we
 
     private void on_uüge(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüge
         hour.add(new StundeBau("UÜ-GE", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_uüge
 
     private void on_uüchor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüchor
         hour.add(new StundeBau("UÜ-Chor", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_uüchor
 
     private void on_uüdls(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüdls
         hour.add(new StundeBau("UÜ-DLS", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_uüdls
 
     private void on_spf(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_spf
         hour.add(new StundeBau("SPF", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_spf
 
     private void on_fu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fu
         hour.add(new StundeBau("FU", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_fu
 
     private void on_df(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_df
         hour.add(new StundeBau("DF", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_df
 
     private void on_daz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_daz
         hour.add(new StundeBau("DAZ", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_daz
 
     private void on_se(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_se
         hour.add(new StundeBau("SE", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_se
 
     private void on_glz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_glz
         hour.add(new StundeBau("GLZ", (String) tfklasse.getSelectedItem()));
         refresh();
-        anz++;
     }//GEN-LAST:event_on_glz
 
     private void on_back(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_back
