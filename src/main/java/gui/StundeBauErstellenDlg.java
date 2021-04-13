@@ -6,6 +6,7 @@
 package gui;
 
 import bl.BlRefreshclassandteacher;
+import data.Lehrer;
 import data.Stunde;
 import data.StundeBau;
 import static gui.EntryDlg.modelcoml;
@@ -29,10 +30,13 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         BlRefreshclassandteacher.refreshlistteacher();
+        BlRefreshclassandteacher.refreshlistteacher();
         BlRefreshclassandteacher.refreshlistcombpclass();
         tfklasse.setModel(modelcomk);
+        tflehrer.setModel(modelcoml);
     }
     int anz = 0;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +70,7 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         tfklasse = new javax.swing.JComboBox<>();
         jButton20 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        tflehrer = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         lbanz = new javax.swing.JTextArea();
@@ -242,6 +247,9 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         });
         jPanel4.add(jButton1);
 
+        tflehrer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(tflehrer);
+
         jPanel1.add(jPanel4, java.awt.BorderLayout.LINE_END);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -259,17 +267,25 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void refresh(){
+    public void refresh() {
         lbanz.setText("");
         for (StundeBau stundeBau : hour) {
-            lbanz.append(stundeBau.getK() + " " + stundeBau.getStundenname()+"\n");
+            lbanz.append(stundeBau.getK() + " " + stundeBau.getStundenname() + " " + stundeBau.getL().getName() + "\n");
         }
     }
-    
+
     private void on_clickgud(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_clickgud
-        hour.add(new StundeBau("GU-D", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("GU-D", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
-        System.out.println("afnefmoaef");
     }//GEN-LAST:event_on_clickgud
 
     private void on_ok(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_ok
@@ -277,104 +293,256 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
             data.Var.bausteinelist.add(stundeBau);
         }
         lbanz.setText("");
+        hour.clear();
     }//GEN-LAST:event_on_ok
 
     private void on_gu_m(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_m
-        hour.add(new StundeBau("GU-M", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("GU-M", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_gu_m
 
     private void on_gu_su(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_su
-        hour.add(new StundeBau("GU-SU", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("GU-SU", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_gu_su
 
     private void on_gu_e(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_gu_e
-        hour.add(new StundeBau("GU-E", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("GU-E", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_gu_e
 
     private void on_bsp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_bsp
-        hour.add(new StundeBau("BSP", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("BSP", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_bsp
 
     private void on_rk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_rk
-        hour.add(new StundeBau("RK", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("RK", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_rk
 
     private void on_be(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_be
-        hour.add(new StundeBau("BE", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("BE", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_be
 
     private void on_me(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_me
-        hour.add(new StundeBau("ME", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("ME", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_me
 
     private void on_we(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_we
-        hour.add(new StundeBau("WE", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("WE", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_we
 
     private void on_uüge(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüge
-        hour.add(new StundeBau("UÜ-GE", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("UÜGE", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_uüge
 
     private void on_uüchor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüchor
-        hour.add(new StundeBau("UÜ-Chor", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("UÜChor", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_uüchor
 
     private void on_uüdls(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_uüdls
-        hour.add(new StundeBau("UÜ-DLS", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("UÜDLS", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_uüdls
 
     private void on_spf(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_spf
-        hour.add(new StundeBau("SPF", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("SPF", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_spf
 
     private void on_fu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fu
-        hour.add(new StundeBau("FU", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("FU", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_fu
 
     private void on_df(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_df
-        hour.add(new StundeBau("DF", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("DF", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_df
 
     private void on_daz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_daz
-        hour.add(new StundeBau("DAZ", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("DAZ", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_daz
 
     private void on_se(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_se
-        hour.add(new StundeBau("SE", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("SE", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_se
 
     private void on_glz(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_glz
-        hour.add(new StundeBau("GLZ", (String) tfklasse.getSelectedItem()));
+        String kuerzel = null;
+        boolean anwesend = false;
+        for (Lehrer lehrer : data.Var.lehrer) {
+            String comp = (String) tflehrer.getSelectedItem();
+            if (comp.equalsIgnoreCase(lehrer.getName())) {
+                kuerzel = lehrer.getKuerzel();
+                anwesend = lehrer.isAnwesend();
+            }
+        }
+        hour.add(new StundeBau("GLZ", (String) tfklasse.getSelectedItem(), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend)));
         refresh();
     }//GEN-LAST:event_on_glz
 
     private void on_back(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_back
         try {
-            hour.remove(hour.size()-1);
+            hour.remove(hour.size() - 1);
             refresh();
         } catch (IndexOutOfBoundsException e) {
         }
-        
+
     }//GEN-LAST:event_on_back
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -407,5 +575,6 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
     private javax.swing.JTextArea lbanz;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JComboBox<String> tfklasse;
+    private javax.swing.JComboBox<String> tflehrer;
     // End of variables declaration//GEN-END:variables
 }

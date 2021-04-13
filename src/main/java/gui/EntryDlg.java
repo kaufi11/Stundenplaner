@@ -13,7 +13,10 @@ import data.Lehrer;
 import data.Stunde;
 import data.StundeBau;
 import data.Var;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +31,7 @@ public class EntryDlg extends javax.swing.JDialog {
     private String[] wochentag = new String[5];
     public static DefaultComboBoxModel modelcoml = new DefaultComboBoxModel();
     private boolean unverb = false;
+    private List<Lehrer> nichtverf = new LinkedList<Lehrer>();
 
     public EntryDlg(java.awt.Frame parent, boolean modal, int row, int column, String fach) {
 
@@ -165,9 +169,9 @@ public class EntryDlg extends javax.swing.JDialog {
         boolean remove = false;
         StundeBau del = null;
         for (StundeBau stundeBau : data.Var.bausteinelist) {
-            
-            if(stundeBau.getStundenname().equals(tffach.getText())&&stundeBau.getK().equals(tfklasse.getText())){
-                 del=stundeBau;
+
+            if (stundeBau.getStundenname().equals(tffach.getText()) && stundeBau.getK().equals(tfklasse.getText())) {
+                del = stundeBau;
             }
         }
         data.Var.bausteinelist.remove(del);
@@ -184,7 +188,7 @@ public class EntryDlg extends javax.swing.JDialog {
                     remove = true;
                 }
 
-            }else if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
+            } else if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
 
                 if (stunde.getFach2() == "") {
                     stunde.setLehrer2(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
@@ -228,9 +232,28 @@ public class EntryDlg extends javax.swing.JDialog {
         for (Stunde s : Var.hour) {
             for (int i = 0; i < Var.hour.size(); i++) {
                 if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis)) && (!s.getFach().matches("UÜ.*") || !fach.matches("UÜ.*"))) {
-                    modelcoml.removeElement(s.getLehrer().getName());
+                    nichtverf.add(s.getLehrer());
                 }
             }
+        }
+        boolean anwe = true;
+        for (StundeBau stundeBau : data.Var.bausteinelist) {
+
+            if (stundeBau.getStundenname().equalsIgnoreCase(tffach.getText()) && stundeBau.getK().equalsIgnoreCase(tfklasse.getText())) {
+                for (Lehrer lehrer : nichtverf) {
+                    if (stundeBau.getL().equals(lehrer)) {
+                        anwe = false;
+                    } else {
+                        tflehrer.setSelectedItem(stundeBau.getL().getName());
+                    }
+
+                }
+
+            }
+        }
+        if (!anwe) {
+            JOptionPane.showMessageDialog(null, "Lehrer nicht verfübar");
+
         }
 
         /*for (Stunde s : Var.hour) {

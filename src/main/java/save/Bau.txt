@@ -1,1 +1,1 @@
-[{"k":"1a","stundenname":"AM"},{"k":"1a","stundenname":"AM"},{"k":"1a","stundenname":"AM"},{"k":"1a","stundenname":"D"},{"k":"1a","stundenname":"D"},{"k":"1a","stundenname":"BE"},{"k":"1a","stundenname":"BE"}]
+[{"k":"1a","stundenname":"GU-E","l":{"Name":"KS","Kuerzel":"KS","wochenstunden":0,"anwesend":false}}]

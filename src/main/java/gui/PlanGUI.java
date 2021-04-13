@@ -7,7 +7,6 @@ package gui;
 
 import veralteteklassen.PlanDlg;
 import bl.BlAddDeleteEdit;
-import bl.BlBuildData;
 import bl.BlConfirmDlgSaveDelete;
 import bl.BlPlan;
 import bl.BlRefreshclassandteacher;
@@ -338,10 +337,8 @@ public class PlanGUI extends javax.swing.JFrame {
 
     private void on_edit2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_edit2
         if (!Var.anslehrer) {
-
             jPanel3.setVisible(false);
             jPanel3.removeAll();
-
             for (StundeBau stundeBau : data.Var.bausteinelist) {
                 if (stundeBau.getK().equals(data.Var.klasseakt)) {
                     JLabel lbbau = new javax.swing.JLabel();
@@ -488,7 +485,6 @@ public class PlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_on_deletehour
 
     private void on_build(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_build
-        BlBuildData.input();
         StundeBauErstellenDlg dialog = new StundeBauErstellenDlg(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
     }//GEN-LAST:event_on_build
