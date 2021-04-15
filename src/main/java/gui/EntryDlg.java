@@ -11,6 +11,7 @@ import bl.BlTableLoad;
 import data.Klasse;
 import data.Lehrer;
 import data.Stunde;
+import data.StundeAnsicht;
 import data.StundeBau;
 import data.Var;
 import java.util.LinkedList;
@@ -228,23 +229,22 @@ public class EntryDlg extends javax.swing.JDialog {
         uhrbis = tfuhr1.getText();
         tag = tftag.getText();
         fach = tffach.getText();
-        System.out.println(tag + " " + uhrvon + " " + uhrbis);
         for (Stunde s : Var.hour) {
-            for (int i = 0; i < Var.hour.size(); i++) {
-                if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis)) && (!s.getFach().matches("UÜ.*") || !fach.matches("UÜ.*"))) {
-                    nichtverf.add(s.getLehrer());
-                }
+
+            if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis)) && (!s.getFach().matches("UÜ.*") || !fach.matches("UÜ.*"))) {
+                nichtverf.add(s.getLehrer());
             }
+
         }
         boolean anwe = true;
+        StundeBau selected = null;
         for (StundeBau stundeBau : data.Var.bausteinelist) {
 
             if (stundeBau.getStundenname().equalsIgnoreCase(tffach.getText()) && stundeBau.getK().equalsIgnoreCase(tfklasse.getText())) {
+                selected = stundeBau;
                 for (Lehrer lehrer : nichtverf) {
-                    if (stundeBau.getL().equals(lehrer)) {
+                    if (stundeBau.getL().getName().equals(lehrer.getName()) && stundeBau.getL().getKuerzel().equals(lehrer.getKuerzel())) {
                         anwe = false;
-                    } else {
-                        tflehrer.setSelectedItem(stundeBau.getL().getName());
                     }
 
                 }
@@ -252,8 +252,28 @@ public class EntryDlg extends javax.swing.JDialog {
             }
         }
         if (!anwe) {
-            JOptionPane.showMessageDialog(null, "Lehrer nicht verfübar");
-
+            int n = JOptionPane.showConfirmDialog(
+                    null,
+                    "Baustein-Lehrer nicht verfübar. Eintrag mit einem anderen verfügbaren Lehrer erstellen?",
+                    "Abfrage-Öffnen",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                for (Stunde s : Var.hour) {
+                    for (int i = 0; i < Var.hour.size(); i++) {
+                        if ((s.getTag().equals(tag)) && (s.getUhrzeitvon().equals(uhrvon)) && (s.getUhrzeitbis().equals(uhrbis))) {
+                            tflehrer.removeItem(s.getLehrer().getName());
+                        }
+                    }
+                }
+            } else if (n == 1) {
+                open = false;
+                ok = false;
+                bl.BlRefreshclassandteacher.refreshlistteacher();
+                bl.BlRefreshclassandteacher.refreshlistcombpteacher();
+                this.dispose();
+            }
+        } else {
+            tflehrer.setSelectedItem(selected.getL().getName());
         }
 
         /*for (Stunde s : Var.hour) {
