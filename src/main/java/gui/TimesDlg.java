@@ -256,7 +256,7 @@ public class TimesDlg extends javax.swing.JDialog {
         
         bl.BlPlan.pausenrechner();
         
-        
+        data.Var.issafed = false;
         open = false;
         this.dispose();
     }//GEN-LAST:event_on_ok

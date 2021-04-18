@@ -179,22 +179,22 @@ public class EntryDlg extends javax.swing.JDialog {
         for (Stunde stunde : data.Var.hour) {
             if (unverb) {
                 if (stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
-                    if (stunde.getKlasse2() == "") {
+                    if (stunde.getKlasse2().equals("")) {
                         stunde.setKlasse2(tfklasse.getText());
-                    } else if (stunde.getKlasse3() == "") {
+                    } else if (stunde.getKlasse3().equals("")) {
                         stunde.setKlasse3(tfklasse.getText());
-                    } else if (stunde.getKlasse4() == "") {
+                    } else if (stunde.getKlasse4().equals("")) {
                         stunde.setKlasse4(tfklasse.getText());
                     }
                     remove = true;
                 }
 
             } else if (stunde.getKlasse().equals(tfklasse.getText()) && stunde.getTag().equals(tftag.getText()) && stunde.getUhrzeitvon().equals(tfuhr.getText()) && stunde.getUhrzeitbis().equals(tfuhr1.getText())) {
-
-                if (stunde.getFach2() == "") {
+                
+                if (stunde.getFach2().equals("")) {
                     stunde.setLehrer2(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
                     stunde.setFach2(tffach.getText());
-                } else if (stunde.getFach3() == "") {
+                } else if (stunde.getFach3().equals("")) {
                     stunde.setLehrer3(new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend));
                     stunde.setFach3(tffach.getText());
                 }
@@ -207,6 +207,7 @@ public class EntryDlg extends javax.swing.JDialog {
             data.Var.hour.add(s);
         }
 
+        data.Var.issafed = false;
         BlTableLoad.firstload();
         BlTableLoad.akttable(tfklasse.getText());
         open = false;
@@ -291,6 +292,7 @@ public class EntryDlg extends javax.swing.JDialog {
 
             }
         }*/
+        
     }
 
     /**

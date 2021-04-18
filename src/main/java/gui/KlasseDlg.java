@@ -148,11 +148,13 @@ public class KlasseDlg extends javax.swing.JDialog {
             }
         }
         
+        data.Var.issafed = false;
         ok = true;
         Klasse k = new Klasse(tfname.getText(), Integer.parseInt(tfschueleranz.getText()), Integer.parseInt(tfwochenstunden.getText()), Integer.parseInt((String) cbjahrgang.getSelectedItem()), new Lehrer((String) tflehrer.getSelectedItem(), kuerzel, anwesend), tfraum.getText());
         data.Var.klassen.add(k);
         bl.BlRefreshclassandteacher.refreshlistclass();
         open = false;
+        
         this.dispose();
     }//GEN-LAST:event_on_fertig
 

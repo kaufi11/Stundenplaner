@@ -292,6 +292,7 @@ public class StundeBauErstellenDlg extends javax.swing.JDialog {
         for (StundeBau stundeBau : hour) {
             data.Var.bausteinelist.add(stundeBau);
         }
+        data.Var.issafed = false;
         lbanz.setText("");
         hour.clear();
     }//GEN-LAST:event_on_ok

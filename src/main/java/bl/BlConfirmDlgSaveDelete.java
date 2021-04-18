@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class BlConfirmDlgSaveDelete {
 
     public static void safe() {
+        data.Var.issafed = true;
         bl.BlSavesAndLoads.speichern(data.Var.pfadauto);
         bl.BlSavesAndLoads.speicherntimes(data.Var.pfadauto);
         bl.BlSavesAndLoads.speichernteacher(data.Var.pfadauto);
@@ -22,14 +23,17 @@ public class BlConfirmDlgSaveDelete {
     }
 
     public static void exit() {
-        int result = JOptionPane.showConfirmDialog(null,
-                "Möchten Sie das Programm vor dem Schließen abspeichern?",
-                "Speichern",
-                JOptionPane.YES_NO_OPTION);
+        if (!data.Var.issafed) {
 
-        switch (result) {
-            case JOptionPane.YES_OPTION:
-                safe();
+            int result = JOptionPane.showConfirmDialog(null,
+                    "Möchten Sie das Programm vor dem Schließen abspeichern?",
+                    "Speichern",
+                    JOptionPane.YES_NO_OPTION);
+
+            switch (result) {
+                case JOptionPane.YES_OPTION:
+                    safe();
+            }
         }
     }
 

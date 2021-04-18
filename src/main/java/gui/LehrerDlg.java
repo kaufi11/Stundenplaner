@@ -108,6 +108,7 @@ public class LehrerDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_on_abbruch
 
     private void on_fertig(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_on_fertig
+        data.Var.issafed = false;
         ok = true;
         Lehrer l = new Lehrer(tfname.getText(), tfkuerzel.getText(), Integer.parseInt(tfwochenstunden.getText()), true);
         data.Var.lehrer.add(l);
