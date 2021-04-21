@@ -1,1 +1,1 @@
-[{"k":"1a","stundenname":"DF","l":{"Name":"KS","Kuerzel":"KS","wochenstunden":0,"anwesend":true}},{"k":"1a","stundenname":"SE","l":{"Name":"Kam","Kuerzel":"Kam","wochenstunden":0,"anwesend":true}},{"k":"1c","stundenname":"FU","l":{"Name":"KS","Kuerzel":"KS","wochenstunden":0,"anwesend":true}}]
+[{"k":"1c","stundenname":"FU","l":{"Name":"KS","Kuerzel":"KS","wochenstunden":0,"anwesend":true}}]

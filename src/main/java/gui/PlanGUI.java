@@ -520,12 +520,10 @@ public class PlanGUI extends javax.swing.JFrame {
                     }
                 }
                 data.Var.shelp.remove(gesucht);
-                data.Var.hour.remove(n);
                 data.Var.hour.remove(gesucht.getHour());
                 if (Var.ansklasse) {
                     data.Var.klasseakt = list.getSelectedValue();
                     BlTableLoad.akttable(data.Var.klasseakt);
-
                 }
                 if (Var.anslehrer) {
                     data.Var.lehrerakt = list.getSelectedValue();
